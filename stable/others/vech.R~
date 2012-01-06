@@ -1,0 +1,14 @@
+##' Description
+##'
+##' Details.
+##' @name 
+##' @title 
+##' @param X 
+##' @return 
+##' @references 
+##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+##' @note First version: ; Current: .
+vech <- function(X)
+{
+  matrix(X[lower.tri(X, diag = TRUE)])
+}
