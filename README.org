@@ -1,0 +1,7 @@
+This folder contains the R utility functions which are depended by other
+programs.  Always source this folder fist.
+
++ dev: Code under this folder is still in development which is not suitable for
+  productive environment
++ stable: Code under this folder is ready for regular use. You may use the
+  "sourceDir" function in the sourceDir.R file.
