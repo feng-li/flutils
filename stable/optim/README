@@ -1,4 +1,4 @@
-http://sims.princeton.edu/yftp/optimize/
+The original files frome http://sims.princeton.edu/yftp/optimize/
 
 This directory contains a set of R functions and that do unconstrained optimization and nonlinear equations-solving. It also contains some auxiliary files. The R code was developed by translating the m files, but is currently in more active use.
 
