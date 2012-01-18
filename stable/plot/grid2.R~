@@ -1,1 +1,0 @@
-abline(h = grid.y, v = grid.x, col = "black", lty="dotted", lwd = 0.5)
