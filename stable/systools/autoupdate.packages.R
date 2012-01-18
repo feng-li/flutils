@@ -1,4 +1,4 @@
-##' <description>
+##' Auto update R packages.
 ##'
 ##' <details>
 ##' @title 
@@ -11,7 +11,8 @@
 ##' @note First version: Thu Apr 21 11:32:34 CEST 2011;
 ##'       Current:       Thu Apr 21 11:32:40 CEST 2011.
 ##' TODO: check when two versions installed and skip updade
-autoupdate.packages <- function(when, insOnloc.if.noPrivilege = FALSE, noticeOnly = TRUE)
+autoupdate.packages <- function(when, insOnloc.if.noPrivilege = FALSE,
+                                noticeOnly = TRUE)
   {
     if(missing(when) || tolower(format(Sys.time(), "%A"))  == tolower(when)) # update
                                         # now or given weekday e.g. Friday
