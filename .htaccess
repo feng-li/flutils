@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^feng-li\.github\.com\/rutils$
+RewriteRule ^/?$ "http\:\/\/git\.feng\.li\/rutils" [R=301,L]
