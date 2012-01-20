@@ -8,3 +8,5 @@ programs.
   productive environment
 
 + Copyright: See the copyright on individual pages.
+
++ More information http://git.feng.li/rutils/
