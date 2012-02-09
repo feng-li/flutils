@@ -3,58 +3,52 @@
 ##' Details.
 ##' @name 
 ##' @title 
-##' @param D 
-##' @param X 
+##' @param d 
+##' @param M 
 ##' @return 
 ##' @references 
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: Tue Nov 09 11:12:05 CET 2010;
 ##'       Current:       Tue Nov 09 11:12:13 CET 2010.
-"%d*%" <- diag.prod <- function(D, X) ## D %*% X where D is a diagonal matrix.
+
+## diag(d) %*% M .
+"%d*%" <- dM <- function(d, M) 
 {
-  p <- dim(D)[1]
-  q <- dim(X)[2]
-  d <- diag(D)
+  p <- length(d)
+  q <- dim(M)[2]
   D0 <- matrix(d, nrow = p, ncol = q)
-  out <- D0*X
+  out <- D0*M
   return(out)
 }
 
-"%*d%" <- prod.diag <- function(X, D) ## X %*% D where D is a diagonal matrix.
+## X %*% diag(d).
+"%*d%" <- Md <- function(M, d) 
 {
-  p <- dim(D)[1]
-  q <- dim(X)[1]
-  d <- diag(D)
+  p <- lengh(d)
+  q <- dim(M)[1]
   D0 <- matrix(d, nrow = q, ncol = p, byrow = TRUE)
-  out <- X*D0
+  out <- M*D0
   return(out)
 }
 
-
-"%d*d%" <- diag.prod.diag <- function(D, X) ## D %*% X %*% D where D is a diagonal matrix
-  ## and X is a squire matrix.
+## diag(d) %*% M %*% diag(d) and M is a squared matrix.
+"%d*d%" <- dMd <- function(d, M) 
 {
-  p <- dim(D)[1]
-  q <- dim(X)[2]
-  d <- diag(D)
+  p <- length(d)
+  q <- dim(M)[2]
   D0 <- matrix(d, nrow = p, ncol = q)
   D1 <- t(D0)
-  #print(D)
-  #print(D0)
-  #print(X)
 
-  out <- D0*X*D1
+  out <- D0*M*D1
   return(out)
 }
 
-
-
-## "%*d*%" <- prod.diag.prod <- function(X1, D, X2 = X1) ## t(X) %*% D %*% X where D is a diagonal matrix.
-## {
-##   p <- dim(D)[1]
-##   d <- diag(D)
-##   D0 <- matrix(d, nrow = p, ncol = p)
-##   D1 <- t(D0)
-##   out <- D0*X*D1
-##   return(out)
-## }
+## M %*% diag(d) %*% N
+tMdN <- function(M, d, N = M) 
+{
+  p <- length(d)
+  q <- dim(N)[2]
+  D0 <- matrix(d, nrow = p, ncol = q)
+  out <- crossprod(M, D0*N)
+  return(out)
+}
