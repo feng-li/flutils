@@ -43,7 +43,7 @@
   return(out)
 }
 
-## M %*% diag(d) %*% N
+## t(M) %*% diag(d) %*% N
 tMdN <- function(M, d, N = M) 
 {
   p <- length(d)
