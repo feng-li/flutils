@@ -24,7 +24,7 @@
 ## X %*% diag(d).
 "%*d%" <- Md <- function(M, d) 
 {
-  p <- lenght(d)
+  p <- length(d)
   q <- dim(M)[1]
   D0 <- matrix(d, nrow = q, ncol = p, byrow = TRUE)
   out <- M*D0
