@@ -10,3 +10,5 @@ programs.
 + Copyright: See the copyright on individual pages.
 
 + More information: [[http://git.feng.li/rutils]]
+
++ Bug report: Contact Feng Li <feng.li@stat.su.se>
