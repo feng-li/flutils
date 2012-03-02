@@ -30,14 +30,13 @@ DensGradHess <- function(B, ..., type = "norm", Hess = TRUE)
     {
       mean <- matrix(parArgs$mean)
       covariance <- as.matrix(parArgs$covariance)
-      shrinkage <- parArgs$shrinkage
 
       CovInv <- solve(covariance)
-      grad <- - 1/shrinkage * CovInv %*% (B-mean)  # TODO:
+      grad <- -CovInv %*% (B-mean)  # TODO:
 
       if(Hess == TRUE)
         {
-          Hess <- - 1/shrinkage * CovInv
+          Hess <- -CovInv
         }
       else
         {
