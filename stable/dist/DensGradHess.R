@@ -26,8 +26,7 @@ DensGradHess <- function(B, ..., type = "norm", grad = TRUE, Hess = TRUE)
 {
   parArgs <- list(...)
   B <- matrix(B)
-  gradOut <- NULL
-  HessOut <- NULL
+  out <- list()
   
   if (tolower(type) == "norm") # vecB ~ N(mean, shrinkage*covariance)
     {
@@ -38,15 +37,14 @@ DensGradHess <- function(B, ..., type = "norm", grad = TRUE, Hess = TRUE)
       ## The gradient
       if(grad == TRUE)
         {
-          gradOut <- -CovInv %*% (B-mean)
+          out[["grad"]] <- -CovInv %*% (B-mean)
         }
       ## The Hessian
       if(Hess == TRUE)
         {
-          HessOut <- -CovInv
+          out[["Hess"]] <- -CovInv
         }
     }
-
-  out <- list(grad = gradOut, Hess = HessOut) 
+  
   return(out)
 }
