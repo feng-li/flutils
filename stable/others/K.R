@@ -24,16 +24,22 @@
 
 ## Version:
 ##   First:       Tue Mar  9 16:00:06 CET 2010
-##   Current:     Tue Mar  9 16:00:15 CET 2010
+##   Current:     Wed Mar 14 19:02:51 CET 2012
 
 K <- function(m,n)
 {
   x <- matrix(0,m*n,m*n)
   m0 <- 1:(m*n)
   n0 <- as.vector(t(matrix(m0,m,n)))
-  for (i in 1:(m*n)) # TODO: remove the loops: Email from "Yves Rosseel"
-    {
-      x[m0[i],n0[i]] <- 1
-    }
+
+  arr.ind <- cbind(m0, n0)
+  dims <- c(m*n,m*n)
+  arr.indMat <- matrix(arr.ind, ncol = length(dims))
+  idx1 <- cumprod(dims[-length(dims)])
+  idx2 <- arr.indMat[, -1, drop = FALSE]-1
+  idxRaw <- rowSums(idx1*idx2) + arr.indMat[, 1]
+
+  x[idxRaw] <- 1
+
   return(x)
 }
