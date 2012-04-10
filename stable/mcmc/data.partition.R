@@ -21,11 +21,11 @@ data.partition <- function(n.obs, args)
     }
   
   obs.label <- 1:n.obs
-  options(warn = -1) # disable warnings when ata length is not a multiple of split
+  # disable warnings when ata length is not a multiple of split
                                         # variable which is what I want.
-  length.out <- split(obs.label, 1:args$N.subsets) # split the knots in a smart way. e.g. split
+  suppressWarnings(
+    length.out <- split(obs.label, 1:args$N.subsets)) # split the knots in a smart way. e.g. split
                                         # 20 knots into 3 folds
-  options(warn = 0) # set it back
   
   if(tolower(args$partiMethod) == "systematic")
     { out <- length.out }
