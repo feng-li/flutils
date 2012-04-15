@@ -40,9 +40,9 @@ stock2covariates <- function(file, g = c(0.95, 0.80),
     CloseSqrt <- matrix(NA, nObs, length(g),
                         dimnames = list(NULL,
                           paste("CloseSqrt", g*100, sep = "")))
-    MinMaxAbs <- matrix(NA, nObs, length(g),
+    MaxMin <- matrix(NA, nObs, length(g),
                         dimnames = list(NULL,
-                          paste("MinMaxAbs", g*100, sep = "")))
+                          paste("MaxMin", g*100, sep = "")))
     RMA <- matrix(NA, nObs, length(ma),
                   dimnames = list(NULL,
                     paste("RMA", ma, sep = "")))
@@ -71,11 +71,11 @@ stock2covariates <- function(file, g = c(0.95, 0.80),
             CloseAbs[t, j] <- (1-g[j])*sum(g.s*abs(Returns[tInit:(t-2)])^kappa)
             CloseSqrt[t, j] <- sqrt((1-g[j])*
                                     sum(g.s*(Returns[tInit:(t-2)]^2)^kappa))
-            MinMaxAbs[t, j] <- (1-g[j])*
+            MaxMin[t, j] <- (1-g[j])*
               sum(g.s*(100*(log(High[tInit:(t-2)])-log(Low[tInit:(t-2)])))^kappa)
           }
       }
-    outData <- cbind(Returns, RMA, CloseAbs, CloseSqrt, MinMaxAbs)[tIdx, , drop = FALSE]
+    outData <- cbind(Returns, RMA, CloseAbs, CloseSqrt, MaxMin)[tIdx, , drop = FALSE]
     Date <- as.Date(Data[tIdx, "Date"], "%Y-%m-%d")
 
     out <- data.frame(Date, outData)
