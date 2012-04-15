@@ -78,7 +78,6 @@ stock2covariates <- function(file, g = c(0.95, 0.80),
     outData <- cbind(Returns, RMA, CloseAbs, CloseSqrt, MinMaxAbs)[tIdx, , drop = FALSE]
     Date <- as.Date(Data[tIdx, "Date"], "%Y-%m-%d")
 
-    browser()
     out <- data.frame(Date, outData)
     return(out)
   }
