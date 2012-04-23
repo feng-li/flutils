@@ -54,7 +54,7 @@ tMdN <- function(M, d, N = M)
   return(out)
 }
 
-## Built matrix with diagonal vector.
+## Built diag(n) in a much faster way.
 diag1 <- function(n)
   {
     out <- matrix(0, n, n)
