@@ -2,24 +2,25 @@
 ##'
 ##' <details>
 ##' @title <short tile>
-##' @param X "matrix" The covariates matrix.
-##' @param beta 
+##' @param par
 ##' @param link "character" Type of link function
+##' @param extArgs "list" the external arguments need to pass to the function.
+##' @param X "matrix" The covariates matrix.
 ##' @return "matrix" of the same dimension as the linear predictor
-##' @references 
+##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Thu Nov 24 11:46:32 CET 2011;
 ##'       Current: Thu Nov 24 11:46:39 CET 2011.
-parMeanFunGrad <- function(par, link)
+parMeanFunGrad <- function(par, link, extArgs)
   {
     ## Input x'b  -> l(phi) = x'b -> phi
     ## NOTE: We want vectorized output, i.e, X is n-by-p,  beta is p-by-1 and
     ## the output is n-by-1. But the appendix is written in scaler form.
 
     ## The linear predictor eta = x'b
-    linpred <- parLinkFun(mu = par, link = link) 
+    linpred <- parLinkFun(mu = par, link = link)
 
-    ## Gradient for different situations 
+    ## Gradient for different situations
     if(tolower(link) == "identity")
       {
         out <- linpred
@@ -34,6 +35,17 @@ parMeanFunGrad <- function(par, link)
         exp.linPred <- exp(linpred)
         out <- exp.linPred/(1+exp.linPred)^2
       }
+    else if(tolower(link) == "glogit")
+      {
+        a <- extArgs$a
+        b <- extArgs$b
+        exp.linPred <- exp(linpred)
+
+        ## The gradients for all three parameters
+        out.lin <- (b-a)*exp.linPred/(1+exp.linPred)^2
+        out.a <- 1/(1+exp.linPred)
+        out.b <- 1/(1+1/exp.linPred)
+      }
     else
       {
         stop("This link function is not implemented yet!")
@@ -47,7 +59,7 @@ parMeanFunGrad <- function(par, link)
 ##     ## Input x'b  -> l(phi) = x'b -> phi
 ##     ## NOTE: We want vectorized output, i.e, X is n-by-p,  beta is p-by-1 and
 ##     ## the output is n-by-1. But the appendix is written in scaler form.
-    
+
 ##     if(tolower(link) == "identity")
 ##       {
 ##         out <- X
@@ -56,7 +68,7 @@ parMeanFunGrad <- function(par, link)
 ##       {
 ##         linPred <- X %*% beta
 ##         exp.linPred <- array(exp(linPred), dim(X))
-        
+
 ##         out <- exp.linPred*X
 ##       }
 ##     else if(tolower(link) == "logit")
