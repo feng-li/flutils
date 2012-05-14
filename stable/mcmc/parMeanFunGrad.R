@@ -45,6 +45,7 @@ parMeanFunGrad <- function(par, link, extArgs)
         out.lin <- (b-a)*exp.linPred/(1+exp.linPred)^2
         out.a <- 1/(1+exp.linPred)
         out.b <- 1/(1+1/exp.linPred)
+        out <- out.lin
       }
     else
       {
