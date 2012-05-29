@@ -70,6 +70,6 @@ StdData <- function(X,method)
       X.out <- as.vector(X.out)
     }
 
-  out <- list(out = X.out, config = config)
+  out <- list(data = X.out, config = config)
   return(out)
 }
