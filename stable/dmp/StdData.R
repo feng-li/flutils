@@ -9,7 +9,9 @@
 
 ## Arguments:
 ##   X:            "Numercial". The data to be standardized.
-##   method:       "Numerical". If "stdnorm", X will be standardized with mean zero and standard deviation 1. If "-1to1", X will be restricted to [-1, 1].
+##   method:       "Numerical". If "stdnorm", X will be standardized with mean
+##   zero and standard deviation 1. If "-1to1", X will be restricted to [-1,
+##   1].
 
 ## Details:
 ##   "X" should be a numeric matrix or a vector. The standardization methods do _NOT_ apply
@@ -28,46 +30,46 @@
 ##   Current:     Tue May 29 12:46:09 CEST 2012
 StdData <- function(X,method)
 {
-  X.is.vector <- FALSE
+  ## if X is a vector,  treat it as a one-column vector.
   if(is.vector(X)==TRUE)
     {
       X <- as.matrix(X)
       X.is.vector <- TRUE
-      X.const <- any(sd(X)==0)
     }
-  if(is.numeric(X) == FALSE || is.matrix(X)==FALSE)
+  else
     {
-      stop("X (numeric) must be either a matrix or a vector.")
+      X.is.vector <- FALSE
     }
-
   X.dim <- dim(X)
-  if(X.dim[1]==1 || any(sd(X)==0)==TRUE )
-    {
-      stop("A matrix with one row or constant colums does not work.")
-    }
 
-  X.dim <- dim(X)
+  ## Methods of standardization
   if(tolower(method)=="norm-0-1") # mean 0, sd=1
     {
-      X.colMeans <-  matrix(colMeans(X),X.dim[1],X.dim[2],byrow=TRUE)
-      X.sd <-  matrix(sd(X),X.dim[1],X.dim[2],byrow=TRUE)
-      X.out <- (X-X.colMeans)/X.sd
-      out <- list(mean = X.colMeans, sd = X.sd, method = method)
+      mean.vec <- colMeans(X)
+      mean.mat <-  matrix(mean.vec,X.dim[1],X.dim[2],byrow=TRUE)
+      sd.vec <- apply(X, 2, sd)
+      sd.mat <-  matrix(sd.vec, X.dim[1],X.dim[2],byrow=TRUE)
+
+      X.out <- (X-mean.mat)/sd.mat
+      config <- list(mean = mean.vec, sd = sd.vec, method = method)
     } # if(tolower(method)=="stdnorm")
 
   if(tolower(method)=="-1to1") # restrict to [-1 1]
     {
-      X.max <- matrix(apply(X,2,max),X.dim[1],X.dim[2],byrow=TRUE)
-      X.min <- matrix(apply(X,2,min),X.dim[1],X.dim[2],byrow=TRUE)
-      X.out <- (2*X-X.max-X.min)/(X.max-X.min)
-      out <- list(min = X.min, max = X.max, method = method)
+      max.vec <- apply(X, 2, max)
+      min.vec <- apply(X, 2, min)
+      max.mat <- matrix(max.vec,X.dim[1],X.dim[2],byrow=TRUE)
+      min.mat <- matrix(min.vec,X.dim[1],X.dim[2],byrow=TRUE)
+      X.out <- (2*X-max.mat-min.mat)/(max.mat-min.mat)
+      config <- list(min = min.vec, max = max.vec, method = method)
     } # if(tolower(method)=="-1to1")
 
+  ## When X was a vector.
   if(X.is.vector==TRUE)
     {
       X.out <- as.vector(X.out)
     }
 
-  out[["x"]] <- X.out
+  out <- list(out = X.out, config = config)
   return(out)
 }
