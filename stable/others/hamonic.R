@@ -2,7 +2,7 @@
 ##'
 ##'
 ##' @title Harmonic number
-##' @param n "numeric" Non integer is also allowed.
+##' @param n "non-negative numeric" Non integer is also allowed.
 ##' @return "numeric"
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Wed May 30 10:51:32 CEST 2012;
