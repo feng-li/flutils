@@ -18,7 +18,7 @@ parMeanFunGrad <- function(par, link, extArgs)
     ## the output is n-by-1. But the appendix is written in scaler form.
 
     ## The linear predictor eta = x'b
-    linpred <- parLinkFun(mu = par, link = link)
+    linpred <- parLinkFun(mu = par, link = link, extArgs = extArgs)
 
     ## Gradient for different situations
     if(tolower(link) == "identity")
