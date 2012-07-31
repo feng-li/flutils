@@ -25,7 +25,7 @@ is.displayopen <- function()
             out <- TRUE
           }
       }
-    else if(tolower(system) == "windows")
+    else if(tolower(sysname) == "windows")
       {
         out <- TRUE
       }
