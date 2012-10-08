@@ -233,13 +233,13 @@ sourceDir <- function(...,
 
 
   ## Invisible return the sourcing status
-  if(byte.compile)
+  if(byte.compile == 0)
     {
-      out <- data.frame(RFiles, RcFilesExist, RcNewer, sourceSucess)
+      out <- data.frame(RFiles, sourceSucess)
     }
   else
     {
-      out <- data.frame(RFiles, sourceSucess)
+      out <- data.frame(RFiles, RcFilesExist, RcNewer, sourceSucess)
     }
   invisible(out)
 
