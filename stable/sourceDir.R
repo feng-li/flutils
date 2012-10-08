@@ -1,28 +1,57 @@
-##' Sourcing a bunch of files located from different folders/subfolders.
+##' Sourcing a bunch of files located in different folders/subfolders.
 ##'
-##' Also provide byte-code compiler before sourcing.
-##' @param ... Paths to be sourced
-##' @param byte.compile "logical". If TRUE, byte compile the R code first and load. Else,
-##'        only load R code.
-##' @param recursive "logical". If TRUE, files will be sourced recursively for all
-##'        sub folders.
-##' @param envir "environment" What is destiny of the files to be sourced.
-##' @param silent "logical". If TRUE, No detailed information printed out.
-##' @param pattern "string". What kind of file pattern is sourced
-##' @param ignore.error "logical". If TRUE, try to continue even errors occur.
-##' @return NULL
+##' Also provide byte-code compiling before sourcing.
+##' @param ... "characters"
+##'
+##'        The inputs can be path to the R code or mixture of paths and files.
+##'
+##' @param byte.compile "integer".
+##'
+##'        If byte.compile = 0, the program will only load the R source code.
+##'
+##'        If byte.compile = 1, the program will first load the byte-compiled
+##' file if the byte-compiled file exists and is newer than the R source code,
+##' otherwise the program will first byte-compile it and then load the
+##' byte-compiled file.
+##'
+##'        If byte.compile = 2. the program will byte-compile the R source code
+##' regardless of the existence of byte-compiled files.
+##'
+##' @param recursive "logical".
+##'
+##'        If TRUE, files will be sourced recursively for all sub folders.
+##'
+##' @param envir "environment"
+##'
+##'        What is destiny of the files to be sourced. The default environment
+##' is the global environment.
+##'
+##' @param pattern "string".
+##'
+##'        What kind of file pattern is sourced.
+##'
+##' @param ignore.error "logical".
+##'
+##'        If TRUE, try to continue even errors occur.
+##'
+##' @return "data.frame"
+##'
+##'         A summary is returned invisibly.
+##'
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+##'
 ##' @license  GPL(>=2)
-##' @note First version: Wed Apr 15 20:00:43 CET 2009;
-##'       Current:       Sat Nov 12 15:42:54 CET 2011.
-##' TODO: add environmental option, allow to only source byte code.
+##'
+##' @note Initial: Wed Apr 15 20:00:43 CET 2009;
+##'       Current: Mon Oct 08 17:15:27 CEST 2012.
+##'
+##' TODO:
 ##'       allow parallel souring
 ##'
 sourceDir <- function(...,
                       byte.compile = FALSE,
                       recursive = FALSE,
                       envir = .GlobalEnv,
-                      silent = FALSE,
                       pattern = "\\.[Rr]$",
                       ignore.error = FALSE)
 {
@@ -38,7 +67,7 @@ sourceDir <- function(...,
   ## Check if all inputs are directories. The inputs can also mixture of
   ## directories and files. If so,  split them
   isPathsDir <- unlist(lapply(Paths.in,
-                              FUN = function(x) file_test("-d", x)))
+                              FUN = function(x) utils::file_test("-d", x)))
 
   if(any(isPathsDir))
     {
@@ -61,7 +90,7 @@ sourceDir <- function(...,
 
 
   ## Check if byte compile is requested and supported.
-  if(byte.compile == TRUE)
+  if(byte.compile == 1 || byte.compile == 2)
     {
       if(version$major >= 2 && version$minor >= 13)
         {
@@ -69,14 +98,14 @@ sourceDir <- function(...,
         }
       else
         {
-          byte.compile == FALSE
+          byte.compile == 0
           warning("Byte compiling not supported, use usual method.")
         }
     }
 
 
   ## Check if the corresponding compiled files exist
-  if(byte.compile == TRUE)
+  if(byte.compile == 1 || byte.compile == 2)
     {
       ## Function that find the modified time of a file
       file.mtime <- function(x) {file.info(x)$mtime}
@@ -123,7 +152,7 @@ sourceDir <- function(...,
       ## The initial status
       success <- TRUE
 
-      if(byte.compile == FALSE) # the usual source procedure.
+      if(byte.compile == 0) # the usual source procedure.
         {
           if(ignore.error == FALSE) # stop on error
             {
@@ -139,11 +168,11 @@ sourceDir <- function(...,
                 }
             }
         }
-      else # byte compile before sourcing
+      else if(byte.compile  == 1 || byte.compile  == 2) # byte compile before sourcing
         {
           ## If Rc file exists and is newer than R file,  load Rc file
           ## directly. Otherwise byte compile R file and load it.
-          if(is.RcExist && is.RcNewer)
+          if(byte.compile  == 1 && is.RcExist && is.RcNewer)
             {
               RcOfile <- path2Rc
             }
@@ -161,28 +190,31 @@ sourceDir <- function(...,
                 {
                   ## The original path not writable, write to temporal file
                   path2RcStr <- gsub(pattern = .Platform$file.sep,
-                                  replacement = "_",
-                                  x = path2Rc)
+                                     replacement = "_",
+                                     x = path2Rc)
                   RcOfile <- paste(tempdir(), .Platform$file.sep,
                                    path2RcStr, sep = "")
                 }
 
               ## Byte compile
               compRc.try <- try(cmpfile(infile = path2R,
-                                         outfile = RcOfile,
-                                         env = envir), silent = TRUE)
+                                        outfile = RcOfile,
+                                        env = envir), silent = TRUE)
             }
 
           source.try <- try(loadcmp(RcOfile, envir = envir),
                             silent = TRUE)
 
           if(methods::is(source.try,  "try-error"))
-                {
-                  success <- FALSE
-                }
+            {
+              success <- FALSE
+            }
 
         }
-
+      else
+        {
+          stop("Unrecognized input for argument byte.comiple.")
+        }
       return(success)
     }
 
@@ -200,17 +232,15 @@ sourceDir <- function(...,
                            ignore.error = ignore.error))
 
 
-  ## Return status if required
-  if(!silent)
+  ## Invisible return the sourcing status
+  if(byte.compile)
     {
-      if(byte.compile)
-        {
-          out <- data.frame(RFiles, RcFilesExist, RcNewer, sourceSucess)
-        }
-      else
-        {
-          out <- data.frame(RFiles, sourceSucess)
-        }
-      return(out)
+      out <- data.frame(RFiles, RcFilesExist, RcNewer, sourceSucess)
     }
+  else
+    {
+      out <- data.frame(RFiles, sourceSucess)
+    }
+  invisible(out)
+
 }
