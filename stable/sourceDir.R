@@ -214,7 +214,7 @@ sourceDir <- function(...,
         }
       else
         {
-          stop("Unrecognized input for argument byte.comiple.")
+          stop("Unrecognized input for argument byte.compile.")
         }
       return(success)
     }
@@ -232,15 +232,17 @@ sourceDir <- function(...,
                            envir = envir,
                            ignore.error = ignore.error))
 
+  names(sourceSucess) <- NULL
 
   ## Invisible return the sourcing status
   if(byte.compile == 0)
     {
-      out <- data.frame(RFiles, sourceSucess)
+      out <- data.frame(RFiles, sourceSucess, stringsAsFactors = FALSE)
     }
   else
     {
-      out <- data.frame(RFiles, RcFilesExist, RcNewer, sourceSucess)
+      out <- data.frame(RFiles, RcFilesExist, RcNewer, sourceSucess,
+                        stringsAsFactors = FALSE)
     }
   invisible(out)
 
