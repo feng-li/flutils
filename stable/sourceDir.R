@@ -56,7 +56,7 @@ sourceDir <- function(...,
                       ignore.error = FALSE)
 {
   ## Save all the input paths as a list
-  Paths.in <- list(...)
+  Paths.in <- as.list(...)
 
   ## if path is not given,  use current working directory
   if(length(Paths.in) == 0)
@@ -197,12 +197,13 @@ sourceDir <- function(...,
                 }
 
               ## Byte compile
-              compRc.try <- try(cmpfile(infile = path2R,
-                                        outfile = RcOfile,
-                                        env = envir), silent = TRUE)
+              compRc.try <- try(compiler::cmpfile(
+                  infile = path2R,
+                  outfile = RcOfile,
+                  env = envir), silent = TRUE)
             }
 
-          source.try <- try(loadcmp(RcOfile, envir = envir),
+          source.try <- try(compiler::loadcmp(file = RcOfile, envir = envir),
                             silent = TRUE)
 
           if(methods::is(source.try,  "try-error"))
