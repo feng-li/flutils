@@ -7,15 +7,16 @@ programs.
 Structure of the folders
 ------------------------
 
-* stable
+* sid 
+
+  Code under this folder is still in development which is not suitable for
+  productive environment. 
+
+* other files
    
   Code under this folder is ready for regular use. You may use the `sourceDir`
   function in the `sourceDir.R` file.
 
-* dev 
-
-  Code under this folder is still in development which is not suitable for
-  productive environment. 
 
 Copyright 
 ---------
