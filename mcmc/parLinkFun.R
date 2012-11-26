@@ -14,7 +14,7 @@ parLinkFun <- function(mu, link, extArgs = NA)
   {
     ## Input each observation x'b  -> l(phi) = x'b -> phi
 
-    ## linPred <- X %*% beta # The linear predictor
+    ## output: The linear predictor linPred =  X %*% beta
 
     if(tolower(link) == "identity")
       {

@@ -64,8 +64,8 @@ sourceDir <- function(...,
       Paths.lst <- list(getwd())
     }
 
-  ## Check if all inputs are directories. The inputs can also mixture of
-  ## directories and files. If so,  split them
+  ## Check if all inputs are directories. The inputs can also be mixture of
+  ## directories and files. If so, split them
   isPathsDir <- unlist(lapply(Paths.in,
                               FUN = function(x) utils::file_test("-d", x)))
 
