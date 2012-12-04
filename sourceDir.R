@@ -56,41 +56,46 @@ sourceDir <- function(...,
                       ignore.error = FALSE)
 {
   ## Save all the input paths as a list
-  Paths.in <- as.list(...)
+  Paths.in <- c(...)
 
   ## if path is not given,  use current working directory
-  if(length(Paths.in) == 0)
+  if(length(Paths.in) == 0L)
     {
       Paths.lst <- list(getwd())
+    }
+  else
+    {
+      Paths.lst <- as.list(Paths.in)
     }
 
   ## Check if all inputs are directories. The inputs can also be mixture of
   ## directories and files. If so, split them
-  isPathsDir <- unlist(lapply(Paths.in,
-                              FUN = function(x) utils::file_test("-d", x)))
+  isPathsDir <- unlist(
+      lapply(Paths.lst, FUN = function(x) utils::file_test("-d", x)))
 
   if(any(isPathsDir))
     {
-      Paths.lst <- Paths.in[isPathsDir]
+      Paths.dirs <- Paths.lst[isPathsDir]
       Paths.files <- unlist(Paths.in[!isPathsDir])
 
       ## list all subfiles for given pattern at Paths
-      RFiles <- rbind(matrix(unlist(lapply(X = Paths.lst,
-                                           FUN = list.files,
-                                           pattern = pattern,
-                                           recursive = recursive,
-                                           full.names = TRUE))),
+      RFiles <- rbind(matrix(unlist(
+          lapply(X = Paths.dirs,
+                 FUN = list.files,
+                 pattern = pattern,
+                 recursive = recursive,
+                 full.names = TRUE))),
                       Paths.files)
     }
   else
     {
       ## All are files
-      RFiles <- matrix(unlist(Paths.in))
+      RFiles <- matrix(unlist(Paths.lst))
     }
 
 
   ## Check if byte compile is requested and supported.
-  if(byte.compile == 1 || byte.compile == 2)
+  if(byte.compile == 1L || byte.compile == 2L)
     {
       if(version$major >= 2 && version$minor >= 13)
         {
@@ -98,14 +103,14 @@ sourceDir <- function(...,
         }
       else
         {
-          byte.compile == 0
+          byte.compile == 0L
           warning("Byte compiling not supported, use usual method.")
         }
     }
 
 
   ## Check if the corresponding compiled files exist
-  if(byte.compile == 1 || byte.compile == 2)
+  if(byte.compile == 1L || byte.compile == 2L)
     {
       ## Function that find the modified time of a file
       file.mtime <- function(x) {file.info(x)$mtime}
@@ -168,7 +173,7 @@ sourceDir <- function(...,
                 }
             }
         }
-      else if(byte.compile  == 1 || byte.compile  == 2) # byte compile before sourcing
+      else if(byte.compile  == 1L || byte.compile  == 2L) # byte compile before sourcing
         {
           ## If Rc file exists and is newer than R file,  load Rc file
           ## directly. Otherwise byte compile R file and load it.
@@ -235,7 +240,7 @@ sourceDir <- function(...,
   names(sourceSucess) <- NULL
 
   ## Invisible return the sourcing status
-  if(byte.compile == 0)
+  if(byte.compile == 0L)
     {
       out <- data.frame(RFiles, sourceSucess, stringsAsFactors = FALSE)
     }
@@ -244,6 +249,13 @@ sourceDir <- function(...,
       out <- data.frame(RFiles, RcFilesExist, RcNewer, sourceSucess,
                         stringsAsFactors = FALSE)
     }
+
+  if(any(!sourceSucess))
+    {
+      warning("The following file(s) failed during sourcing:\n\n",
+              paste(RFiles[!sourceSucess, , drop = FALSE], collapse = "\n"), "\n")
+    }
+
   invisible(out)
 
 }
