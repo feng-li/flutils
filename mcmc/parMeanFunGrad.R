@@ -11,14 +11,15 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Thu Nov 24 11:46:32 CET 2011;
 ##'       Current: Thu Nov 24 11:46:39 CET 2011.
-parMeanFunGrad <- function(par, link, extArgs)
+parMeanFunGrad <- function(par, linkArgs)
   {
     ## Input x'b  -> l(phi) = x'b -> phi
     ## NOTE: We want vectorized output, i.e, X is n-by-p,  beta is p-by-1 and
     ## the output is n-by-1. But the appendix is written in scaler form.
 
     ## The linear predictor eta = x'b
-    linpred <- parLinkFun(mu = par, link = link, extArgs = extArgs)
+    linpred <- parLinkFun(mu = par, linkArgs)
+    link <- linkArgs[["type"]]
 
     ## Gradient for different situations
     if(tolower(link) == "identity")
@@ -37,8 +38,8 @@ parMeanFunGrad <- function(par, link, extArgs)
       }
     else if(tolower(link) == "glogit")
       {
-        a <- extArgs$a
-        b <- extArgs$b
+        a <- linkArgs$a
+        b <- linkArgs$b
         exp.linPred <- exp(linpred)
 
         ## The gradients for all three parameters

@@ -4,7 +4,7 @@ numgrad <- function(fcn, x, ...) {
   ## delta <- 1e-8
   n <- length(x)
   ## we tolerate x's that may be n x 1, 1 x n, or R vectors (with no dim),
-  ## but note that g comes out as n x k matrix regardless. 
+  ## but note that g comes out as n x k matrix regardless.
   tvec <- delta*diag(n)
   f0 <- fcn(x,...)
   k <- length(f0)

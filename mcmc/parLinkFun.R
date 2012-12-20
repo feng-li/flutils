@@ -10,11 +10,12 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Thu May 10 13:09:08 CEST 2012;
 ##'       Current: Thu May 10 13:09:14 CEST 2012.
-parLinkFun <- function(mu, link, extArgs = NA)
+parLinkFun <- function(mu, linkArgs)
   {
     ## Input each observation x'b  -> l(phi) = x'b -> phi
 
     ## output: The linear predictor linPred =  X %*% beta
+    link <- linkArgs[["type"]]
 
     if(tolower(link) == "identity")
       {
@@ -32,9 +33,10 @@ parLinkFun <- function(mu, link, extArgs = NA)
       {
         ## The generalized logit link
         ## The logit link is a special case when a  =  0 and b  =  1.
-        a <- extArgs$a
-        b <- extArgs$b
+        a <- linkArgs$a
+        b <- linkArgs$b
         out <- log(mu-a) - log(b-mu)
+
       }
     else
       {

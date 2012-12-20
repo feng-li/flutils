@@ -3,18 +3,20 @@
 ##' @title GLM mean function
 ##' @param X "matrix"
 ##' @param beta "one-col-matrix"
+##' @param linkArgs
 ##' @param link "character" Type of link function
 ##' @return "one-col-matrix" of the same dimension as the linear predictor
 ##' @references NA
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Sun Mar 04 14:45:22 CET 2012;
 ##'       Current: Sun Mar 04 14:45:29 CET 2012.
-parMeanFun <- function(X, beta, link, extArgs = NA)
+parMeanFun <- function(X, beta, linkArgs)
   {
     ## Input each observation x'b  -> l(phi) = x'b -> phi
     beta <- matrix(beta)
     linPred <- X %*% beta # The linear predictor
 
+    link <- linkArgs[["type"]]
 
     if(tolower(link) == "identity")
       {
@@ -30,8 +32,8 @@ parMeanFun <- function(X, beta, link, extArgs = NA)
       }
     else if(tolower(link) == "glogit")
       {
-        a <- extArgs$a
-        b <- extArgs$b
+        a <- linkArgs$a
+        b <- linkArgs$b
         out <- a + 1/(1+exp(-linPred))*(b-a)
       }
     else

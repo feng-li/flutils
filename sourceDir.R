@@ -104,7 +104,8 @@ sourceDir <- function(...,
       else
         {
           byte.compile == 0L
-          warning("Byte compiling not supported, use usual method.")
+          warning("Byte compiling not supported, use usual method.",
+                  immediate. = TRUE)
         }
     }
 
@@ -253,7 +254,8 @@ sourceDir <- function(...,
   if(any(!sourceSucess))
     {
       warning("The following file(s) failed during sourcing:\n\n",
-              paste(RFiles[!sourceSucess, , drop = FALSE], collapse = "\n"), "\n")
+              paste(RFiles[!sourceSucess, , drop = FALSE], collapse = "\n"),
+              "\n", immediate. = TRUE)
     }
 
   invisible(out)
