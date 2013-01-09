@@ -18,8 +18,8 @@ Structure of the folders
   them as usual Linux command-line programs. Make sure they are executable
   using `chmod +x embedAllFonts`.
 
-  The help are usually accessible if you run the program without arguments
-  `embedAllFonts`.
+  The help are usually accessible if you run the program with argument `--help`
+  e.g. `embedAllFonts --help`.
 
 * other files
 
