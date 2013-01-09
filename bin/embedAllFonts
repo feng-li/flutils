@@ -17,7 +17,7 @@ ofile:   the output pdf file.
 
   }else{
 
-    ## Preform the task
+    ## Perform the task
     call.gs <-
       paste("gs -dSAFER -dNOPLATFONTS -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dMaxSubsetPct=100 -dSubsetFonts=true -dEmbedAllFonts=true -sOutputFile=",
             outfile, " -f ", infile, sep = "")

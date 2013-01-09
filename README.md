@@ -14,9 +14,9 @@ Structure of the folders
 
 * bin
 
-  Programs under this fold are excitable R script. You should be able to run
-  them as usual Linux command-line programs. Make sure they are excitable using
-  `chmod +x embedAllFonts`.
+  Programs under this fold are executable R script. You should be able to run
+  them as usual Linux command-line programs. Make sure they are executable
+  using `chmod +x embedAllFonts`.
 
   The help are usually accessible if you run the program without arguments
   `embedAllFonts`.
