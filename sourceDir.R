@@ -25,7 +25,7 @@
 ##'
 ##' @param envir "environment".
 ##'
-##'        What is destiny of the files to be sourced. The default environment
+##'        What is destiny of the files to be [3~sourced. The default environment
 ##' is the global environment.
 ##'
 ##' @param pattern "string".
@@ -173,7 +173,7 @@ sourceDir <- function(...,
               if(methods::is(source.try,  "try-error"))
                 {
                   cat(source.try)
-                  stop("Check the above error message on file:\n", path2R, "\n")
+                  stop("Check the above error message on file:\n", path2R)
                 }
             }
           else # skip error files

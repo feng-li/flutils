@@ -1,17 +1,39 @@
-##' Split student t distribution
+##' Split student-t distribution
 ##'
+##' The split-t distribution.
+##' @param x "numeric".
 ##'
-##' @title splitt
-##' @param x
-##' @param mu
-##' @param df
-##' @param phi
-##' @param lmd
-##' @param log
-##' @return
-##' @references Li Villani Kohn 2010 JSPI
+##' @param mu "numeric".
+##'
+##'        Location parameter.
+##'
+##' @param df "positive number".
+##'
+##'        Degrees of freedom.
+##'
+##' @param phi "positive number".
+##'
+##'        Scale parameter.
+##'
+##' @param lmd "positive number".
+##'
+##'        Skewness parameter. If is 1, reduced to symmetric student t
+##'        distribution.
+##'
+##' @param log "logical".
+##'
+##'        If the vale is TRUE, return the logarithm from.
+##'
+##' @return "numeric"
+##'
+##'         Return the density of split-t distribution.
+##'
+##' @references Li,  Villani and  Kohn (2010)
+##'
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+##'
 ##' @note Created: Sat Jan 05 22:49:34 CET 2013;
+##'
 ##'       Current: Sat Jan 05 22:49:39 CET 2013.
 dsplitt <- function(x, mu, df, phi, lmd, log)
   {
