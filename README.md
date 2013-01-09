@@ -16,17 +16,10 @@ Structure of the folders
 
   Programs under this fold are excitable R script. You should be able to run
   them as usual Linux command-line programs. Make sure they are excitable using
+  `chmod +x embedAllFonts`.
 
-  ```
-  chmod +x embedAllFonts
-
-  ```
   The help are usually accessible if you run the program without arguments
-
-  ```
-  embedAllFonts
-
-  ```
+  `embedAllFonts`.
 
 * other files
 
@@ -42,7 +35,7 @@ Copyright
 More information
 ----------------
 
- Please visit the [public repository](http://git.feng.li/rutils).
+ Please visit the [homepage](http://feng.li/).
 
 Bug reports
 -----------
