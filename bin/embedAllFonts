@@ -1,0 +1,25 @@
+#! /usr/bin/env Rscript
+args <- commandArgs(trailingOnly = TRUE)
+
+infile <- args[1]
+outfile <- args[2]
+
+if(length(args) == 0L)
+  {
+    ## Print the help
+    cat("
+Help of embedAllFonts
+---------------------
+
+infile:  the input pdf file.
+ofile:   the output pdf file.
+")
+
+  }else{
+
+    ## Preform the task
+    call.gs <-
+      paste("gs -dSAFER -dNOPLATFONTS -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dMaxSubsetPct=100 -dSubsetFonts=true -dEmbedAllFonts=true -sOutputFile=",
+            outfile, " -f ", infile, sep = "")
+    system(call.gs)
+  }
