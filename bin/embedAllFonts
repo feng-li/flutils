@@ -66,6 +66,5 @@ for(i in args)
 call.gs <-
   paste("gs -dSAFER -dNOPLATFONTS -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dMaxSubsetPct=100 -dSubsetFonts=true -dEmbedAllFonts=true -sOutputFile=",
         outfile, " -f ", infile, sep = "")
-cat(call.gs)
 system(call.gs)
 q()
