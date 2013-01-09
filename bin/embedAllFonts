@@ -1,25 +1,71 @@
 #! /usr/bin/env Rscript
-args <- commandArgs(trailingOnly = TRUE)
+args <- commandArgs(TRUE); if("--help" %in% args){cat("
+
+Name:
+
+    embedAllFonts - embed fonts to pdf file
+
+Description:
+
+    An R script that embeds fonts to pdf file using ghostscript as the back-end.
+
+    This program is similar to the R function embedFonts() except it tries to
+    embed all the fonts to pdf and can be executed in bash directly.
+
+Usage:
+
+    embedAllFonts --infile=<infile.pdf> --outfile=<outfile.pdf>
+    embedAllFonts <infile.pdf> <outfile.pdf>
+    embedAllFonts --help
+
+Arguments:
+
+    --infile:
+
+        The input pdf file.
+
+    --outfile:
+
+        The output pdf file.
+
+    --help:
+
+        Show the help file.
+
+Details:
+
+    All arguments should be specified respectively.
+
+Version:
+
+    Initial: Wed Jan 09 22:38:48 CET 2013
+    Current: Wed Jan 09 22:39:21 CET 2013
+
+Author:
+
+    Feng Li, Department of Statistics, Stockholm University
+
+");q()}
+###############################################################################
+
+## Extract the arguments
+if(length(args) != 2L)
+  stop("--infile and --outfile must be specified. Use --help for details.")
 
 infile <- args[1]
 outfile <- args[2]
-
-if(length(args) == 0L)
+for(i in args)
   {
-    ## Print the help
-    cat("
-Help of embedAllFonts
----------------------
-
-infile:  the input pdf file.
-ofile:   the output pdf file.
-")
-
-  }else{
-
-    ## Perform the task
-    call.gs <-
-      paste("gs -dSAFER -dNOPLATFONTS -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dMaxSubsetPct=100 -dSubsetFonts=true -dEmbedAllFonts=true -sOutputFile=",
-            outfile, " -f ", infile, sep = "")
-    system(call.gs)
+    if(substr(i, 1, 9) == "--infile=")
+        infile <- gsub("--infile=", "", x = i)
+    if(substr(i, 1, 10) == "--outfile=")
+        outfile <- gsub("--outfile=", "", x = i)
   }
+
+## Run the ghostscript program
+call.gs <-
+  paste("gs -dSAFER -dNOPLATFONTS -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dMaxSubsetPct=100 -dSubsetFonts=true -dEmbedAllFonts=true -sOutputFile=",
+        outfile, " -f ", infile, sep = "")
+cat(call.gs)
+system(call.gs)
+q()
