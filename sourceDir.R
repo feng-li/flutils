@@ -1,6 +1,8 @@
-##' Sourcing a bunch of files located in different folders/subfolders.
+##' sourceDir
 ##'
-##' Also provide byte-code compiling before sourcing.
+##' Sourcing a bunch of files located in different folders/subfolders. Also
+##' provide byte-code compiling before sourcing.
+##'
 ##' @param ... "characters"
 ##'
 ##'        The inputs can be path to the R code or mixture of paths and files.
@@ -14,14 +16,14 @@
 ##' otherwise the program will first byte-compile it and then load the
 ##' byte-compiled file.
 ##'
-##'        If byte.compile = 2. the program will byte-compile the R source code
+##'        If byte.compile = 2,  the program will byte-compile the R source code
 ##' regardless of the existence of byte-compiled files.
 ##'
 ##' @param recursive "logical".
 ##'
 ##'        If TRUE, files will be sourced recursively for all sub folders.
 ##'
-##' @param envir "environment"
+##' @param envir "environment".
 ##'
 ##'        What is destiny of the files to be sourced. The default environment
 ##' is the global environment.
@@ -34,20 +36,19 @@
 ##'
 ##'        If TRUE, try to continue even errors occur.
 ##'
-##' @return "data.frame"
+##' @return "data.frame".
 ##'
-##'         A summary is returned invisibly.
+##'         A summary is returned invisibly if input is not empty, otherwise
+##'         quit with an error.
 ##'
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##'
-##' @license  GPL(>=2)
-##'
 ##' @note Initial: Wed Apr 15 20:00:43 CET 2009;
-##'       Current: Mon Oct 08 17:15:27 CEST 2012.
+##'       Current: Tue Jan 08 23:15:57 CET 2013.
 ##'
-##' TODO:
-##'       allow parallel souring
+##'       license:  GPL(>=2)
 ##'
+##'       TODO: allow parallel souring.
 sourceDir <- function(...,
                       byte.compile = FALSE,
                       recursive = FALSE,
@@ -93,18 +94,22 @@ sourceDir <- function(...,
       RFiles <- matrix(unlist(Paths.lst))
     }
 
+  ## Check if input path is empty, and quit with a warning if so.
+  if(length(RFiles) == 0L)
+    {
+      stop("Nothing found to source. Aborted!")
+    }
+
 
   ## Check if byte compile is requested and supported.
   if(byte.compile == 1L || byte.compile == 2L)
     {
-      if(version$major >= 2 && version$minor >= 13)
-        {
-          require("compiler") # require the compiler library
-        }
-      else
+      ## require the compiler library
+      compLoad.try <- try(require("compiler"), silent = TRUE)
+      if(is(compLoad.try, "try-error"))
         {
           byte.compile == 0L
-          warning("Byte compiling not supported, use usual method.",
+          warning("Byte compiling not supported, switching to usual method.",
                   immediate. = TRUE)
         }
     }
@@ -158,16 +163,21 @@ sourceDir <- function(...,
       ## The initial status
       success <- TRUE
 
-      if(byte.compile == 0) # the usual source procedure.
+      if(byte.compile == 0L) # the usual source procedure.
         {
+          source.try <- try(sys.source(path2R, envir = envir),
+                            silent = TRUE)
+
           if(ignore.error == FALSE) # stop on error
             {
-              sys.source(path2R, envir = envir)
+              if(methods::is(source.try,  "try-error"))
+                {
+                  cat(source.try)
+                  stop("Check the above error message on file:\n", path2R, "\n")
+                }
             }
           else # skip error files
             {
-              source.try <- try(sys.source(path2R, envir = envir),
-                                silent = TRUE)
               if(methods::is(source.try,  "try-error"))
                 {
                   success <- FALSE
