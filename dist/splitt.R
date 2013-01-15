@@ -43,7 +43,7 @@ dsplitt <- function(x, mu, df, phi, lmd, log)
     sign <- 1*I0 + lmd*I # sign = 1 if y<=mu; sign = lmd.^2 if y>2
 
     density.log <- log(2)+ (1+df)/2*(log(df)-log(df+(-mu+x)^2/(phi^2*sign^2)))-
-      log(phi)-log(df)/2-log(beta(df/2,1/2))-log(1+lmd)
+      log(phi)-log(df)/2-lbeta(df/2,1/2)-log(1+lmd)
 
     if(log == TRUE)
       {
@@ -66,7 +66,7 @@ psplitt <- function(x, mu, df, phi, lmd, log)
 
     A <- df*sign^2*phi^2/(df*sign^2*phi^2+(x-mu)^2)
     BetaRegUpper <- 1- ibeta(x = A,a = df/2,b = 1/2,
-                                log = FALSE, reg = TRUE)
+                             log = FALSE, reg = TRUE)
     out <- 1/(1+lmd) + sign*sign2/(1+lmd)*BetaRegUpper
 
     if(log == TRUE)
