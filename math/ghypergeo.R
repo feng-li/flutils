@@ -34,14 +34,14 @@ ghypergeo <- function(a, b, z, k = 10)
     an.series <- pochhammer(t(a), n.series, log = TRUE)
     bn.series <- pochhammer(t(b), n.series, log = TRUE)
 
-    an.ary <- array(an.series, c(a.nCol, n, nObs))
-    bn.ary <- array(bn.series, c(b.nCol, n, nObs))
+    an.ary <- array(t(an.series), c(n, a.nCol, nObs))
+    bn.ary <- array(t(bn.series), c(n, b.nCol, nObs))
 
-    an <- apply(an.ary, c(2, 3), sum)
-    bn <- apply(bn.ary, c(2, 3), sum)
+    an <- apply(an.ary, c(1, 3), sum)
+    bn <- apply(bn.ary, c(1, 3), sum)
 
     nlog <- an - bn + t(zpower.series) - nfact.series
-    out <- apply(exp(nlog), 2, sum)
+    out <- matrix(apply(exp(nlog), 2, sum))
 
     return(out)
   }
