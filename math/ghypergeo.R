@@ -19,10 +19,17 @@
 ##'       Current: Tue Jan 15 12:36:57 CET 2013.
 ghypergeo <- function(a, b, z, k = 10)
   {
+    if(!is.matrix(a)|| !is.matrix(b) ||
+       dim(a)[1] != dim(b)[1])
+      {
+        stop("The arguments `a' and `b' must be matrices \n and should have the same row dimension.")
+      }
+
     a.dim <- dim(a)
     nObs <- a.dim[1]
     a.nCol <-a.dim[2]
-    b.nCol <- dim(b)[2]
+    b.dim <- dim(b)
+    b.nCol <- b.dim[2]
 
     n <- k+1
     n.series <- 0:k
