@@ -27,7 +27,7 @@ ibeta <- function(x, a, b, log = FALSE, reg = FALSE)
 
   if(reg == TRUE)
     {
-      out.log <- ibeta.log - log(beta(a = a, b = b))
+      out.log <- ibeta.log - lbeta(a = a, b = b)
     }
   else
     {
