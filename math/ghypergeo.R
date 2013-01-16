@@ -9,9 +9,9 @@
 ##'        Indicates how long of the series should be used. The default value
 ##'        is 10.
 ##'
-##' @return "vector"
+##' @return "n-by-1 matrix"
 ##'
-##'       The vector of length n.
+##'       The matrix of length n.
 ##'
 ##' @references NIST Handbook of Mathematical Functions
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
