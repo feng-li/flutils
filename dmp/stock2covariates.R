@@ -75,9 +75,12 @@ stock2covariates <- function(file, g = c(0.95, 0.80),
               sum(g.s*(100*(log(High[tInit:(t-2)])-log(Low[tInit:(t-2)])))^kappa)
           }
       }
-    outData <- cbind(Returns, RMA, CloseAbs, CloseSqrt, MaxMin)[tIdx, , drop = FALSE]
-    Date <- as.Date(Data[tIdx, "Date"], "%Y-%m-%d")
 
-    out <- data.frame(Date, outData)
+    X <- cbind(RMA, CloseAbs, CloseSqrt, MaxMin)[tIdx, , drop = FALSE]
+    Y <- matrix(Returns[tIdx])
+    ##ID <- as.Date(Data[tIdx, "Date"], "%Y-%m-%d")
+    ID <- as.character(Data[tIdx, "Date"])
+
+    out <- list(ID = ID, X = X, Y = Y)
     return(out)
   }
