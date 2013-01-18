@@ -1,4 +1,4 @@
-##' The generalized hyper-geometric function
+##' The generalized hypergeometric function
 ##'
 ##' The results are evaluated via the series expansion of Pochhammer symbols.
 ##' @param a "n-by-p matrix"
