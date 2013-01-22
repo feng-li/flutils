@@ -22,24 +22,28 @@ parMeanFunGrad <- function(par, linkArgs)
     link <- linkArgs[["type"]]
 
     ## Gradient for different situations
-    if(tolower(link) == "identity")
+    if(tolower(link) %in% "identity")
       {
         out <- linpred
         out[1:length(linpred)] <- 1
       }
-    else if(tolower(link) == "log")
+    else if(tolower(link) %in% "log")
       {
         out <- exp(linpred)
       }
-    else if(tolower(link) == "logit")
+    else if(tolower(link) %in% c("glogit", "logit"))
       {
-        exp.linPred <- exp(linpred)
-        out <- exp.linPred/(1+exp.linPred)^2
-      }
-    else if(tolower(link) == "glogit")
-      {
-        a <- linkArgs$a
-        b <- linkArgs$b
+        if(tolower(link) == "logit")
+          {
+            a <- 0
+            b <- 1
+          }
+        else
+          {
+            a <- linkArgs$a
+            b <- linkArgs$b
+          }
+
         exp.linPred <- exp(linpred)
 
         ## The gradients for all three parameters

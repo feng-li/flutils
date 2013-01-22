@@ -17,24 +17,48 @@ parLinkFun <- function(mu, linkArgs)
     ## output: The linear predictor linPred =  X %*% beta
     link <- linkArgs[["type"]]
 
-    if(tolower(link) == "identity")
+    if(tolower(link) %in% "identity")
       {
         out <- mu
       }
-    else if(tolower(link) == "log")
+    else if(tolower(link) %in% "log")
       {
         out <- log(mu)
       }
-    else if(tolower(link) == "logit")
+    else if(tolower(link) %in% c("glogit", "logit"))
       {
-        out <- log(mu) - log(1-mu)
-      }
-    else if(tolower(link) == "glogit" )
-      {
-        ## The generalized logit link
+        ## The generalized logit link (logit as the special case)
         ## The logit link is a special case when a  =  0 and b  =  1.
-        a <- linkArgs$a
-        b <- linkArgs$b
+        if(tolower(link) == "logit")
+          {
+            a <- 0
+            b <- 1
+          }
+        else
+          {
+            a <- linkArgs$a
+            b <- linkArgs$b
+          }
+
+        ## Numerical correction
+        tol <- .Machine$double.eps*1e8
+        mu.bada <- ((mu-a)<tol)
+        mu.badb <- ((b-mu)<tol)
+        if(any(mu.bada))
+          {
+            mu[mu.bada] <- mu[mu.bada] + tol
+            warning("mu is too close to a. Adjusted...",
+                    immediate. = TRUE)
+
+          }
+        if(any(mu.badb))
+          {
+            mu[mu.badb] <- mu[mu.badb] - tol
+            warning("mu is too close to b. Adjusted...",
+                    immediate. = TRUE)
+          }
+
+        ## The output
         out <- log(mu-a) - log(b-mu)
 
       }
