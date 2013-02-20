@@ -13,17 +13,28 @@
 parLinkFun <- function(mu, linkArgs)
   {
     ## Input each observation x'b  -> l(phi) = x'b -> phi
-
     ## output: The linear predictor linPred =  X %*% beta
+
+    ## Debugging symbol: if the warning should be printed out immediately.
+    immediate. <- FALSE
+
     link <- linkArgs[["type"]]
 
     if(tolower(link) %in% "identity")
       {
         out <- mu
       }
-    else if(tolower(link) %in% "log")
+    else if(tolower(link) %in% c("log", "glog"))
       {
-        out <- log(mu)
+        if(tolower(link) == "glog")
+          {
+            a <- linkArgs$a
+          }
+        else
+          {
+            a <- 0
+          }
+        out <- log(mu-a)
       }
     else if(tolower(link) %in% c("glogit", "logit"))
       {
@@ -48,14 +59,14 @@ parLinkFun <- function(mu, linkArgs)
           {
             mu[mu.bada] <- mu[mu.bada] + tol
             warning("mu is too close to a. Adjusted...",
-                    immediate. = TRUE)
+                    immediate. = immediate.)
 
           }
         if(any(mu.badb))
           {
             mu[mu.badb] <- mu[mu.badb] - tol
             warning("mu is too close to b. Adjusted...",
-                    immediate. = TRUE)
+                    immediate. = immediate.)
           }
 
         ## The output

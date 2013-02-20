@@ -22,9 +22,18 @@ parMeanFun <- function(X, beta, linkArgs)
       {
         out <- linPred
       }
-    else if(tolower(link) %in% "log")
+    else if(tolower(link) %in% c("log", "glog"))
       {
-        out <- exp(linPred)
+        if(tolower(link) == "glog")
+          {
+            a <- linkArgs$a
+          }
+        else
+          {
+            a <- 0
+          }
+
+        out <- exp(linPred) + a
       }
     else if(tolower(link) %in% c("glogit", "logit"))
       {
