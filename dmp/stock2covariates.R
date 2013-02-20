@@ -77,10 +77,11 @@ stock2covariates <- function(file, g = c(0.95, 0.80),
       }
 
     X <- cbind(RMA, CloseAbs, CloseSqrt, MaxMin)[tIdx, , drop = FALSE]
+
+
     Y <- matrix(Returns[tIdx])
     ##ID <- as.Date(Data[tIdx, "Date"], "%Y-%m-%d")
     ID <- as.character(Data[tIdx, "Date"])
-
     out <- list(ID = ID, X = X, Y = Y)
     return(out)
   }
