@@ -1,7 +1,6 @@
 ##' Setup cross-validation
 ##'
 ##'
-##' @title
 ##' @param n.obs
 ##' @param crossvalidArgs
 ##' @return
@@ -25,7 +24,28 @@ set.crossvalid <- function(nObs, crossValidArgs)
     {
       ## The predictive subsets.
       Data.testing.sub <- data.partition(nObs = nObs, args = crossValidArgs)
-      Data.training.sub <- lapply(Data.testing.sub, function(x) (1:nObs)[-x])
+
+
+      ## The training index function
+      if(crossValidArgs$partiMethod == "time-series")
+        {
+          traning.subfun <- function(Testing.Idx)
+            {
+              1:(Testing.Idx[1]-1)
+            }
+        }
+      else
+        {
+          traning.subfun <- function(Testing.Idx)
+            {
+              (1:nObs)[-Testing.Idx]
+            }
+
+        }
+
+      ## The training subsets
+      Data.training.sub <- lapply(Data.testing.sub, traning.subfun)
+
       out <- list(training = Data.training.sub,
                   testing = Data.testing.sub)
     }
