@@ -28,6 +28,11 @@
 ##' TODO:
 make.knots <- function(x, method, splineArgs)
 {
+  if(!is.matrix(x))
+    {
+      stop("x should be a matrix.")
+    }
+
   out <- list()
   ks <- splineArgs$thinplate.s.dim[1]
 
@@ -98,13 +103,17 @@ make.knots <- function(x, method, splineArgs)
           out[["thinplate.a"]] <- matrix(unlist(location))
         }
     }
-  ## else if(tolower(method)=="equal-spaced")
-  ##   {
-  ##     ## Equal spaced sample quantile for single covariate.
-  ##         ## TODO: make this for multivariate covariates.
-  ##     probs <- seq(0,1,length.out=n.knots+2)[-c(1,n.knots+2)]
-  ##     xi <- matrix(quantile(x,probs),k,1)
-  ##   }
+  else if(tolower(method)=="equal-spaced")
+    {
+      if(dim(x)[2] != 1)
+        {
+          stop("equal-spaced only works with single covariates")
+        }
+      ## Equal spaced sample quantile for single covariate.
+          ## TODO: make this for multivariate covariates.
+      probs <- seq(0,1,length.out=n.knots+2)[-c(1,n.knots+2)]
+      xi <- matrix(quantile(x,probs),k,1)
+    }
   else
     {
       stop("Wrong input argument for method!")

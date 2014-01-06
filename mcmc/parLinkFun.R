@@ -52,22 +52,22 @@ parLinkFun <- function(mu, linkArgs)
           }
 
         ## Numerical correction
-        tol <- .Machine$double.eps*1e8
-        mu.bada <- ((mu-a)<tol)
-        mu.badb <- ((b-mu)<tol)
-        if(any(mu.bada))
-          {
-            mu[mu.bada] <- mu[mu.bada] + tol
-            warning("mu is too close to a. Adjusted...",
-                    immediate. = immediate.)
+        ## tol <- .Machine$double.eps*1e8
+        ## mu.bada <- ((mu-a)<tol)
+        ## mu.badb <- ((b-mu)<tol)
+        ## if(any(mu.bada))
+        ##   {
+        ##     mu[mu.bada] <- mu[mu.bada] + tol
+        ##     warning("mu is too close to a. Adjusted...",
+        ##             immediate. = immediate.)
 
-          }
-        if(any(mu.badb))
-          {
-            mu[mu.badb] <- mu[mu.badb] - tol
-            warning("mu is too close to b. Adjusted...",
-                    immediate. = immediate.)
-          }
+        ##   }
+        ## if(any(mu.badb))
+        ##   {
+        ##     mu[mu.badb] <- mu[mu.badb] - tol
+        ##     warning("mu is too close to b. Adjusted...",
+        ##             immediate. = immediate.)
+        ##   }
 
         ## The output
         out <- log(mu-a) - log(b-mu)

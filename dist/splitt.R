@@ -5,7 +5,7 @@
 ##'
 ##' @param mu "numeric".
 ##'
-##'        Location parameter.
+##'        Location parameter. The mode of the density
 ##'
 ##' @param df "positive number".
 ##'
@@ -78,6 +78,12 @@ psplitt <- function(x, mu, df, phi, lmd, log)
         return(out)
       }
   }
+
+rsplitt <- function(n, mu, df, phi, lmd)
+{
+
+}
+
 
 splitt.mean <- function(mu, df, phi, lmd)
   {

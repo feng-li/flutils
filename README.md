@@ -40,4 +40,4 @@ More information
 Bug reports
 -----------
 
- Contact Feng Li <feng.li@stat.su.se>
+ Contact Feng Li <feng.li@cufe.edu.cn>
