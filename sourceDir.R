@@ -56,6 +56,9 @@ sourceDir <- function(...,
                       pattern = "\\.[Rr]$",
                       ignore.error = FALSE)
 {
+
+  ##
+
   ## Save all the input paths as a list
   Paths.in <- c(...)
 

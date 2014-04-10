@@ -1,13 +1,10 @@
 ##' The gradient for the mean function in the GLM framework.
 ##'
 ##' <details>
-##' @title <short tile>
-##' @param par
-##' @param link "character" Type of link function
-##' @param extArgs "list" the external arguments need to pass to the function.
-##' @param X "matrix" The covariates matrix.
+##' @param par "vector"
+##' @param linkArgs "list"
 ##' @return "matrix" of the same dimension as the linear predictor
-##' @references
+##' @references Li 2012
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Thu Nov 24 11:46:32 CET 2011;
 ##'       Current: Thu Nov 24 11:46:39 CET 2011.
@@ -22,24 +19,36 @@ parMeanFunGrad <- function(par, linkArgs)
     link <- linkArgs[["type"]]
 
     ## Gradient for different situations
-    if(tolower(link) == "identity")
+    if(tolower(link) %in% "identity")
       {
         out <- linpred
         out[1:length(linpred)] <- 1
       }
-    else if(tolower(link) == "log")
+    else if(tolower(link) %in% c("log", "glog"))
       {
+        if(tolower(link) == "glog")
+          {
+            a <- linkArgs$a
+          }
+        else
+          {
+            a <- 0
+          }
         out <- exp(linpred)
       }
-    else if(tolower(link) == "logit")
+    else if(tolower(link) %in% c("glogit", "logit"))
       {
-        exp.linPred <- exp(linpred)
-        out <- exp.linPred/(1+exp.linPred)^2
-      }
-    else if(tolower(link) == "glogit")
-      {
-        a <- linkArgs$a
-        b <- linkArgs$b
+        if(tolower(link) == "logit")
+          {
+            a <- 0
+            b <- 1
+          }
+        else
+          {
+            a <- linkArgs$a
+            b <- linkArgs$b
+          }
+
         exp.linPred <- exp(linpred)
 
         ## The gradients for all three parameters

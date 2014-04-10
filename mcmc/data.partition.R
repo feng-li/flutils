@@ -1,12 +1,10 @@
-##' Description
+##' Partition data index for cross validation.
 ##'
-##' Details.
-##' @name
-##' @title
-##' @param nObs
+##'
+##' @param nObs "positive numeric"
 ##' @param args list N: no. of subsets,  method: how to partition
-##' @return
-##' @references
+##' @return "list" The prediction subsets.
+##' @references Li Villani Kohn 2010
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: Mon Sep 20 21:08:01 CEST 2010;
 ##'       Current:       Mon Sep 20 21:08:11 CEST 2010.
@@ -21,12 +19,12 @@ data.partition <- function(nObs, args)
     }
 
   obs.label <- 1:nObs
-  # disable warnings when ata length is not a multiple of split
-                                        # variable which is what I want.
-  suppressWarnings(
-    length.out <- split(obs.label, 1:args$N.subsets)) # split the knots in a smart way. e.g. split
-                                        # 20 knots into 3 folds
+  ## disable warnings when ata length is not a multiple of split variable which
+  ## is what I want.  split the knots in a smart way. e.g. split 20 knots into
+  ## 3 folds
 
+  suppressWarnings(
+    length.out <- split(obs.label, 1:args$N.subsets))
   if(tolower(args$partiMethod) == "systematic")
     { out <- length.out }
   else if(tolower(args$partiMethod) == "random")
@@ -55,14 +53,20 @@ data.partition <- function(nObs, args)
       ## the argument "testRatio" is used.
       ## out <- vector("list", length = 2)
       testLen <- round(nObs*args$testRatio)
-      out <- list((nObs-testLen+1):nObs)
-      ## for(i in 1:args$N.subsets)
-      ##   {
-      ##     out[[i]] <- start:(start+length(length.out[[i]])-1)
-      ##     start <- out[[i]][length(out[[i]])] +1
-      ##   }
-    }
+      start <- (nObs-testLen+1)
+      obs.label.ts <- start:nObs
 
+      suppressWarnings(
+          length.out.ts <- split(obs.label.ts, 1:args$N.subsets))
+
+      ## out <- list((nObs-testLen+1):nObs)
+      out <- list(NULL)
+      for(i in 1:args$N.subsets)
+        {
+          out[[i]] <- start:(start+length(length.out.ts[[i]])-1)
+          start <- out[[i]][length(out[[i]])] +1
+        }
+    }
   else
     {
       stop("The partitioning method is not implemented!")

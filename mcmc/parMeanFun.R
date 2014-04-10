@@ -18,23 +18,38 @@ parMeanFun <- function(X, beta, linkArgs)
 
     link <- linkArgs[["type"]]
 
-    if(tolower(link) == "identity")
+    if(tolower(link) %in% "identity")
       {
         out <- linPred
       }
-    else if(tolower(link) == "log")
+    else if(tolower(link) %in% c("log", "glog"))
       {
-        out <- exp(linPred)
+        if(tolower(link) == "glog")
+          {
+            a <- linkArgs$a
+          }
+        else
+          {
+            a <- 0
+          }
+
+        out <- exp(linPred) + a
       }
-    else if(tolower(link) == "logit")
+    else if(tolower(link) %in% c("glogit", "logit"))
       {
-        out <- 1/(1+exp(-linPred))
-      }
-    else if(tolower(link) == "glogit")
-      {
-        a <- linkArgs$a
-        b <- linkArgs$b
-        out <- a + 1/(1+exp(-linPred))*(b-a)
+        if(tolower(link) == "logit")
+          {
+            a <- 0
+            b <- 1
+          }
+        else
+          {
+            a <- linkArgs$a
+            b <- linkArgs$b
+          }
+
+        ## out <- 1/(1+exp(-linPred))
+        out <- a + (b-a)/(1+exp(-linPred))
       }
     else
       {
