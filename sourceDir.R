@@ -107,7 +107,7 @@ sourceDir <- function(...,
     {
       ## require the compiler library
       compLoad.try <- try(require("compiler"), silent = TRUE)
-      if(is(compLoad.try, "try-error"))
+      if(methods::is(compLoad.try, "try-error"))
         {
           byte.compile == 0L
           warning("Byte compiling not supported, switching to usual method.",
