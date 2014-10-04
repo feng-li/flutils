@@ -12,14 +12,14 @@ tr <- function(X)
   {
     nrow0 <- nrow(X)
     ncol0 <- ncol(X)
-    
+
    if(length(X) == 1) # trace of a scalor is itself.
       {
         out <- X
       }
     else if(!is.matrix(X) || nrow0 != ncol0)
       {
-        stop("input is not a squire matrix")
+        stop("input is not a square matrix")
       }
     else ## Just sum(diag(X)) but much faster.
       {
@@ -27,5 +27,5 @@ tr <- function(X)
         out <- sum(X[idx])
       }
     return(out)
-    
+
   }
