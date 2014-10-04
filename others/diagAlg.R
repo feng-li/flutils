@@ -1,19 +1,15 @@
 ##' Fast matrix algebra with diagonal matrices.
 ##'
-##' Details.
-##' @name 
-##' @title 
-##' @param d 
-##' @param M 
-##' @return 
-##' @references 
+##' @param d "vector" Diagonal elements form a diagonal matrix.
+##' @param M "matrix" Dense matrix that is conformable to matrix diag(d).
+##' @return
+##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: Tue Nov 09 11:12:05 CET 2010;
-##'       Current:       Tue Nov 09 11:12:13 CET 2010.
+##'       Current:       Sat Oct 04 17:38:57 CST 2014.
 ##' Thanks for Bertil's naming
-
 ## diag(d) %*% M .
-"%d*%" <- dM <- function(d, M) 
+"%d*%" <- dM <- function(d, M)
 {
   p <- length(d)
   q <- dim(M)[2]
@@ -23,7 +19,7 @@
 }
 
 ## X %*% diag(d).
-"%*d%" <- Md <- function(M, d) 
+"%*d%" <- Md <- function(M, d)
 {
   p <- length(d)
   q <- dim(M)[1]
@@ -33,7 +29,7 @@
 }
 
 ## diag(d) %*% M %*% diag(d) and M is a squared matrix.
-"%d*d%" <- dMd <- function(d, M) 
+"%d*d%" <- dMd <- function(d, M)
 {
   p <- length(d)
   q <- dim(M)[2]
@@ -45,7 +41,7 @@
 }
 
 ## t(M) %*% diag(d) %*% N
-tMdN <- function(M, d, N = M) 
+tMdN <- function(M, d, N = M)
 {
   p <- length(d)
   q <- dim(N)[2]
@@ -62,6 +58,3 @@ diag1 <- function(n)
     out[idx] <- 1
     return(out)
   }
-
-
-
