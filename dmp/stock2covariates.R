@@ -1,20 +1,25 @@
 ##' Construct sensible covariates for stock market data.
 ##'
 ##' The historical finance data can be obtained from "Yahoo! Finance".
+##'
 ##' @title Construct time series covariates.
-##' @param file "character".
-##'        The location of the CSV format file from Yahoo!  Finance which can
-##'        be the http address.
-##' @param g "vector".
-##'        Parameters for geometrically averaging.
+##'
+##' @param file "character".  The location of the CSV format file from Yahoo!  Finance
+##' which can be the http address.
+##'
+##' @param g "vector".  Parameters for geometrically averaging.
+##'
 ##' @param kappa "scaler".
-##' @param ma "vector" with integer entries.
-##'        Moving average indicator for the returns .
-##' @return "data.frame".
-##'        The returned data frame only contains the non-NA data due to the
-##'        moving average procedure.
+##'
+##' @param ma "vector" with integer entries.  Moving average indicator for the returns .
+##'
+##' @return "data.frame".  The returned data frame only contains the non-NA data due to
+##' the moving average procedure.
+##'
 ##' @references Geweke, and Keane (2007) p.274
+##'
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+##'
 ##' @note Created: Thu Jan 05 13:23:35 CET 2012;
 ##'       Current: Sun Jan 08 14:10:50 CET 2012.
 stock2covariates <- function(file, g = c(0.95, 0.80),
@@ -29,7 +34,10 @@ stock2covariates <- function(file, g = c(0.95, 0.80),
     ## so that the first observation is from the oldest time.
     Data <- DataRaw[nObs:1, , drop = FALSE]
 
-    Close = Data[,"Close"]
+     ## Use adjusted close price instead of close price, for explanation see
+     ## https://help.yahoo.com/kb/finance/historical-prices-sln2311.html
+
+    Close = Data[,"Adj.Close"]
     High = Data[,"High"]
     Low = Data[, "Low"]
 
@@ -56,9 +64,9 @@ stock2covariates <- function(file, g = c(0.95, 0.80),
     tInit <- 2 # The initial point by taking away the first lag.
     tIdx <- (max(ma, 3)+2):nObs
 
-    ## Loop over all the observations to construct the covariates. NOTE: This
-    ## is the utility function which does not require very high
-    ## efficiency--loops are OK at the moment.
+    ## Loop over all the observations to construct the covariates. NOTE: This is the
+    ## utility function which does not require very high efficiency--loops are OK at the
+    ## moment.
     for(t in tIdx)
       {
         for(i in 1:length(ma))
@@ -82,6 +90,10 @@ stock2covariates <- function(file, g = c(0.95, 0.80),
     Y <- matrix(Returns[tIdx])
     ##ID <- as.Date(Data[tIdx, "Date"], "%Y-%m-%d")
     ID <- as.character(Data[tIdx, "Date"])
+
+    rownames(X) <- ID
+    rownames(Y) <- ID
+
     out <- list(ID = ID, X = X, Y = Y)
     return(out)
   }

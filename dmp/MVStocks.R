@@ -20,7 +20,7 @@
 ##' @author Feng Li, Central University of Finance and Economics.
 
 MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
-                    StdDataMethod= "norm-0-1", save2diskPath)
+                    StdDataMethod, save2diskPath)
 {
 
     ## Format the URL in Yahoo URL Format as
@@ -38,10 +38,11 @@ MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
     RawDataPath <- list()
     for(s in stocks)
         {
-            RawDataPath[[s]] <- paste("http://real-chart.finance.yahoo.com/table.csv?s=",s,
-                                      "&a=",a,"&b=",b,"&c=",c,
-                                      "&d=",d,"&e=",e,"&f=",f,
-                                      "&g=",g,"&ignore=.csv", sep = "")
+            RawDataPath[[s]] <- paste(
+                "http://real-chart.finance.yahoo.com/table.csv?s=",s,
+                "&a=",a,"&b=",b,"&c=",c,
+                "&d=",d,"&e=",e,"&f=",f,
+                "&g=",g,"&ignore=.csv", sep = "")
         }
 
 
@@ -57,12 +58,10 @@ MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
     ScovarID <- lapply(Scovar, function(x)x[["ID"]])
     ID <- Reduce(intersect, ScovarID)
 
-    for(i in names(Scovar))
+    for(s in stocks)
         {
-            CovCurr <- Scovar[[i]]
-            nCol <- ncol(CovCurr)
-            XRaw[[i]] <- as.matrix(CovCurr[ID, 3:nCol, drop = FALSE])
-            YRaw[[i]] <- as.matrix(CovCurr[ID, "Returns"])
+            XRaw[[s]] <- Scovar[[s]][["X"]][ID, , drop = FALSE]
+            YRaw[[s]] <- Scovar[[s]][["Y"]][ID, , drop = FALSE]
         }
 
     ## Standardize the data
@@ -75,8 +74,7 @@ MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
             Y <- lapply(YNew, function(x) x$data)
             X.config <- lapply(XNew, function(x) x$config)
             Y.config <- lapply(YNew, function(x) x$config)
-        }
-    else
+        }    else
         {
             X <- XRaw
             Y <- YRaw
@@ -85,7 +83,7 @@ MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
         }
 
     ## Save to file
-    if(!missing(save2disk))
+    if(!missing(save2diskPath))
         {
             save(ID, X, Y,  X.config, Y.config, file = save2diskPath)
         }

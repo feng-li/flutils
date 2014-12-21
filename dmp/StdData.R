@@ -1,34 +1,20 @@
-## StdData:
-##   Standardize a vector or colums of a matirx
-
-## Description:
-##   Standardize a vector or colums of a matrix
-
-## Usage:
-##   StdData(X,method)
-
-## Arguments:
-##   X:            "Numercial". The data to be standardized.
-##   method:       "Numerical". If "stdnorm", X will be standardized with mean
-##   zero and standard deviation 1. If "-1to1", X will be restricted to [-1,
-##   1].
-
-## Details:
-##   "X" should be a numeric matrix or a vector. The standardization methods do _NOT_ apply
-##   to tho following situations: 1) there is only one row in the matrix. 2) some colums
-##   have constant values.
-##   The "method" applies to each colums for a matrix or a vector.
-
-## Value:
-##   A matrix or a vector depends on the input X
-
-## Author:
-##   Feng Li <Feng.Li@stat.su.se>, Dept. of Statistics, Stockholm University, Sweden.
-
-## Version:
-##   First:       Thu Mar  4 13:50:30 CET 2010
-##   Current:     Tue May 29 12:46:09 CEST 2012
-StdData <- function(X,method)
+##' StdData
+##'
+##' Standardize a vector or colums of a matrix
+##' @param X "Numercial". The data to be standardized. "X" should be a numeric matrix or
+##' a vector. The standardization methods do _NOT_ apply to tho following situations: 1)
+##' there is only one row in the matrix. 2) some colums have constant values.
+##'
+##' @param method "Numerical". If "stdnorm", X will be standardized with mean zero and
+##' standard deviation 1. If "-1to1", X will be restricted to [-1, 1].  The "method"
+##' applies to each colums for a matrix or a vector.
+##'
+##' @return A matrix or a vector depends on the input X
+##'
+##'
+##' @author Feng Li, Dept. of Statistics, Stockholm University, Sweden.
+##' @note First: Thu Mar 4 13:50:30 CET 2010 Current: Sun Dec 21 04:24:52 EST 2014
+StdData <- function(X, method)
 {
   ## if X is a vector,  treat it as a one-column vector.
   if(is.vector(X)==TRUE)
