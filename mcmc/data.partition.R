@@ -52,7 +52,7 @@ data.partition <- function(nObs, args)
       ## Use old data as testing data and recent data to preform predictions,
       ## the argument "testRatio" is used.
       ## out <- vector("list", length = 2)
-      testLen <- round(nObs*args$testRatio)
+      testLen <- ceiling(nObs*args$testRatio) # Make sure at least one is available
       start <- (nObs-testLen+1)
       obs.label.ts <- start:nObs
 
@@ -62,10 +62,10 @@ data.partition <- function(nObs, args)
       ## out <- list((nObs-testLen+1):nObs)
       out <- list(NULL)
       for(i in 1:args$N.subsets)
-        {
-          out[[i]] <- start:(start+length(length.out.ts[[i]])-1)
-          start <- out[[i]][length(out[[i]])] +1
-        }
+          {
+              out[[i]] <- start:(start+length(length.out.ts[[i]])-1)
+              start <- out[[i]][length(out[[i]])] +1
+          }
     }
   else
     {
