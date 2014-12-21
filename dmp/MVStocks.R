@@ -1,4 +1,4 @@
-##'
+##' Multivariate Variables for Stocks
 ##'
 ##' Download and build multivariate responses and covariates from Yahoo Finance.
 ##' @param from integer format as YYYYMMDD
