@@ -13,14 +13,15 @@
 ##' @param save2diskPath Is not missing, the result will be saved to the path provided
 ##' here.
 ##'
+##' @param ... Other arguments passed to stock2covarites
+##'
 ##' @return list or save to disk.
 ##'
 ##' @references Li Villani 2012
 ##'
 ##' @author Feng Li, Central University of Finance and Economics.
-
 MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
-                    StdDataMethod, save2diskPath)
+                     StdDataMethod, save2diskPath, ...)
 {
 
     ## Format the URL in Yahoo URL Format as
@@ -47,7 +48,7 @@ MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
 
 
     ## Convert the raw data into covariates
-    Scovar <- lapply(X = RawDataPath, FUN = stock2covariates)
+    Scovar <- lapply(X = RawDataPath, FUN = stock2covariates, ...)
 
     XRaw <- list()
     YRaw <- list()
