@@ -1,4 +1,4 @@
-##' The generalized hypergeometric function
+##' The generalized hypergeometric function pFq.
 ##'
 ##' The results are evaluated via the series expansion of Pochhammer symbols.
 ##' @param a "n-by-p matrix"
@@ -52,3 +52,9 @@ ghypergeo <- function(a, b, z, k = 10)
 
     return(out)
   }
+
+regghypergeo <- function(a, b, c, z, k = 10)
+{
+    ## the regularized hypergeometric function pFq(a, b, z)/Gamma(c)
+    ghypergeo(a = a, b = b, z = z, k = k)/gamma(c)
+}
