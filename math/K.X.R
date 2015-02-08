@@ -3,26 +3,26 @@
 
 ## Description:
 ##   A fast way to make a multiplication of a commutation matrix (K)
-##   with a dense matrix (X) 
-   
+##   with a dense matrix (X)
+
 ## Usage:
 ##   K.X(m, n, X, t)
 
 ## Arguments:
-##   m:       "Integer". Parameter of the commutation matrix "K"  
+##   m:       "Integer". Parameter of the commutation matrix "K"
 ##   n:       "Integer". Parameter of the commutation matrix "K"
 ##   X:       "Matrix".  A matrix to be multiplied.
 ##   t:       "Logical". If FALSE, do K%*%X; else, do X%*%K.
 
 ## Details:
 ##   Both 'm' and 'n' should be positive integers. The dimensions should be comfortable
-##   As usual matrices multiplication. 
-  
+##   As usual matrices multiplication.
+
 ## Value:
 ##   A matrix with dimension depends on "K" and "X".
 
 ## Author:
-##   Feng Li <Feng.Li@stat.su.se>, Dept. of Statistics, Stockholm University, Sweden.
+##   Feng Li <feng.li@cufe.edu.cn>, Dept. of Statistics, Stockholm University, Sweden.
 
 ## License: GPL(>=2)
 

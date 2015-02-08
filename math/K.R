@@ -3,22 +3,22 @@
 
 ## Description:
 ##   A fast way to make a commutation matrix.
-   
+
 ## Usage:
 ##   K(m, n)
 
 ## Arguments:
-##   m:       "Integer".  
-##   n:       "Integer". 
+##   m:       "Integer".
+##   n:       "Integer".
 
 ## Details:
 ##   Both 'm' and 'n' shoud be positive integers
-  
+
 ## Value:
 ##   A matrix with dimension of "mn--by--mn".
 
 ## Author:
-##   Feng Li <Feng.Li@stat.su.se>, Dept. of Statistics, Stockholm University, Sweden.
+##   Feng Li <feng.li@cufe.edu.cn>, Dept. of Statistics, Stockholm University, Sweden.
 
 ## License: GPL(>=2)
 
