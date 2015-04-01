@@ -4,47 +4,53 @@
 ##' @param B "matrix".  The paramter that need to be added with a prior. The
 ##' gradient and hessian are calculated conditional on B. B should be always an
 ##' one-column matrix
-##' 
+##'
 ##' @param ... The arguments for the densities. The name should be matched
 ##' exactly.
-##' @param type 
+##' @param type
 ##' @param grad "logical" Should the gradient be computed?
 ##' @param Hess "logical" Should the Hessian be computed?
 ##' @return "list". The gradient and Hessian (if required) matrices, see below.
 ##' \item   {grad}
 ##'         {"matrix". One-column.}
-##' 
+##'
 ##' \item   {Hess}
 ##'         {"matrix". A squared matrix. Dimension on row and column are  same
 ##'         as length of B.}
-##' 
-##' @references 
+##'
+##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: Tue Mar 30 09:33:23 CEST 2010;
 ##'       Current:       Fri Mar 02 17:01:20 CET 2012.
 DensGradHess <- function(B, ..., type = "norm", grad = TRUE, Hess = TRUE)
 {
-  parArgs <- list(...)
-  B <- matrix(B)
-  out <- list()
-  
-  if (tolower(type) == "norm") # vecB ~ N(mean, shrinkage*covariance)
-    {
-      mean <- matrix(parArgs$mean)
-      covariance <- as.matrix(parArgs$covariance)
-      CovInv <- solve(covariance)
+    parArgs <- list(...)
+    out <- list()
 
-      ## The gradient
-      if(grad == TRUE)
+    if(ncol(B) != 1)
         {
-          out[["grad"]] <- -CovInv %*% (B-mean)
+            stop("B must be a column-matrix!")
         }
-      ## The Hessian
-      if(Hess == TRUE)
+
+    if (tolower(type) == "norm") # vecB ~ N(mean, shrinkage*covariance)
         {
-          out[["Hess"]] <- -CovInv
+            mean <- parArgs$mean
+            covariance <- parArgs$covariance
+
+
+            CovInv <- solve(covariance)
+
+            ## The gradient
+            if(grad == TRUE)
+                {
+                    out[["grad"]] <- -CovInv %*% (B-mean)
+                }
+            ## The Hessian
+            if(Hess == TRUE)
+                {
+                    out[["Hess"]] <- -CovInv
+                }
         }
-    }
-  
-  return(out)
+
+    return(out)
 }

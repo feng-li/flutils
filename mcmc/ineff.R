@@ -10,13 +10,20 @@
 ##'       Current: Sun Sep 02 13:59:32 CEST 2012.
 ineff <- function(par)
   {
-    autocorr <- acf(par, plot = FALSE, type = "correlation")$acf
+    if(any(is.na(par)))
+      {
+        out <- NA
+      }
+    else {
+      autocorr <- acf(par, plot = FALSE, type = "correlation")$acf
 
-    ## The inefficiency factor
-    ## ineff  = 1 + 2*sum(autocorrelations(lag1 to lag oo))
-    out <- 2*sum(autocorr) -1 # acf including lag 0 already.
+      ## The inefficiency factor
+      ## ineff  = 1 + 2*sum(autocorrelations(lag1 to lag oo))
+      out <- 2*sum(autocorr) -1 # acf including lag 0 already.
 
-    ## Inefficiency factor not valid if it is negative, probably too short
-    ## chain.
+      ## Inefficiency factor not valid if it is negative, probably too short
+      ## chain.
+
+    }
     return(out)
   }
