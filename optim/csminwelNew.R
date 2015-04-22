@@ -1,4 +1,4 @@
-csminwel <- function(fcn,x0,H0,...,grad=NULL,crit=1e-7,nit,Verbose=TRUE,Long=FALSE) {
+csminwelNew <- function(fcn,x0,H0,...,grad=NULL,crit=1e-7,nit,Verbose=TRUE,Long=FALSE) {
 ### fcn:   the objective function to be minimized.  If it has a "gradient" attribute (like output of deriv), that is used
 ###        as analytic gradient.  If it has a "hessian" attribute, that is used as the hessian.
 ### fcn0:  Lean version of fcn, without grad or hessian attributes.  May save time to provide this. (Removed this option for now.)
@@ -29,7 +29,7 @@ csminwel <- function(fcn,x0,H0,...,grad=NULL,crit=1e-7,nit,Verbose=TRUE,Long=FAL
   badg <- FALSE
   ## browser()
   if( f0 > 1e50 ) {
-    stop("Bad initial parameter.")
+    stop(paste("Bad initial parameter. f0 =", f0))
   }
   if( NumGrad ) {
     if( !is.numeric(grad) ) {
@@ -37,7 +37,7 @@ csminwel <- function(fcn,x0,H0,...,grad=NULL,crit=1e-7,nit,Verbose=TRUE,Long=FAL
       g <- gbadg$g
       badg <- gbadg$badg
     } else {
-      badg <- false
+      badg <- FALSE
       ## This is dangerous if you use a saved g file and it
       ## turns out to have been "bad".  We used to set badg to TRUE if
       ## grad contained any zeros.
@@ -51,7 +51,7 @@ csminwel <- function(fcn,x0,H0,...,grad=NULL,crit=1e-7,nit,Verbose=TRUE,Long=FAL
   retcode3 <- 101
   x <- x0
   f <- f0
-  if (is.null(attr(fcn,"hessian"))) {
+  if (is.null(attr(f0,"hessian"))) {
     H <- H0
   }else{
     H <- attr(f0,"hessian")
@@ -69,7 +69,7 @@ csminwel <- function(fcn,x0,H0,...,grad=NULL,crit=1e-7,nit,Verbose=TRUE,Long=FAL
     }
     ##-------------------------
     itct <- itct+1
-    itout <- csminit(fcn,x,f,g,badg,H,...)
+    itout <- csminit(fcn,x0=x, f0=f, g0=g,badg=badg, H0=H,...)
     f1 <- itout$fhat
     x1 <- itout$xhat
     fc <- itout$fcount
@@ -96,7 +96,7 @@ csminwel <- function(fcn,x0,H0,...,grad=NULL,crit=1e-7,nit,Verbose=TRUE,Long=FAL
         ##
         Hcliff <- H+diag(diag(H) * rnorm(nx))
         cat("Cliff.  Perturbing search direction. \n")
-        itout <- csminit(fcn,x,f,g,badg,Hcliff,...)
+        itout <- csminit(fcn,x0=x,f0=f,g0=g, badg=badg, H0=Hcliff,...)
         f2 <- itout$fhat
         x2 <- itout$xhat
         fc <- itout$fcount
@@ -127,7 +127,7 @@ csminwel <- function(fcn,x0,H0,...,grad=NULL,crit=1e-7,nit,Verbose=TRUE,Long=FAL
             ## as.numeric below for robustness against f's being 1x1 arrays
             gcliff <- (x2 - x1) * (as.numeric(f2 - f1)/(normdx^2))
             dim(gcliff) <- c(nx,1)
-            itout <- csminit(fcn,x,f,gcliff,0,diag(nx),...)
+            itout <- csminit(fcn,x0=x,f0=f, g0=gcliff, badg=FALSE,H0=diag(nx),...)
             f3 <- itout$fhat
             x3 <- itout$xhat
             fc <- itout$fc
@@ -250,5 +250,5 @@ csminwel <- function(fcn,x0,H0,...,grad=NULL,crit=1e-7,nit,Verbose=TRUE,Long=FAL
     g <- gh
     badg <- badgh
   }                                     # while !done
-  return(list(fh=fh,xh=xh,gh=gh,H=H,itct=itct,fcount=fcount,retcodeh=retcodeh,...))
+  return(list(fh=fh,xh=xh,gh=gh,H=H,itct=itct,fcount=fcount,retcodeh=retcodeh, match.call(), ...))
 }
