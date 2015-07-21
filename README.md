@@ -35,7 +35,11 @@ Copyright
 More information
 ----------------
 
- Please visit the [homepage](http://feng.li/).
+* [Author's homepage](http://feng.li/).
+
+* [Private repository](https://bitbucket.org/fli/).
+
+
 
 Bug reports
 -----------
