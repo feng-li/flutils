@@ -113,7 +113,7 @@ make.knots <- function(x, method, splineArgs)
       ## multivariate covariates.
       n.knots <- "Not ready!"
       probs <- seq(0,1,length.out=n.knots+2)[-c(1,n.knots+2)]
-      xi <- matrix(quantile(x,probs),k,1)
+      xi <- matrix(quantile(x,probs),length(x),1)
     }
   else
     {

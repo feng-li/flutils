@@ -2,5 +2,5 @@
 close.all <- function()
   {
     graphics.off()
-    try(rgl.quit(), silent = TRUE)
+    ## try(rgl.quit(), silent = TRUE)
   }

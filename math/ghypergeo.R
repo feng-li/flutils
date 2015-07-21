@@ -13,10 +13,10 @@
 ##'
 ##'       The matrix of length n.
 ##'
-##' @references NIST Handbook of Mathematical Functions
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+##' @references HypergeometricPFQ in Mathematica 10
+##' @author Feng Li, Central University of Finance and Economics.
 ##' @note Created: Tue Jan 15 12:36:41 CET 2013;
-##'       Current: Tue Jan 15 12:36:57 CET 2013.
+##'       Current: Sat May 30 15:07:07 CST 2015.
 ghypergeo <- function(a, b, z, k = 10)
   {
     if(!is.matrix(a)|| !is.matrix(b) ||
@@ -53,8 +53,10 @@ ghypergeo <- function(a, b, z, k = 10)
     return(out)
   }
 
-regghypergeo <- function(a, b, c, z, k = 10)
+regghypergeo <- function(a, b, z, k = 10)
 {
-    ## the regularized hypergeometric function pFq(a, b, z)/Gamma(c)
-    ghypergeo(a = a, b = b, z = z, k = k)/gamma(c)
+  ## the regularized hypergeometric function pFq(a, b, z)/Prod[Gamma(b)]
+  gammaprod <- apply(gamma(b), 1, prod)
+  out <- ghypergeo(a = a, b = b, z = z, k = k)/gammaprod
+  return(out)
 }

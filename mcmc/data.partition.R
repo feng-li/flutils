@@ -52,6 +52,13 @@ data.partition <- function(nObs, args)
       ## Use old data as testing data and recent data to preform predictions,
       ## the argument "testRatio" is used.
       ## out <- vector("list", length = 2)
+
+      testRatio <- args$testRatio
+      if(is.null(testRatio)){
+        stop("testRatio needed!")
+
+      }
+
       testLen <- ceiling(nObs*args$testRatio) # Make sure at least one is available
       start <- (nObs-testLen+1)
       obs.label.ts <- start:nObs
