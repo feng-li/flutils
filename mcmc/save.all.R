@@ -27,7 +27,12 @@ save.all <- function(save.output, ModelDescription)
                              randomPhrase, "Rdata"), collapse =".")
 
     ## Save all the objects
-    save.image(file = OUT.file.name, compress = "xz")
+    ## save.image(file = OUT.file.name, compress = "xz")
+    save(list = ls(envir = .GlobalEnv),
+         file = OUT.file.name,
+         envir = .GlobalEnv,
+         compress = "xz")
+
 
     ## Done message
     cat("Outputs saved in:\n",  paste("\"", OUT.file.name, "\"", sep = ""), "\n")
