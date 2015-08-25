@@ -11,6 +11,8 @@ save.all <- function(save.output, ModelDescription)
 {
   if (save.output != FALSE) ## Save has been requested.
   {
+    cat("Saving all outputs in:\n")
+
     if (save.output  == TRUE)
     {
       save.output <- getwd()
@@ -35,7 +37,7 @@ save.all <- function(save.output, ModelDescription)
 
 
     ## Done message
-    cat("Outputs saved in:\n",  paste("\"", OUT.file.name, "\"", sep = ""), "\n")
-    cat("----------------------------------------------------------------------\n\n")
+    cat(paste("\"", OUT.file.name, "\"", sep = ""), "\n")
+    cat(rep("-", getOption("width")), "\n", sep = "")
   }
 }
