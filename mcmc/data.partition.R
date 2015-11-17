@@ -10,74 +10,105 @@
 ##'       Current:       Mon Sep 20 21:08:11 CEST 2010.
 data.partition <- function(nObs, args)
 {
+  partiMethod <- args[["partiMethod"]]
+  N.subsets <- args[["N.subsets"]]
+  testRatio <- args[["testRatio"]]
 
-  if(nObs < args$N.subsets ||
-     (args$N.subsets < 2 & tolower(args$partiMethod) != "time-series"))
-    {
-      # Observation smaller than subsets.
-      stop("No. of subsets should be equal or smaller than no. of obs and greater than 1.")
-    }
+  if(nObs < N.subsets ||
+     (N.subsets < 1 & tolower(partiMethod) != "time-series"))
+  {
+                                        # Observation smaller than subsets.
+    stop("No. of subsets should be equal or smaller than no. of obs and at least one.")
+  }
 
+  ## disable warnings when ata length is not a multiple of split variable which is what I
+  ## want.  split the knots in a smart way. e.g. split 20 knots into 3 folds
   obs.label <- 1:nObs
-  ## disable warnings when ata length is not a multiple of split variable which
-  ## is what I want.  split the knots in a smart way. e.g. split 20 knots into
-  ## 3 folds
+  suppressWarnings(length.out <- split(obs.label, 1:(N.subsets)))
 
-  suppressWarnings(
-    length.out <- split(obs.label, 1:args$N.subsets))
-  if(tolower(args$partiMethod) == "systematic")
-    { out <- length.out }
-  else if(tolower(args$partiMethod) == "random")
+  if(tolower(partiMethod) == "systematic")
+  {## Select testing samples in a sequential order
+    if(N.subsets == 1)
     {
-      out <- list(NULL)
+      out <- list()
+      out[["1"]] <- floor(seq(1,  nObs, length.out = ceiling(nObs*testRatio)))
+    }
+    else
+    {
+      out <- length.out
+    }
+  }
+  else if(tolower(partiMethod) == "random")
+  {## Randomly select testing samples
+    out <- list()
+
+    if(N.subsets == 1)
+    {
+      out[["1"]] <- sample(obs.label, ceiling(nObs*testRatio))
+    }
+    else
+    {
       obs.label.new <- obs.label
-      for(i in 1:args$N.subsets)
-        {
-          out[[i]] <- sample(obs.label.new, length(length.out[[i]]))
-          obs.label.new <-  obs.label.new[!obs.label.new%in%out[[i]]]
-        }
-    }
-  else if(tolower(args$partiMethod) == "ordered")
-    {
-      out <- list(NULL)
-      start <- 1
-      for(i in 1:args$N.subsets)
-        {
-          out[[i]] <- start:(start+length(length.out[[i]])-1)
-          start <- out[[i]][length(out[[i]])] +1
-        }
-    }
-  else if(tolower(args$partiMethod) == "time-series")
-    {
-      ## Use old data as testing data and recent data to preform predictions,
-      ## the argument "testRatio" is used.
-      ## out <- vector("list", length = 2)
-
-      testRatio <- args$testRatio
-      if(is.null(testRatio)){
-        stop("testRatio needed!")
-
+      for(i in 1:N.subsets)
+      {
+        out[[i]] <- sample(obs.label.new, length(length.out[[i]]))
+        obs.label.new <-  obs.label.new[!obs.label.new%in%out[[i]]]
       }
-
-      testLen <- ceiling(nObs*args$testRatio) # Make sure at least one is available
-      start <- (nObs-testLen+1)
-      obs.label.ts <- start:nObs
-
-      suppressWarnings(
-          length.out.ts <- split(obs.label.ts, 1:args$N.subsets))
-
-      ## out <- list((nObs-testLen+1):nObs)
-      out <- list(NULL)
-      for(i in 1:args$N.subsets)
-          {
-              out[[i]] <- start:(start+length(length.out.ts[[i]])-1)
-              start <- out[[i]][length(out[[i]])] +1
-          }
     }
-  else
+  }
+  else if(tolower(partiMethod) == "ordered")
+  {
+    out <- list()
+
+    if(N.subsets == 1)
     {
-      stop("The partitioning method is not implemented!")
+      testLen <- ceiling(nObs*testRatio)
+      out[["1"]] <- (nObs - testLen + 1):nObs
     }
+    else
+    {
+      start <- 1
+      for(i in 1:N.subsets)
+      {
+        out[[i]] <- start:(start+length(length.out[[i]])-1)
+        start <- out[[i]][length(out[[i]])] +1
+      }
+    }
+  }
+  else if(tolower(partiMethod) == "time-series")
+  {
+    ## Use old data as testing data and recent data to preform predictions, the argument
+    ## "testRatio" is used.
+
+    if(is.null(testRatio))
+    {
+      stop("testRatio needed!")
+    }
+
+    if(N.subsets  != 1)
+    {
+      stop("Currently for time series,  the last", testRatio,
+           "observations are used as a single test sample. No cross-validation applied.")
+
+    }
+
+    testLen <- ceiling(nObs*testRatio) # Make sure at least one is available
+    start <- (nObs-testLen+1)
+
+    ##obs.label.ts <- start:nObs
+    ## suppressWarnings(length.out.ts <- split(obs.label.ts, 1:N.subsets))
+
+    out <- list()
+    ## for(i in 1:N.subsets)
+    ## {
+    out[["1"]] <- start:nObs
+    ## start <- out[[i]][length(out[[i]])] +1
+    ##  }
+  }
+  else
+  {
+    stop("The partitioning method is not implemented!")
+  }
   names(out) <- NULL # remove the name. I don't like it.
   return(out)
 }

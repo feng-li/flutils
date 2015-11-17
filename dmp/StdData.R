@@ -18,43 +18,46 @@ StdData <- function(X, method)
 {
   ## if X is a vector,  treat it as a one-column vector.
   if(is.vector(X)==TRUE)
-    {
-      X <- as.matrix(X)
-      X.is.vector <- TRUE
-    }
+  {
+    X <- as.matrix(X)
+    X.is.vector <- TRUE
+  }
   else
-    {
-      X.is.vector <- FALSE
-    }
+  {
+    X.is.vector <- FALSE
+  }
   X.dim <- dim(X)
 
   ## Methods of standardization
   if(tolower(method)=="norm-0-1") # mean 0, sd=1
-    {
-      mean.vec <- colMeans(X)
-      mean.mat <-  matrix(mean.vec,X.dim[1],X.dim[2],byrow=TRUE)
-      sd.vec <- apply(X, 2, sd)
-      sd.mat <-  matrix(sd.vec, X.dim[1],X.dim[2],byrow=TRUE)
+  {
+    mean.vec <- colMeans(X)
+    mean.mat <-  matrix(mean.vec,X.dim[1],X.dim[2],byrow=TRUE)
+    sd.vec <- apply(X, 2, sd)
+    sd.mat <-  matrix(sd.vec, X.dim[1],X.dim[2],byrow=TRUE)
 
-      X.out <- (X-mean.mat)/sd.mat
-      config <- list(mean = mean.vec, sd = sd.vec, method = method)
-    } # if(tolower(method)=="stdnorm")
-
-  if(tolower(method)=="-1to1") # restrict to [-1 1]
-    {
-      max.vec <- apply(X, 2, max)
-      min.vec <- apply(X, 2, min)
-      max.mat <- matrix(max.vec,X.dim[1],X.dim[2],byrow=TRUE)
-      min.mat <- matrix(min.vec,X.dim[1],X.dim[2],byrow=TRUE)
-      X.out <- (2*X-max.mat-min.mat)/(max.mat-min.mat)
-      config <- list(min = min.vec, max = max.vec, method = method)
-    } # if(tolower(method)=="-1to1")
+    X.out <- (X-mean.mat)/sd.mat
+    config <- list(mean = mean.vec, sd = sd.vec, method = method)
+  } # if(tolower(method)=="stdnorm")
+  else  if(tolower(method)=="-1to1") # restrict to [-1 1]
+  {
+    max.vec <- apply(X, 2, max)
+    min.vec <- apply(X, 2, min)
+    max.mat <- matrix(max.vec,X.dim[1],X.dim[2],byrow=TRUE)
+    min.mat <- matrix(min.vec,X.dim[1],X.dim[2],byrow=TRUE)
+    X.out <- (2*X-max.mat-min.mat)/(max.mat-min.mat)
+    config <- list(min = min.vec, max = max.vec, method = method)
+  } # if(tolower(method)=="-1to1")
+  else
+  {
+    stop("No such method found!")
+  }
 
   ## When X was a vector.
   if(X.is.vector==TRUE)
-    {
-      X.out <- as.vector(X.out)
-    }
+  {
+    X.out <- as.vector(X.out)
+  }
 
   out <- list(data = X.out, config = config)
   return(out)

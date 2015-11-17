@@ -12,12 +12,11 @@
 ##' @return
 ##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note Created: Wed Oct 26 18:39:12 CEST 2011;
-##'       Current: Wed Feb 08 20:08:25 CET 2012.
+##' @note Created: Wed Oct 26 18:39:12 CEST 2011; Current: Wed Sep 30 16:37:49 CST 2015.
 ##' TODO: let -1 < b < oO.
 ibeta <- function(x, a, b, log = FALSE, reg = FALSE)
 {
-  HCond <- (a >0 && b>0)
+  HCond <- (all(a >0) & all(b>0))
   if(!HCond)
     {
       stop("Incomplete beta function requires a > 0 and b > 0.")

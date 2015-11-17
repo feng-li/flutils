@@ -8,14 +8,15 @@
 ##' @return "one-col-matrix" of the same dimension as the linear predictor
 ##' @references NA
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note Created: Sun Mar 04 14:45:22 CET 2012;
-##'       Current: Sun Mar 04 14:45:29 CET 2012.
+##' @note Created: Sun Mar 04 14:45:22 CET 2012; Current: Wed Sep 30 12:34:04 CST 2015.
 parMeanFun <- function(X, beta, linkArgs)
 {
   ## Input each observation x'b  -> l(phi) = x'b -> phi
   ## We allow for beta to be a matrix of (p-by-lq)
   p <- dim(X)[2]
   beta <- matrix(beta, nrow = p)
+
+  ## if(is(beta, "try-error")) browser()
 
   linPred <- X %*% beta # The linear predictor
 
