@@ -26,12 +26,17 @@ MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
 
   ## Format the URL in Yahoo URL Format as
   ## http://real-chart.finance.yahoo.com/table.csv?s = %5ESML&a = 07&b = 2&c = 1982&d = 11&e = 21&f = 2014&g = d&ignore = .csv
-  a <- substr(from, 7, 8)
-  b <- as.numeric(substr(from, 5, 6))-1
-  c <- substr(from, 1, 4)
-  d <- substr(to, 7, 8)
-  e <- as.numeric(substr(to, 5, 6))-1
-  f <- substr(to, 1, 4)
+  a0 <- as.numeric(substr(from, 5, 6)) -1  # Start date: MM
+  b <- substr(from, 7, 8) # Start date: DD
+  c <- substr(from, 1, 4) # Start date: YYYY
+  d0 <- as.numeric(substr(to, 5, 6)) -1 # End date: MM
+  e <- as.numeric(substr(to, 7, 8)) # End Date: DD
+  f <- substr(to, 1, 4) # End date: YYYY
+
+
+  a <- ifelse(a0<10, paste("0", a0, sep = ""), a0)
+  d <- ifelse(d0<10, paste("0", d0, sep = ""), d0)
+
 
   g <- "d" ## daily
 
@@ -88,7 +93,7 @@ MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
   }
   else
   {
-    return(list(ID, X, Y, X.config, Y.config))
+    return(list(ID = ID, X = X, Y = Y, X.config = X.config, Y.config = Y.config))
   }
 
 }
