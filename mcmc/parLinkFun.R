@@ -28,11 +28,15 @@ parLinkFun <- function(mu, linkArgs)
       {
         if(tolower(link) == "glog")
           {
-            a <- linkArgs$a
+              a <- linkArgs$a
+              b <- linkArgs$b
+              if(is.null(b)) b <- Inf
+
           }
         else
           {
-            a <- 0
+              a <- 0
+              b <- Inf
           }
         out <- log(mu-a)
       }

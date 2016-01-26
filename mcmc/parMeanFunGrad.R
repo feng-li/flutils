@@ -28,13 +28,26 @@ parMeanFunGrad <- function(par, linkArgs)
       {
         if(tolower(link) == "glog")
           {
-            a <- linkArgs$a
+              a <- linkArgs$a
+              b <- linkArgs$b
+              if(is.null(b)) b <- Inf
           }
         else
           {
-            a <- 0
+              a <- 0
+              b <- Inf
           }
         out <- exp(linpred)
+
+        ## Let the gradient be zero after cutoff to stabilize the computation.
+        out.upidx <- ((out + a) >=  b)
+        if(length(out.upidx) > 0)
+        {
+            out[out.upidx] <- 0
+        }
+
+
+
       }
     else if(tolower(link) %in% c("glogit", "logit"))
       {
@@ -61,6 +74,7 @@ parMeanFunGrad <- function(par, linkArgs)
       {
         stop("This link function is not implemented yet!")
       }
+
     return(out)
   }
 
