@@ -36,28 +36,28 @@
 ##'
 ##'       Current: Sat Jan 05 22:49:39 CET 2013.
 dsplitt <- function(x, mu, df, phi, lmd, log)
-  {
+{
     I0 <- (x <= mu) # Logical values. 1, if y <= mu; 0, if y >mu.
     I <- (!I0)  # Logical values. 1, if y > mu; 0, if y <= mu.
 
     sign <- 1*I0 + lmd*I # sign = 1 if y<=mu; sign = lmd.^2 if y>2
 
     density.log <- log(2)+ (1+df)/2*(log(df)-log(df+(-mu+x)^2/(phi^2*sign^2)))-
-      log(phi)-log(df)/2-lbeta(df/2,1/2)-log(1+lmd)
+        log(phi)-log(df)/2-lbeta(df/2,1/2)-log(1+lmd)
 
     if(log == TRUE)
-      {
+    {
         out <- density.log
-      }
+    }
     else
-      {
+    {
         out <- exp(density.log)
-      }
+    }
     return(out)
-  }
+}
 
 psplitt <- function(x, mu, df, phi, lmd, log)
-  {
+{
     ## CDF for y < = mu part.
     I0 <- (x<=mu)
     I <- (!I0)
@@ -69,15 +69,18 @@ psplitt <- function(x, mu, df, phi, lmd, log)
                              log = FALSE, reg = TRUE)
     out <- 1/(1+lmd) + sign*sign2/(1+lmd)*BetaRegUpper
 
+    ## if(any(abs(out) < 0.000000000000001)) browser()
+
+
     if(log == TRUE)
-      {
+    {
         stop("log form is not implemented yet!")
-      }
+    }
     else
-      {
+    {
         return(out)
-      }
-  }
+    }
+}
 
 rsplitt <- function(n, mu, df, phi, lmd)
 {
@@ -86,41 +89,41 @@ rsplitt <- function(n, mu, df, phi, lmd)
 
 
 splitt.mean <- function(mu, df, phi, lmd)
-  {
+{
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
     mean <- mu + h
     return(mean)
-  }
+}
 
 splitt.var <- function(df, phi, lmd)
-  {
+{
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
     var <- (1+lmd^3)/(1+lmd)*df/(df-2)*phi^2-h^2
     return(var)
-  }
+}
 
 splitt.skewness <- function(df, phi, lmd)
-  {
+{
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
     var <- (1+lmd^3)/(1+lmd)*df/(df-2)*phi^2-h^2
 
     m3 <- 2*h^3+2*h*phi^2*(lmd^2+1)*df/(df-3) -
-      3*h*phi^2*(lmd^3+1)/(lmd+1)*df/(df-2)
+                            3*h*phi^2*(lmd^3+1)/(lmd+1)*df/(df-2)
 
     skewness <- m3/var^(3/2)
     return(skewness)
-  }
+}
 
 splitt.kurtosis <- function(df, phi, lmd)
-  {
+{
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
     var <- (1+lmd^3)/(1+lmd)*df/(df-2)*phi^2-h^2
 
     m4 <- 3*df^2*phi^4*(1+lmd^5)/((1+lmd)*(df-2)*df-4)- 3*h^4 +
-      6*h^2*(1+lmd^3)*df*phi^2/((1+lmd)*(df-2))-
-        8*h^2*(lmd^2+1)*df*phi^2/(df-3)
+                                                                6*h^2*(1+lmd^3)*df*phi^2/((1+lmd)*(df-2))-
+                                                                                           8*h^2*(lmd^2+1)*df*phi^2/(df-3)
 
     kurtosis <- m4/var^2-3
 
     return(kurtosis)
-  }
+}
