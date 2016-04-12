@@ -42,8 +42,8 @@ dsplitt <- function(x, mu, df, phi, lmd, log)
 
     sign <- 1*I0 + lmd*I # sign = 1 if y<=mu; sign = lmd.^2 if y>2
 
-    density.log <- log(2)+ (1+df)/2*(log(df)-log(df+(-mu+x)^2/(phi^2*sign^2)))-
-        log(phi)-log(df)/2-lbeta(df/2,1/2)-log(1+lmd)
+    density.log <- (log(2)+ (1+df)/2*(log(df)-log(df+(-mu+x)^2/(phi^2*sign^2)))-
+                    log(phi)-log(df)/2-lbeta(df/2,1/2)-log(1+lmd))
 
     if(log == TRUE)
     {
@@ -65,16 +65,15 @@ psplitt <- function(q, mu, df, phi, lmd)
     sign2 <- I0*(-1) + I*1
 
     A <- df*sign^2*phi^2/(df*sign^2*phi^2+(q-mu)^2)
-    BetaRegUpper <- 1- ibeta(x = A,a = df/2,b = 1/2,
-                             log = FALSE, reg = TRUE)
-    out <- 1/(1+lmd) + sign*sign2/(1+lmd)*BetaRegUpper
+    BetaRegUpper <- (1- ibeta(x = A,a = df/2,b = 1/2,
+                              log = FALSE, reg = TRUE))
+    out <- (1/(1+lmd) + sign*sign2/(1+lmd)*BetaRegUpper)
 
     return(out)
 }
 
 qsplitt <- function(p, mu, df, phi, lmd)
 {
-
     n <- length(p)
 
     mu.long <- p
@@ -89,13 +88,11 @@ qsplitt <- function(p, mu, df, phi, lmd)
     lmd.long <- p
     lmd.long[] <- lmd
 
-
     I0 <- (p<=(1/(1+lmd.long)))
     I <- (!I0)
 
     out <- p
     out[] <- NA
-
 
     if(any(I0))
     {
