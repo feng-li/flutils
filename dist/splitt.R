@@ -56,35 +56,85 @@ dsplitt <- function(x, mu, df, phi, lmd, log)
     return(out)
 }
 
-psplitt <- function(x, mu, df, phi, lmd, log)
+psplitt <- function(q, mu, df, phi, lmd)
 {
-    ## CDF for y < = mu part.
-    I0 <- (x<=mu)
+    ## CDF for q < = mu part.
+    I0 <- (q<=mu)
     I <- (!I0)
     sign <- I0*1 + I*lmd
     sign2 <- I0*(-1) + I*1
 
-    A <- df*sign^2*phi^2/(df*sign^2*phi^2+(x-mu)^2)
+    A <- df*sign^2*phi^2/(df*sign^2*phi^2+(q-mu)^2)
     BetaRegUpper <- 1- ibeta(x = A,a = df/2,b = 1/2,
                              log = FALSE, reg = TRUE)
     out <- 1/(1+lmd) + sign*sign2/(1+lmd)*BetaRegUpper
 
-    ## if(any(abs(out) < 0.000000000000001)) browser()
+    return(out)
+}
+
+qsplitt <- function(p, mu, df, phi, lmd)
+{
+
+    n <- length(p)
+
+    mu.long <- p
+    mu.long[] <- mu
+
+    df.long <- p
+    df.long[] <- df
+
+    phi.long <- p
+    phi.long[] <- phi
+
+    lmd.long <- p
+    lmd.long[] <- lmd
 
 
-    if(log == TRUE)
+    I0 <- (p<=(1/(1+lmd.long)))
+    I <- (!I0)
+
+    out <- p
+    out[] <- NA
+
+
+    if(any(I0))
     {
-        stop("log form is not implemented yet!")
+        p0 <- p[I0]
+        mu0 <- mu.long[I0]
+        lmd0 <- lmd.long[I0]
+        df0 <- df.long[I0]
+        phi0 <- phi.long[I0]
+
+        p0std <- p0*(1+lmd0)/2
+        y0std <- qt(p0std, df = df0)
+
+        out0 <- y0std*phi0+mu0
+        out[I0] <- out0
     }
-    else
+
+    if(any(I))
     {
-        return(out)
+        p1 <- p[I]
+        mu1 <- mu.long[I]
+        lmd1 <- lmd.long[I]
+        df1 <- df.long[I]
+        phi1 <- phi.long[I]
+
+        p1std <- (p1-1/(1+lmd1))*(1+lmd1)/(2*lmd1)+1/2
+        y1std <- qt(p1std, df = df1)
+
+        out1 <- y1std*(phi1*lmd1)+mu1
+        out[I] <- out1
     }
+    return(out)
 }
 
 rsplitt <- function(n, mu, df, phi, lmd)
 {
-
+    ## Inverse method
+    u <- runif(n)
+    out <- qsplitt(p = u, mu = mu, df = df, phi = phi, lmd = lmd)
+    return(out)
 }
 
 
@@ -107,8 +157,8 @@ splitt.skewness <- function(df, phi, lmd)
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
     var <- (1+lmd^3)/(1+lmd)*df/(df-2)*phi^2-h^2
 
-    m3 <- 2*h^3+2*h*phi^2*(lmd^2+1)*df/(df-3) -
-                            3*h*phi^2*(lmd^3+1)/(lmd+1)*df/(df-2)
+    m3 <- (2*h^3+2*h*phi^2*(lmd^2+1)*df/(df-3)
+        - 3*h*phi^2*(lmd^3+1)/(lmd+1)*df/(df-2))
 
     skewness <- m3/var^(3/2)
     return(skewness)
@@ -119,9 +169,9 @@ splitt.kurtosis <- function(df, phi, lmd)
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
     var <- (1+lmd^3)/(1+lmd)*df/(df-2)*phi^2-h^2
 
-    m4 <- 3*df^2*phi^4*(1+lmd^5)/((1+lmd)*(df-2)*df-4)- 3*h^4 +
-                                                                6*h^2*(1+lmd^3)*df*phi^2/((1+lmd)*(df-2))-
-                                                                                           8*h^2*(lmd^2+1)*df*phi^2/(df-3)
+    m4 <- (3*df^2*phi^4*(1+lmd^5)/((1+lmd)*(df-2)*df-4)- 3*h^4
+        + 6*h^2*(1+lmd^3)*df*phi^2/((1+lmd)*(df-2))
+        - 8*h^2*(lmd^2+1)*df*phi^2/(df-3))
 
     kurtosis <- m4/var^2-3
 
