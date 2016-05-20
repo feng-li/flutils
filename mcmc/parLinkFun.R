@@ -11,7 +11,7 @@
 ##' @note Created: Thu May 10 13:09:08 CEST 2012;
 ##'       Current: Thu May 10 13:09:14 CEST 2012.
 parLinkFun <- function(mu, linkArgs)
-  {
+{
     ## Input each observation x'b  -> l(phi) = x'b -> phi
     ## output: The linear predictor linPred =  X %*% beta
 
@@ -21,39 +21,39 @@ parLinkFun <- function(mu, linkArgs)
     link <- linkArgs[["type"]]
 
     if(tolower(link) %in% "identity")
-      {
+    {
         out <- mu
-      }
+    }
     else if(tolower(link) %in% c("log", "glog"))
-      {
+    {
         if(tolower(link) == "glog")
-          {
-              a <- linkArgs$a
-              b <- linkArgs$b
-              if(is.null(b)) b <- Inf
+        {
+            a <- linkArgs$a
+            b <- linkArgs$b
+            if(is.null(b)) b <- Inf
 
-          }
+        }
         else
-          {
-              a <- 0
-              b <- Inf
-          }
+        {
+            a <- 0
+            b <- Inf
+        }
         out <- log(mu-a)
-      }
+    }
     else if(tolower(link) %in% c("glogit", "logit"))
-      {
+    {
         ## The generalized logit link (logit as the special case)
         ## The logit link is a special case when a  =  0 and b  =  1.
         if(tolower(link) == "logit")
-          {
+        {
             a <- 0
             b <- 1
-          }
+        }
         else
-          {
+        {
             a <- linkArgs$a
             b <- linkArgs$b
-          }
+        }
 
         ## Numerical correction
         ## tol <- .Machine$double.eps*1e8
@@ -76,10 +76,10 @@ parLinkFun <- function(mu, linkArgs)
         ## The output
         out <- log(mu-a) - log(b-mu)
 
-      }
+    }
     else
-      {
+    {
         stop("This link function is not implemented yet!")
-      }
+    }
     return(out)
-  }
+}

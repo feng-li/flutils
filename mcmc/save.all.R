@@ -25,19 +25,19 @@ save.all <- function(save.output, ModelDescription)
     }
     ## Generate a random phrase to avoid file conflict
     randomPhrase <- rhex(6) ## simple hex character
-    OUT.file.name <- paste(c(file.path(save.output, ModelDescription),
-                             randomPhrase, "Rdata"), collapse =".")
+    outfile <- paste(c(file.path(save.output, ModelDescription),
+                       randomPhrase, "Rdata"), collapse =".")
 
     ## Save all the objects
     ## save.image(file = OUT.file.name, compress = "xz")
     save(list = ls(envir = .GlobalEnv),
-         file = OUT.file.name,
+         file = outfile,
          envir = .GlobalEnv,
          compress = "xz")
 
 
     ## Done message
-    cat(paste("\"", OUT.file.name, "\"", sep = ""), "\n")
+    cat(paste("\"", outfile, "\"", sep = ""), "\n")
     cat(rep("-", getOption("width")), "\n", sep = "")
   }
 }

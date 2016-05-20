@@ -31,8 +31,18 @@ parMeanFun <- function(X, beta, linkArgs)
         if(tolower(link) == "glog")
         {
             a <- linkArgs$a
+
+            if(length(a) == 0)
+            {
+                stop("A lower boundary parameter `a` for glog link is expected.")
+            }
+
             b <- linkArgs$b
-            if(is.null(b)) b <- Inf
+
+            if(length(b) == 0)
+            {
+                b <- Inf
+            }
         }
         else
         {
@@ -62,6 +72,17 @@ parMeanFun <- function(X, beta, linkArgs)
         {
             a <- linkArgs$a
             b <- linkArgs$b
+
+            if(length(a) == 0)
+            {
+                stop("A lower boundary parameter `a` for glogit link is expected.")
+            }
+
+            if(length(b) == 0)
+            {
+                stop("An upper boundary parameter `b` for glogit link is expected.")
+            }
+
         }
 
         ## out <- 1/(1+exp(-linPred))

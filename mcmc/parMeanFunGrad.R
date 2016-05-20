@@ -9,7 +9,7 @@
 ##' @note Created: Thu Nov 24 11:46:32 CET 2011;
 ##'       Current: Thu Nov 24 11:46:39 CET 2011.
 parMeanFunGrad <- function(par, linkArgs)
-  {
+{
     ## Input x'b  -> l(phi) = x'b -> phi
     ## NOTE: We want vectorized output, i.e, X is n-by-p,  beta is p-by-1 and
     ## the output is n-by-1. But the appendix is written in scaler form.
@@ -20,23 +20,23 @@ parMeanFunGrad <- function(par, linkArgs)
 
     ## Gradient for different situations
     if(tolower(link) %in% "identity")
-      {
+    {
         out <- linpred
         out[1:length(linpred)] <- 1
-      }
+    }
     else if(tolower(link) %in% c("log", "glog"))
-      {
+    {
         if(tolower(link) == "glog")
-          {
-              a <- linkArgs$a
-              b <- linkArgs$b
-              if(is.null(b)) b <- Inf
-          }
+        {
+            a <- linkArgs$a
+            b <- linkArgs$b
+            if(is.null(b)) b <- Inf
+        }
         else
-          {
-              a <- 0
-              b <- Inf
-          }
+        {
+            a <- 0
+            b <- Inf
+        }
         out <- exp(linpred)
 
         ## Let the gradient be zero after cutoff to stabilize the computation.
@@ -48,19 +48,31 @@ parMeanFunGrad <- function(par, linkArgs)
 
 
 
-      }
+    }
     else if(tolower(link) %in% c("glogit", "logit"))
-      {
+    {
         if(tolower(link) == "logit")
-          {
+        {
             a <- 0
             b <- 1
-          }
+        }
         else
-          {
+        {
             a <- linkArgs$a
+
+            if(length(a) == 0)
+            {
+                stop("A lower boundary parameter `a` for glogit link is expected.")
+            }
+
             b <- linkArgs$b
-          }
+
+            if(length(b) == 0)
+            {
+                b <- Inf
+            }
+
+        }
 
         exp.linPred <- exp(linpred)
 
@@ -69,14 +81,14 @@ parMeanFunGrad <- function(par, linkArgs)
         ## out.a <- 1/(1+exp.linPred)
         ## out.b <- 1/(1+1/exp.linPred)
         out <- out.lin
-      }
+    }
     else
-      {
+    {
         stop("This link function is not implemented yet!")
-      }
+    }
 
     return(out)
-  }
+}
 
 
 ## parMeanFunGrad <- function(X, beta, link)
