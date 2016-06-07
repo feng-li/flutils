@@ -24,7 +24,7 @@
 ##'
 ##' @param envir "environment".
 ##'
-##'        What is destiny of the files to be [3~sourced. The default environment is the
+##'        What is the destiny of the files to be sourced. The default environment is the
 ##' global environment.
 ##'
 ##' @param pattern "string".

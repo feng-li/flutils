@@ -25,9 +25,19 @@ save.all <- function(save.output, ModelDescription)
     }
     ## Generate a random phrase to avoid file conflict
     randomPhrase <- rhex(6) ## simple hex character
-    outfile <- paste(c(file.path(save.output, ModelDescription),
-                       randomPhrase, "Rdata"), collapse =".")
 
+    JOB_ID <- Sys.getenv("SLURM_JOB_ID")
+    if(nchar(JOB_ID)>0)
+    {
+        JOB.str <- paste("JOB", JOB_ID, ".", sep = "")
+    }
+    else
+    {
+        JOB.str <- ""
+    }
+
+    outfile <- file.path(save.output,  paste(JOB.str,  ModelDescription,  "." ,
+                                             randomPhrase, ".Rdata" ,   sep  =  ""))
     ## Save all the objects
     ## save.image(file = OUT.file.name, compress = "xz")
     save(list = ls(envir = .GlobalEnv),

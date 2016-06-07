@@ -59,8 +59,8 @@ dsplitt <- function(x, mu, df, phi, lmd, log)
 psplitt <- function(q, mu, df, phi, lmd)
 {
     ## CDF for q < = mu part.
-    I0 <- (q<=mu)
-    I <- (!I0)
+    I0 <- as.numeric((q<=mu))
+    I <- 1-I0
     sign <- I0*1 + I*lmd
     sign2 <- I0*(-1) + I*1
 
@@ -68,6 +68,7 @@ psplitt <- function(q, mu, df, phi, lmd)
     BetaRegUpper <- (1- ibeta(x = A,a = df/2,b = 1/2,
                               log = FALSE, reg = TRUE))
     out <- (1/(1+lmd) + sign*sign2/(1+lmd)*BetaRegUpper)
+    browser()
 
     return(out)
 }
