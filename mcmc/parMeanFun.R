@@ -16,8 +16,6 @@ parMeanFun <- function(X, beta, linkArgs)
     p <- dim(X)[2]
     beta <- matrix(beta, nrow = p)
 
-    ## if(is(beta, "try-error")) browser()
-
     linPred <- X %*% beta # The linear predictor
 
     link <- linkArgs[["type"]]
@@ -87,6 +85,7 @@ parMeanFun <- function(X, beta, linkArgs)
 
         ## out <- 1/(1+exp(-linPred))
         out <- a + (b-a)/(1+exp(-linPred))
+        ## if(any(is.na(out)) || any(out>= b)) browser()
     }
     else
     {

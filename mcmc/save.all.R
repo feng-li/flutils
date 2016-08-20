@@ -47,7 +47,7 @@ save.all <- function(save.output, ModelDescription)
 
 
     ## Done message
-    cat(paste("\"", outfile, "\"", sep = ""), "\n")
+    cat(paste("", outfile, "", sep = ""), "\n")
     cat(rep("-", getOption("width")), "\n", sep = "")
   }
 }
