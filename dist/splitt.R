@@ -68,7 +68,10 @@ psplitt <- function(q, mu, df, phi, lmd)
     BetaRegUpper <- (1- ibeta(x = A,a = df/2,b = 1/2,
                               log = FALSE, reg = TRUE))
     out <- (1/(1+lmd) + sign*sign2/(1+lmd)*BetaRegUpper)
+<<<<<<< HEAD
 
+=======
+>>>>>>> ccd9d0bcc440a11d6a9b620bedad82ac413f47fa
     return(out)
 }
 

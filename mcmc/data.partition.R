@@ -87,8 +87,8 @@ data.partition <- function(nObs, args)
 
     if(N.subsets  != 1)
     {
-      stop("Currently for time series,  the last", testRatio,
-           "observations are used as a single test sample. No cross-validation applied.")
+      stop("Currently for time series,  the last ", testRatio*100,
+           "% observations are used as a single test sample. No cross-validation applied.")
 
     }
 

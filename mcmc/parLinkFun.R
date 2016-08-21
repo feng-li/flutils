@@ -31,7 +31,6 @@ parLinkFun <- function(mu, linkArgs)
             a <- linkArgs$a
             b <- linkArgs$b
             if(is.null(b)) b <- Inf
-
         }
         else
         {
@@ -55,26 +54,10 @@ parLinkFun <- function(mu, linkArgs)
             b <- linkArgs$b
         }
 
-        ## Numerical correction
-        ## tol <- .Machine$double.eps*1e8
-        ## mu.bada <- ((mu-a)<tol)
-        ## mu.badb <- ((b-mu)<tol)
-        ## if(any(mu.bada))
-        ##   {
-        ##     mu[mu.bada] <- mu[mu.bada] + tol
-        ##     warning("mu is too close to a. Adjusted...",
-        ##             immediate. = immediate.)
-
-        ##   }
-        ## if(any(mu.badb))
-        ##   {
-        ##     mu[mu.badb] <- mu[mu.badb] - tol
-        ##     warning("mu is too close to b. Adjusted...",
-        ##             immediate. = immediate.)
-        ##   }
 
         ## The output
         out <- log(mu-a) - log(b-mu)
+        ## if(any(is.na(out))) browser()
 
     }
     else
