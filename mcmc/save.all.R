@@ -49,6 +49,10 @@ save.all <- function(save.output, ModelDescription)
 
     ## Done message
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    cat(paste("", outfile, "", sep = ""), "\n")
+>>>>>>> ccd9d0bcc440a11d6a9b620bedad82ac413f47fa
 =======
     cat(paste("", outfile, "", sep = ""), "\n")
 >>>>>>> ccd9d0bcc440a11d6a9b620bedad82ac413f47fa
