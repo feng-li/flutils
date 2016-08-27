@@ -40,14 +40,14 @@ save.all <- function(save.output, ModelDescription)
                                              randomPhrase, ".Rdata" ,   sep  =  ""))
     ## Save all the objects
     ## save.image(file = OUT.file.name, compress = "xz")
+    cat(paste("\"", outfile, "\"", sep = ""), "\n")
+
     save(list = ls(envir = .GlobalEnv),
          file = outfile,
-         envir = .GlobalEnv,
-         compress = "xz")
+         envir = .GlobalEnv)
 
 
     ## Done message
-    cat(paste("", outfile, "", sep = ""), "\n")
     cat(rep("-", getOption("width")), "\n", sep = "")
   }
 }
