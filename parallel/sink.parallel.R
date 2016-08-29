@@ -31,7 +31,7 @@ sink.parallel <- function(cl, file)
                 JOB.str <- ""
             }
 
-            file <- paste(JOB.str, system2('hostname', stdout = TRUE),"."
+            file <- paste(JOB.str, system2('hostname', stdout = TRUE),".PID",
                           as.character(Sys.getpid()), sep = "")
         }
         else
