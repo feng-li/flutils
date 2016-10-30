@@ -16,6 +16,11 @@ parMeanFun <- function(X, beta, linkArgs)
     p <- dim(X)[2]
     beta <- matrix(beta, nrow = p)
 
+    if(any(is.na(beta)))
+    {
+        stop("NA/NaN are not allowed for input `beta`.")
+    }
+
     linPred <- X %*% beta # The linear predictor
 
     link <- linkArgs[["type"]]
@@ -92,6 +97,57 @@ parMeanFun <- function(X, beta, linkArgs)
         stop("This link function is not implemented yet!")
     }
 
+    ## Cutoff for very big/small values that cause numerical instable.
+    out.new <- parRestricFun(par = out, linkArgs)
+
     ## if(any(is.na(out))) browser()
+    return(out.new)
+}
+
+
+## Slightly modify the par to avoid under/over flow in parLinkFun()
+parRestricFun <- function(par, linkArgs)
+{
+    tol <- 1e-6
+
+    ## Extract the lower and upper bounds
+    a <- linkArgs$a
+    b <- linkArgs$b
+
+    if(is.null(a)) a <- -Inf
+    if(is.null(b)) b <- Inf
+
+    ## No restrictions,  do nothing
+    out <- par
+
+    aM <- (par <=  a)
+    if (is.finite(a) && any(aM))
+    {
+        out[aM] <- a + (a - par[aM])
+
+        a0 <- (out == a)
+        if(any(a0))
+        {
+            out[a0] <- a + tol
+        }
+
+        warning(sum(aM) ,
+                " generated data points are outside parameter lower boundary. Corrected.")
+    }
+
+    bP <- (par >= b)
+    if (is.finite(b) && any(bP))
+    {
+        out[bP] <- b - (par[bP]-b)
+
+        b0 <- (out  == b)
+        if(any(b0)) # very special case
+        {
+            out[b0] <- b - tol
+        }
+
+        warning(sum(bP) ,
+                " generated data points are outside parameter upper boundary. Corrected.")
+    }
     return(out)
 }

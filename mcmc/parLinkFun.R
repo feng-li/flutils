@@ -2,9 +2,8 @@
 ##'
 ##' <details>
 ##' @title <short tile>
-##' @param X "matrix"
-##' @param beta "one-col-matrix"
-##' @param link "character" Type of link function
+##' @param mu
+##' @param linkArgs
 ##' @return "one-col-matrix" of the same dimension as the linear predictor
 ##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
@@ -64,5 +63,14 @@ parLinkFun <- function(mu, linkArgs)
     {
         stop("This link function is not implemented yet!")
     }
+
+
+    ## Check of unexpected output
+    if(any(is.na(out)) || any(is.infinite(out)))
+    {
+        browser()
+        stop("NA/Inf occurred. Mean function should fall into the boundary of link function strictly.")
+    }
+
     return(out)
 }
