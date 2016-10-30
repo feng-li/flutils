@@ -68,7 +68,6 @@ parLinkFun <- function(mu, linkArgs)
     ## Check of unexpected output
     if(any(is.na(out)) || any(is.infinite(out)))
     {
-        browser()
         stop("NA/Inf occurred. Mean function should fall into the boundary of link function strictly.")
     }
 
