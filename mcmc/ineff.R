@@ -9,7 +9,8 @@
 ##' @note Created: Sun Sep 02 13:59:26 CEST 2012; Current: Tue Aug 11 16:17:18 CST 2015.
 ineff <- function(par)
 {
-    if(any(is.na(par)))
+    idx.na <- is.na(par)
+    if(sum(idx.na)>(length(idx.na)*0.2))
     {
         out <- NA
     }
