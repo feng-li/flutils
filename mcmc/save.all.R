@@ -23,8 +23,6 @@ save.all <- function(save.output, ModelDescription)
     {
       dir.create(save.output)
     }
-    ## Generate a random phrase to avoid file conflict
-    randomPhrase <- rhex(6) ## simple hex character
 
     JOB_ID <- Sys.getenv("SLURM_JOB_ID")
     if(nchar(JOB_ID)>0)
@@ -36,8 +34,8 @@ save.all <- function(save.output, ModelDescription)
         JOB.str <- ""
     }
 
-    outfile <- file.path(save.output,  paste(JOB.str,  ModelDescription,  "." ,
-                                             randomPhrase, ".Rdata" ,   sep  =  ""))
+    outfile <- file.path(save.output,  paste(JOB.str,  ModelDescription, ".Rdata" ,
+                                             sep  =  ""))
     ## Save all the objects
     ## save.image(file = OUT.file.name, compress = "xz")
     cat(paste("\"", outfile, "\"", sep = ""), "\n")
