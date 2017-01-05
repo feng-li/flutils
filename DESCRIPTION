@@ -1,0 +1,11 @@
+Package: flutils
+Type: Package
+Title: Feng Li's utility functions
+Version: 0.2
+Date: 2017-01-01
+Author: Feng Li
+Maintainer: Feng Li <feng.li@cufe.edu.cn>
+Description: Utility function for various models.
+License: GPL (>=2.0)
+LazyLoad: yes
+RoxygenNote: 5.0.1
