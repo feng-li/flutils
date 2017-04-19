@@ -1,8 +1,7 @@
 Feng Li's collection of R utility functions
 ===========================================
 
- This folder contains the R utility functions which are depended by other
-programs.
+  This folder contains the R utility functions which are depended by other programs.
 
 Structure of the folders
 ------------------------
@@ -21,16 +20,25 @@ Structure of the folders
   The help are usually accessible if you run the program with argument `--help`
   e.g. `embedAllFonts --help`.
 
-* other files
 
-  Code under this folder is ready for regular use. You may use the `sourceDir`
-  function in the `sourceDir.R` file.
+Installation
+------------
+
+  You can either load the full library with the following commands with R
+
+    R > source("flutils/systools/sourceDir.R")
+    R > sourceDir("flutils", recursive = TRUE)
+
+  Under Linux system, you can install them to your system with this script
+
+    $ cd flutils
+    $ flutils/systools/install.RHS
 
 
 Copyright
 ---------
 
- See the copyright on each individual file.
+  See the copyright on each individual file.
 
 More information
 ----------------
@@ -44,4 +52,4 @@ More information
 Bug reports
 -----------
 
- Contact Feng Li <feng.li@cufe.edu.cn>
+  Contact Feng Li <feng.li@cufe.edu.cn>
