@@ -32,7 +32,7 @@ Installation
   Under Linux system, you can install them to your system with this script
 
     $ cd flutils
-    $ flutils/systools/install.RHS
+    $ flutils/systools/install.HS.R
 
 
 Copyright
