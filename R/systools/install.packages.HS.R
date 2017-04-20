@@ -1,32 +1,9 @@
-#! /usr/bin/env Rscript
-project <- commandArgs(TRUE);if(!interactive()&&("--help" %in% project)){cat("
-NAME: install.RHS - build and install R package with subdirectories
-
-DESCRIPTION:
-
-    An R script that can convert a project with hierarchical structure to
-    standard R package structure and install it.
-
-USAGE:
-
-    $ ./install_HS.R <project>
-
-    $ ./install_HS.R --help
-
-    R> install.packages.RHS('project')
-
-SEE ALSO:
-
-    flutils/systools/sourceDir()
-
-");q("no")}
-
 install.packages.HS <- function(project = NULL)
 {
 
     {if((length(project) == 1L))
      {
-         projectHome <- project
+         projectHome <- normalizePath(project)
      }
      else if ((length(project) >= 2L))
         {
@@ -34,7 +11,7 @@ install.packages.HS <- function(project = NULL)
         }
      else
         {
-            projectHome <- getwd()
+            projectHome <- normalizePath(getwd())
         }}
 
     if(version$os %in% c("mingw32", "mingw64"))
@@ -84,7 +61,7 @@ install.packages.HS <- function(project = NULL)
     unlink(file.path(pkg.tmpdirProject, ".git"), recursive = TRUE)
 
 
-    system2("R",  paste("CMD check", pkg.tmpdirProject, "-o", pkg.tmpdir))
+    system2("R",  paste("CMD check", pkg.tmpdirProject, "-o", pkg.tmpdir), stderr = TRUE)
     setwd(pkg.tmpdir)
     system2("R",  paste("CMD build", pkg.tmpdirProject))
 
@@ -94,5 +71,3 @@ install.packages.HS <- function(project = NULL)
     file.copy(pkg, dirname(projectHome), overwrite = TRUE)
     message("Package \"", basename(pkg), "\" is placed at ", dirname(projectHome))
 }
-
-if(!interactive()) install.packages.HS(project)
