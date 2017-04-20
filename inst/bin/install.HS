@@ -9,11 +9,11 @@ DESCRIPTION:
 
 USAGE:
 
-    $ ./install_HS.R <project>
+    $ ./install.HS <project>
 
-    $ ./install_HS.R --help
+    $ ./install.HS --help
 
-    R> install.packages.RHS('project')
+    R> install.packages.HS('project')
 
 SEE ALSO:
 
