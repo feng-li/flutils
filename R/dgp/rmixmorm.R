@@ -3,7 +3,7 @@
 ##' Random variables from mixture of normals.
 ##' @title test title
 ##' @param n "integer",  numbers of samples to be generated
-##' @param means "q-by-k matrix" mean value within each component
+##' @param means "q-by-k matrix" mean value within each component,  total k components.
 ##' @param sigmas "q-by-q-by-k" variance covariance matrix with in each component
 ##' @param weights "k-length vector" weights in each component
 ##' @return "matrix"
@@ -39,3 +39,51 @@ rmixnorm <- function(n, means, sigmas, weights)
 ## weights <- c(0.3, 0.4, 0.3)
 ## out <- rmixnorm(n, means, sigmas, weights)
 ## hist(out, breaks = 100, freq = FALSE)
+
+
+##' Simulate AR type random variables from mixture of normal
+##'
+##' <description>
+##' @param n
+##' @param par.ar
+##' @param yinit
+##' @return NA
+##' @references NA
+##' @author Feng Li, Central University of Finance and Economics.
+rmixnorm.ts <- function(n, ar.par.list, sigmas, weights, yinit = 0)
+{
+    y <- rep(NA, n)
+    nComp <- length(ar.par.list)
+    nLags <- lapply(ar.par.list, function(x) length(x)-1)
+    maxLag <- max(unlist(nLags))
+
+    if(any(unlist(nLags)<1))
+    {
+        stop("Drift is always included. Set the first elements in ar.par.list be zero to remove the drift effect.")
+    }
+
+    y[1:maxLag] <- yinit
+
+
+    for(i in (maxLag+1):n)
+    {
+        meansComp <- lapply(ar.par.list, function(par, y, i){
+            nLag <- length(par)-1
+            yPre <- c(1, y[(i-1):(i-nLag)])
+            yCurr <- sum(par*yPre)
+            ## print(cbind(yPre, par))
+            return(yCurr)
+        }, y = y, i = i)
+        y[i] <- rmixnorm(n = 1, means = matrix(unlist(meansComp), nrow = 1),
+                         sigmas = sigmas, weights = weights)
+    }
+    return(y)
+}
+
+
+## Tests
+## n = 1000
+## ar.par.list = list(c(0, 0.8), c(0, 0.6, 0.3))
+## sigmas <- array(1, dim = c(1, 1, length(ar.par.list)))
+## weights <- c(0.8, 0.2)
+## y = rmixnorm.ts(n = n, ar.par.list = ar.par.list, sigmas = sigmas, weights = weights)

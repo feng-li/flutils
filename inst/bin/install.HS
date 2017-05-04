@@ -1,6 +1,6 @@
 #! /usr/bin/env Rscript
 project <- commandArgs(TRUE);if(!interactive()&&("--help" %in% project)){cat("
-NAME: install.RHS - build and install R package with subdirectories
+NAME: install.HS - build and install R package with subdirectories
 
 DESCRIPTION:
 
