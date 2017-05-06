@@ -75,7 +75,7 @@ rmixnorm.ts <- function(n, ar.par.list, sigmas, weights, yinit = 0)
             return(yCurr)
         }, y = y, i = i)
         y[i] <- rmixnorm(n = 1, means = matrix(unlist(meansComp), nrow = 1),
-                         sigmas = sigmas, weights = weights)
+                         sigmas = eval(sigmas), weights = weights)
     }
     return(y)
 }
@@ -84,6 +84,9 @@ rmixnorm.ts <- function(n, ar.par.list, sigmas, weights, yinit = 0)
 ## Tests
 ## n = 1000
 ## ar.par.list = list(c(0, 0.8), c(0, 0.6, 0.3))
-## sigmas <- array(1, dim = c(1, 1, length(ar.par.list)))
+## sigmas <- expression(array(c(rgamma(1, 5),
+##                              rgamma(1, 5),
+##                              rgamma(1, 5)),
+##                            dim = c(1, 1, length(ar.par.list))))
 ## weights <- c(0.8, 0.2)
 ## y = rmixnorm.ts(n = n, ar.par.list = ar.par.list, sigmas = sigmas, weights = weights)
