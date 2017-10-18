@@ -77,7 +77,7 @@ sourceDir <- function(...,
         {
             Paths.dirs <- Paths.lst[isPathsDir]
             Paths.files <- unlist(Paths.in[!isPathsDir])
-
+            print(Paths.files)
             ## list all subfiles for given pattern at Paths
             RFiles <- rbind(matrix(unlist(
                 lapply(X = Paths.dirs,

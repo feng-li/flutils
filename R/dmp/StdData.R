@@ -59,6 +59,11 @@ StdData <- function(X, method)
     X.out <- as.vector(X.out)
   }
 
+    if(any(is.na(X.out)))
+    {
+        warning("NA/NaN occurs, check the data first.")
+    }
+
   out <- list(data = X.out, config = config)
   return(out)
 }
