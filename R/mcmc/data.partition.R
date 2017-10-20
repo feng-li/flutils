@@ -14,6 +14,11 @@ data.partition <- function(nObs, args)
   N.subsets <- args[["N.subsets"]]
   testRatio <- args[["testRatio"]]
 
+  if(length(testRatio) == 0)
+  {
+      testRatio <- 0
+  }
+
   if(nObs < N.subsets ||
      (N.subsets < 1 & tolower(partiMethod) != "time-series"))
   {
@@ -30,8 +35,8 @@ data.partition <- function(nObs, args)
   {## Select testing samples in a sequential order
     if(N.subsets == 1)
     {
-      out <- list()
-      out[["1"]] <- floor(seq(1,  nObs, length.out = ceiling(nObs*testRatio)))
+        out <- list()
+        out[["1"]] <- floor(seq(1,  nObs, length.out = ceiling(nObs*testRatio)))
     }
     else
     {
