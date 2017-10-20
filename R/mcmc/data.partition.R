@@ -33,15 +33,15 @@ data.partition <- function(nObs, args)
 
   if(tolower(partiMethod) == "systematic")
   {## Select testing samples in a sequential order
-    if(N.subsets == 1)
-    {
-        out <- list()
-        out[["1"]] <- floor(seq(1,  nObs, length.out = ceiling(nObs*testRatio)))
-    }
-    else
-    {
+    ## if(N.subsets == 1)
+    ## {
+    ##     out <- list()
+    ##     out[["1"]] <- floor(seq(1,  nObs, length.out = ceiling(nObs*testRatio)))
+    ## }
+    ## else
+    ## {
       out <- length.out
-    }
+    ## }
   }
   else if(tolower(partiMethod) == "random")
   {## Randomly select testing samples
