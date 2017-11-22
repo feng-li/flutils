@@ -35,7 +35,6 @@
   q <- dim(M)[2]
   D0 <- matrix(d, nrow = p, ncol = q)
   D1 <- t(D0)
-
   out <- D0*M*D1
   return(out)
 }
