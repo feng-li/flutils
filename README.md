@@ -26,13 +26,14 @@ Installation
 
   You can either load the full library with the following commands with R
 
-    R > source("flutils/systools/sourceDir.R")
-    R > sourceDir("flutils", recursive = TRUE)
+    R > source("flutils/R/systools/sourceDir.R")
+    R > sourceDir("flutils/R", recursive = TRUE)
 
-  Under Linux system, you can install them to your system with this script
+  Under Linux system, you can install them to your system with this script (But note that
+  the functions are not exported to the namespace at the moment. You have to use
+  `flutils::foo()` to call `foo()` in R)
 
-    $ cd flutils
-    $ flutils/systools/install.HS.R
+    $ ./flutils/R/systools/install.HS.R
 
 
 Copyright
