@@ -30,7 +30,7 @@ package.flatten <- function(project = NULL)
     }
     file.copy(projectHome, pkg.tmpdir, overwrite = TRUE, recursive = TRUE)
 
-    message("Copied project \"", projectName, "\" to",  pkg.tmpdir)
+    # message("Copied project \"", projectName, "\" to",  pkg.tmpdir)
 
     ## system2("mv", paste(pkg.tmpdirProjectR, pkg.tmpdirProjectRtmp))
     ## system2("mkdir", pkg.tmpdirProjectR)
