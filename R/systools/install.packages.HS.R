@@ -1,4 +1,4 @@
-install.packages.HS <- function(project = NULL)
+install.packages.HS <- function(project = NULL, flatten.only = TRUE)
 {
 
     {if((length(project) == 1L))
@@ -59,15 +59,29 @@ install.packages.HS <- function(project = NULL)
     ## system2("rm", paste("-rf", file.path(pkg.tmpdirProject, ".git")))
     unlink(pkg.tmpdirProjectRtmp, recursive = TRUE)
     unlink(file.path(pkg.tmpdirProject, ".git"), recursive = TRUE)
+    message("Flattened pacakge is placed at: ", pkg.tmpdirProject, "\n")
 
+    if(flatten.only  == FALSE)
+    {
+        ## TODO: change to devtools:::check()
+        system2("R",  paste("CMD check", pkg.tmpdirProject, "-o", pkg.tmpdir), stderr = TRUE)
+        setwd(pkg.tmpdir)
+        system2("R",  paste("CMD build", pkg.tmpdirProject))
 
-    system2("R",  paste("CMD check", pkg.tmpdirProject, "-o", pkg.tmpdir), stderr = TRUE)
-    setwd(pkg.tmpdir)
-    system2("R",  paste("CMD build", pkg.tmpdirProject))
-
-    pkg <- file.path(pkg.tmpdir, paste(pkg.Name, "_", pkg.version, ".tar.gz" , sep = ""))
-    install.packages(pkg)
-    ## system2("mv", paste(pkg, dirname(projectHome)))
-    file.copy(pkg, dirname(projectHome), overwrite = TRUE)
-    message("Package \"", basename(pkg), "\" is placed at ", dirname(projectHome))
+        pkg <- file.path(pkg.tmpdir,
+                         paste(pkg.Name, "_", pkg.version, ".tar.gz" , sep = ""))
+        install.packages(pkg)
+        file.copy(pkg, dirname(projectHome), overwrite = TRUE)
+        ## system2("mv", paste(pkg, dirname(projectHome)))
+        message("Compressed package \"", basename(pkg), "\" is placed at ", dirname(projectHome))
+    }
+    else
+    {
+        ## out <- pkg.tmpdirProject
+        ## pkg.flattendir <- paste(projectHome, "_",  pkg.version, sep = "")
+        ## dir.create(pkg.flattendir, recursive = TRUE)
+        ## file.copy(pkg.tmpdirProject,  pkg.flattendir,
+        ##           overwrite = TRUE, recursive = TRUE)
+    }
+    return(pkg.tmpdirProject)
 }
