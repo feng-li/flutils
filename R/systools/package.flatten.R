@@ -1,3 +1,4 @@
+##' @export
 package.flatten <- function(project = NULL)
 {
 

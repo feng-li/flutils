@@ -7,6 +7,7 @@
 ##' @references Geweke 1992
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Sun Sep 02 13:59:26 CEST 2012; Current: Tue Aug 11 16:17:18 CST 2015.
+##' @export
 ineff <- function(par)
 {
     idx.na <- is.na(par)

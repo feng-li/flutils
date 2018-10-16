@@ -1,14 +1,15 @@
 ##' Same as expand.grid function but return a matrix.
 ##'
 ##' Details.
-##' @name 
-##' @title 
-##' @param x1 
-##' @param x2 
-##' @return 
-##' @references 
+##' @name
+##' @title
+##' @param x1
+##' @param x2
+##' @return
+##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: ; Current: .
+##' @export
 mesh.grid <- function(x1, x2 = x1)
 {
   n.grid1 <- length(x2)

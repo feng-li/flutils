@@ -9,6 +9,7 @@
 ##'       Current:       Sat Oct 04 17:38:57 CST 2014.
 ##' Thanks for Bertil's naming
 ## diag(d) %*% M .
+##' @export
 "%d*%" <- dM <- function(d, M)
 {
   p <- length(d)
@@ -19,6 +20,7 @@
 }
 
 ## X %*% diag(d).
+##' @export
 "%*d%" <- Md <- function(M, d)
 {
   p <- length(d)
@@ -29,6 +31,7 @@
 }
 
 ## diag(d) %*% M %*% diag(d) and M is a squared matrix.
+##' @export
 "%d*d%" <- dMd <- function(d, M)
 {
   p <- length(d)
@@ -40,6 +43,7 @@
 }
 
 ## t(M) %*% diag(d) %*% N
+##' @export
 tMdN <- function(M, d, N = M)
 {
   p <- length(d)
@@ -50,6 +54,7 @@ tMdN <- function(M, d, N = M)
 }
 
 ## Built diag(n) in a much faster way.
+##' @export
 diag1 <- function(n)
   {
     out <- matrix(0, n, n)

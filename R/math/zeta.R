@@ -1,5 +1,6 @@
 ## This is the R implementation of the Riemann zeta function.
 ## NOTE: Note so well construct.
+##' @export
 zeta <- function(s, k = 10)
   {
     sVec <- as.vector(s)

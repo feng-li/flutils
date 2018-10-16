@@ -1,4 +1,4 @@
-##' Find the raw indices for given indices in array form. 
+##' Find the raw indices for given indices in array form.
 ##'
 ##' This is exactly the inverse function of `arrayInd()'.
 ##' @title Raw indices finder for array.
@@ -8,16 +8,17 @@
 ##' the same as the length of "dims".
 ##' @param dims "vector"
 ##'        The dimension of the array. Note that the last dimension is not
-##' needed in the calculations,  so if you may just write "NA" there.   
+##' needed in the calculations,  so if you may just write "NA" there.
 ##' @return "vector" The raw indices.
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Wed Mar 14 18:03:01 CET 2012;
 ##'       Current: Wed Mar 14 18:03:09 CET 2012.
+##' @export
 whichInd <- function(arr.ind, dims)
   {
     arr.indMat <- matrix(arr.ind, ncol = length(dims))
     idx1 <- cumprod(dims[-length(dims)])
-    
+
     idx2 <- arr.indMat[, -1, drop = FALSE]-1
     out <- rowSums(idx1*idx2) + arr.indMat[, 1]
     return(out)

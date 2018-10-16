@@ -14,6 +14,7 @@
 ##'
 ##' @author Feng Li, Dept. of Statistics, Stockholm University, Sweden.
 ##' @note First: Thu Mar 4 13:50:30 CET 2010 Current: Sun Dec 21 04:24:52 EST 2014
+##' @export
 StdData <- function(X, method)
 {
   ## if X is a vector,  treat it as a one-column vector.

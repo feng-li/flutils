@@ -1,3 +1,4 @@
+##' @export
 is.positivedefinite <- function(X)
     {
         eig <- eigen(X, only.values = TRUE)$values

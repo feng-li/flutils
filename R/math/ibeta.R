@@ -14,6 +14,7 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Wed Oct 26 18:39:12 CEST 2011; Current: Wed Sep 30 16:37:49 CST 2015.
 ##' TODO: let -1 < b < oO.
+##' @export
 ibeta <- function(x, a, b, log = FALSE, reg = FALSE)
 {
   HCond <- (all(a >0) & all(b>0))
