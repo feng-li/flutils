@@ -1,4 +1,4 @@
-packages.flatten <- function(project = NULL)
+package.flatten <- function(project = NULL)
 {
 
     {if((length(project) == 1L))

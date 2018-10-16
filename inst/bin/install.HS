@@ -20,6 +20,6 @@ SEE ALSO:
     flutils/systools/sourceDir()
 
 ");q("no")}
-
-
-install.packages.HS(project)
+source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
+package.flatten(project)
+devtools::install_local(package.flatten(project))
