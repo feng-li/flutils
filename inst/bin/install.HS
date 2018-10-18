@@ -23,4 +23,4 @@ SEE ALSO:
 source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
 project.flatten <- package.flatten(project)
 devtools::document(project.flatten)
-devtools::install_local(project.flatten)
+devtools::install_local(project.flatten, force = TRUE)
