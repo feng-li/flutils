@@ -38,7 +38,7 @@ follow the steps to install it manually.
         devtools::document(project.flatten)
         devtools::install_local(project.flatten, force = TRUE)
 
-        Or under Linux system, you can install them to your system with this script.
+    Or under Linux system, you can install them to your system with this script.
 
         $ ./flutils/R/systools/install.HS flutils
 
