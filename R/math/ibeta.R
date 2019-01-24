@@ -2,18 +2,19 @@
 ##'
 ##'
 ##' @title Incomplete beta function
-##' @param x
-##' @param a
-##' @param b
-##' @param log
-##' @param reg If TRUE,  return the regularized incomplete beta function. Same
-##' as the Mathematica definition.
+##' @param x a numeric vector in the range [0,1], the point at which the incomplete Beta
+##'     function is evaluated.
+##' @param a non-negative numeric vectors, the first parameter of the incomplete beta function.
+##' @param b non-negative numeric vectors, the second parameter of the incomplete beta function.
+##' @param log logical; If TRUE, return the log incomplete beta function.
+##' @param reg logical; If TRUE, return the regularized incomplete beta function. Same as
+##'     the Mathematica definition.
 ##'
-##' @return
-##' @references
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note Created: Wed Oct 26 18:39:12 CEST 2011; Current: Wed Sep 30 16:37:49 CST 2015.
+##' @return a numeric vector.
+##' @references \url{http://mathworld.wolfram.com/IncompleteBetaFunction.html}
+##'
 ##' TODO: let -1 < b < oO.
+##' @export
 ibeta <- function(x, a, b, log = FALSE, reg = FALSE)
 {
   HCond <- (all(a >0) & all(b>0))
