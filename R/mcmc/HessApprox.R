@@ -23,6 +23,7 @@
 ##' @author Feng Li, Dept. of Statistics, Stockholm University, Sweden.
 ##' @note Created: Tue Mar 30 16:33:23 CEST 2010.
 ##'       Current: Mon Feb 09 18:34:40 CST 2015.
+##' @export
 hessApprox <- function(gradient, method)
 {
   if (tolower(method) =="outer") # outer product of gradient

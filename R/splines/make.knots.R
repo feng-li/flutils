@@ -26,6 +26,7 @@
 ##' @note First version: Wed Mar 10 14:03:31  CET 2010;
 ##'       Current:       Thu Sep 16 13:56:37 CEST 2010.
 ##' TODO:
+##' @export
 make.knots <- function(x, method, splineArgs)
 {
   if(!is.matrix(x))

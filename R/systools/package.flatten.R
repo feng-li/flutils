@@ -1,4 +1,5 @@
-install.packages.HS <- function(project = NULL, flatten.only = TRUE)
+##' @export
+package.flatten <- function(project = NULL)
 {
 
     {if((length(project) == 1L))
@@ -14,11 +15,6 @@ install.packages.HS <- function(project = NULL, flatten.only = TRUE)
             projectHome <- normalizePath(getwd())
         }}
 
-    if(version$os %in% c("mingw32", "mingw64"))
-    {
-        stop("This script currently only works with Linux-like systems.")
-    }
-
     projectName <- basename(projectHome)
     pkg.tmpdir <- tempdir()
     pkg.tmpdirProject <- file.path(pkg.tmpdir, projectName)
@@ -33,11 +29,9 @@ install.packages.HS <- function(project = NULL, flatten.only = TRUE)
     {
         unlink(pkg.tmpdirProject, recursive = TRUE)
     }
-
-    ## system2("cp", paste("-rf", projectHome, pkg.tmpdir))
     file.copy(projectHome, pkg.tmpdir, overwrite = TRUE, recursive = TRUE)
 
-    message("Copied project \"", projectName, "\" to",  pkg.tmpdir)
+    # message("Copied project \"", projectName, "\" to",  pkg.tmpdir)
 
     ## system2("mv", paste(pkg.tmpdirProjectR, pkg.tmpdirProjectRtmp))
     ## system2("mkdir", pkg.tmpdirProjectR)
@@ -55,33 +49,19 @@ install.packages.HS <- function(project = NULL, flatten.only = TRUE)
         file.rename(from, to)
 
     }
-    ## system2("rm", paste("-rf", pkg.tmpdirProjectRtmp))
-    ## system2("rm", paste("-rf", file.path(pkg.tmpdirProject, ".git")))
     unlink(pkg.tmpdirProjectRtmp, recursive = TRUE)
     unlink(file.path(pkg.tmpdirProject, ".git"), recursive = TRUE)
-    message("Flattened pacakge is placed at: ", pkg.tmpdirProject, "\n")
 
-    if(flatten.only  == FALSE)
-    {
-        ## TODO: change to devtools:::check()
-        system2("R",  paste("CMD check", pkg.tmpdirProject, "-o", pkg.tmpdir), stderr = TRUE)
-        setwd(pkg.tmpdir)
-        system2("R",  paste("CMD build", pkg.tmpdirProject))
 
-        pkg <- file.path(pkg.tmpdir,
-                         paste(pkg.Name, "_", pkg.version, ".tar.gz" , sep = ""))
-        install.packages(pkg)
-        file.copy(pkg, dirname(projectHome), overwrite = TRUE)
-        ## system2("mv", paste(pkg, dirname(projectHome)))
-        message("Compressed package \"", basename(pkg), "\" is placed at ", dirname(projectHome))
-    }
-    else
-    {
-        ## out <- pkg.tmpdirProject
-        ## pkg.flattendir <- paste(projectHome, "_",  pkg.version, sep = "")
-        ## dir.create(pkg.flattendir, recursive = TRUE)
-        ## file.copy(pkg.tmpdirProject,  pkg.flattendir,
-        ##           overwrite = TRUE, recursive = TRUE)
-    }
-    return(pkg.tmpdirProject)
+    ## system2("R",  paste("CMD check", pkg.tmpdirProject, "-o", pkg.tmpdir), stderr = TRUE)
+    ## setwd(pkg.tmpdir)
+    ## system2("R",  paste("CMD build", pkg.tmpdirProject))
+
+    pkg.HS <- file.path(pkg.tmpdir, pkg.Name, sep = "")
+    ## install.packages(pkg)
+    ## system2("mv", paste(pkg, dirname(projectHome)))
+    ## file.copy(pkg, dirname(projectHome), overwrite = TRUE)
+    ## message("Package \"", basename(pkg), "\" is placed at ", dirname(projectHome))
+    message("Project `", projectName, "` is flattened into \n\t", pkg.HS)
+    invisible(pkg.HS)
 }

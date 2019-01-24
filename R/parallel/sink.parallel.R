@@ -1,3 +1,4 @@
+##' @export
 sink.parallel <- function(cl, file)
 {
     ## assign("outcon",  file(outfile,  open = "a"),  pos = .GlobalEnv)

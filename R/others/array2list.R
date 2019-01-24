@@ -1,13 +1,14 @@
 ##' Convert an array(or matrix) to a list
 ##'
 ##' Also works with matrix.
-##' @title 
+##' @title
 ##' @param X "array"
 ##' @param MARGIN "integer"
 ##' @return "list"
-##' @references 
+##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: ; Current: .
+##' @export
 array2list <- function(X, MARGIN)
   {
     dim4X <- dim(X)
@@ -23,7 +24,7 @@ array2list <- function(X, MARGIN)
       {
         stop("X must be dimension attributed!")
       }
-    
+
     out <- lapply(apply(X, MARGIN = MARGIN, list),
                   function(x, dim4list) array(unlist(x), dim4list), dim4list = dim4list)
     return(out)
@@ -35,4 +36,4 @@ array2list <- function(X, MARGIN)
 ## q <- 100
 ## q_i <- 30
 ## a <- array(1, c(p*q, q_i, q_i))
-## system.time(array2list(a)) 
+## system.time(array2list(a))

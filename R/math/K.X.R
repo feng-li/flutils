@@ -29,7 +29,7 @@
 ## Version:
 ##   First:       Wed Mar 10 14:03:31 CET 2010
 ##   Current:     Wed Mar 10 14:03:39 CET 2010
-
+##' @export
 K.X <- function(m,n,X,t)
 {
   if(t==FALSE)

@@ -8,6 +8,7 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: Mon Sep 20 21:08:01 CEST 2010;
 ##'       Current:       Mon Sep 20 21:08:11 CEST 2010.
+##' @export
 data.partition <- function(nObs, args)
 {
   partiMethod <- args[["partiMethod"]]

@@ -1,16 +1,17 @@
 ##' Auto update R packages.
 ##'
 ##' <details>
-##' @title 
-##' @param when 
-##' @param insOnloc.if.noPrivilege 
-##' @param noticeOnly 
-##' @return 
-##' @references 
+##' @title
+##' @param when
+##' @param insOnloc.if.noPrivilege
+##' @param noticeOnly
+##' @return
+##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: Thu Apr 21 11:32:34 CEST 2011;
 ##'       Current:       Thu Apr 21 11:32:40 CEST 2011.
 ##' TODO: check when two versions installed and skip updade
+##' @export
 autoupdate.packages <- function(when, insOnloc.if.noPrivilege = FALSE,
                                 noticeOnly = TRUE)
   {
@@ -19,7 +20,7 @@ autoupdate.packages <- function(when, insOnloc.if.noPrivilege = FALSE,
       {
         checkpath <- .libPaths() # available paths
         checkpath.Privilege <- file.access(checkpath, 2) # if writable
-        userlib <- Sys.getenv()["R_LIBS_USER"] # user library path with access right        
+        userlib <- Sys.getenv()["R_LIBS_USER"] # user library path with access right
         whatsnew <- utils::old.packages()
 
         ## New update available
@@ -62,5 +63,5 @@ autoupdate.packages <- function(when, insOnloc.if.noPrivilege = FALSE,
                   }
               }
           }
-      } 
+      }
   }

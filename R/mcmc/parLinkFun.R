@@ -9,6 +9,7 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Thu May 10 13:09:08 CEST 2012;
 ##'       Current: Thu May 10 13:09:14 CEST 2012.
+##' @export
 parLinkFun <- function(mu, linkArgs)
 {
     ## Input each observation x'b  -> l(phi) = x'b -> phi

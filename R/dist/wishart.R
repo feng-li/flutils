@@ -1,27 +1,28 @@
 ##' Description
 ##'
 ##' Details.
-##' @name 
-##' @title 
-##' @param nu 
-##' @param V 
-##' @return 
-##' @references 
+##' @name
+##' @title
+##' @param nu
+##' @param V
+##' @return
+##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: ; Current: .
+##' @export
 rwishart <- function(nu,V)
 {
 ##
 ## function to draw from Wishart (nu,V) and IW
-## 
+##
 ## W ~ W(nu,V)
 ## E[W]=nuV
 ##
 ## WI=W^-1
 ## E[WI]=V^-1/(nu-m-1)
-## 
+##
 ## Came from package "bayesm",  Peter Rossi
-  
+
   m <- nrow(V)
   df <- (nu+nu-m+1)-(nu-m+1):nu
   if(m >1)
@@ -31,13 +32,13 @@ rwishart <- function(nu,V)
     }
   else
     { T=sqrt(rchisq(1,df)) }
-  
+
   U <- chol(V)
   C <- t(T)%*%U
   CI <- backsolve(C,diag(m))
                                         #
                                         #   C is the upper triangular root of Wishart
-                                        #      therefore, W=C'C  this is the LU decomposition 
+                                        #      therefore, W=C'C  this is the LU decomposition
                                         #      Inv(W) = CICI'  Note:  this is the UL decomp not LU!
                                         #
   return(list(W=crossprod(C),IW=crossprod(t(CI)),C=C,CI=CI))
@@ -47,14 +48,15 @@ rwishart <- function(nu,V)
 ##' Description
 ##'
 ##' Details.
-##' @name 
-##' @title 
-##' @param df 
-##' @param V 
-##' @return 
-##' @references 
+##' @name
+##' @title
+##' @param df
+##' @param V
+##' @return
+##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: ; Current: .
+##' @export
 riwishart <- function(df, V)
   {
     rwishart(nu = df, V = solve(V))$IW
@@ -64,21 +66,22 @@ riwishart <- function(df, V)
 ##' ##' Density for the inverse wishart distribution
 ##'
 ##' Details.
-##' @name 
-##' @title 
-##' @param X 
-##' @param df 
-##' @param V Location matrix 
-##' @param log 
-##' @return 
-##' @references 
+##' @name
+##' @title
+##' @param X
+##' @param df
+##' @param V Location matrix
+##' @param log
+##' @return
+##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: ; Current: .
+##' @export
 diwishart <- function(X, df, V, log = TRUE)
 {
 
  ## TODO: Condition check...
-  
+
   p <- dim(V)[1]
   out <- (-df*p/2)*log(2)-mvgamma(p = p, x = df/2, log = TRUE)+
               df/2*determinant(V)$modulus[1] -
