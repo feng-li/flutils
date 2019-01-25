@@ -6,7 +6,7 @@ Feng Li's collection of R utility functions
 Code structures
 ---------------
 
-* `R/dbg` `R/dgp` `R/dist` ...
+* `R/dbg` `R/dgp` `R/dist` `...`
 
     Hierarchical structure for functions written in native R.
 
@@ -23,7 +23,7 @@ Code structures
 Installation
 ------------
 
-The package has a hierarchical code structure that standard R does not support (see [this
+The package has a hierarchical code structure that R does not support (see [this
 discussion](https://bugs.r-project.org/bugzilla/show_bug.cgi?id=17258)). You have to
 follow the steps to install it manually.
 
@@ -40,17 +40,17 @@ follow the steps to install it manually.
 
     Or under Linux system, you can install them to your system with this script.
 
-        $ ./flutils/R/systools/install.HS flutils
+        $ ./flutils/inst/bin/install.HS  flutils
 
 TODO
-====
+----
 
 Documentations are not well presented.
 
 Copyrights
----------
+----------
 
-  See the copyright on each individual file.
+  See the copyright in each individual file.
 
 More information
 ----------------
