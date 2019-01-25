@@ -20,7 +20,12 @@ SEE ALSO:
     flutils/systools/sourceDir()
 
 ");q("no")}
-source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
-project.flatten <- package.flatten(project)
+if("flutils" %in% installed.packages())
+{
+    project.flatten <- flutils::package.flatten(project)
+} else {
+    source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
+    project.flatten <- package.flatten(project)
+}
 devtools::document(project.flatten)
 devtools::install_local(project.flatten, force = TRUE)

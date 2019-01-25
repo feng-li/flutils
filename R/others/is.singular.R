@@ -11,7 +11,15 @@
 ##' @export
 is.singular <- function(X, tol = .Machine$double.eps*1e3)
   {
-    rcond.out <- rcond(X)
+      if(is.matrix(X))
+      {
+          rcond.out <- rcond(X)
+      }
+      else
+      {
+          rcond.out <- Matrix::rcond(X)
+      }
+
     if(rcond.out < tol)
       {
         singular = TRUE
