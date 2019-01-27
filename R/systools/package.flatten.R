@@ -20,9 +20,9 @@ package.flatten <- function(project = NULL)
     pkg.tmpdirProject <- file.path(pkg.tmpdir, projectName)
     pkg.tmpdirProjectR <- file.path(pkg.tmpdir, projectName, "R")
     pkg.tmpdirProjectRtmp <- file.path(pkg.tmpdir, projectName, "Rtmp")
-    pkg.DESCRIPTION <- read.dcf(file.path(projectHome, "DESCRIPTION"))
-    pkg.version <- pkg.DESCRIPTION[, "Version"]
-    pkg.Name <- pkg.DESCRIPTION[, "Package"]
+    ## pkg.DESCRIPTION <- read.dcf(file.path(projectHome, "DESCRIPTION"))
+    ## pkg.version <- pkg.DESCRIPTION[, "Version"]
+    ## pkg.Name <- pkg.DESCRIPTION[, "Package"]
 
     ## Copy project to directory
     if(dir.exists(pkg.tmpdirProject))
@@ -57,7 +57,7 @@ package.flatten <- function(project = NULL)
     ## setwd(pkg.tmpdir)
     ## system2("R",  paste("CMD build", pkg.tmpdirProject))
 
-    pkg.HS <- file.path(pkg.tmpdir, pkg.Name, sep = "")
+    pkg.HS <- file.path(pkg.tmpdir, projectName, sep = "")
     ## install.packages(pkg)
     ## system2("mv", paste(pkg, dirname(projectHome)))
     ## file.copy(pkg, dirname(projectHome), overwrite = TRUE)
