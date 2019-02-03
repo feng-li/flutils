@@ -30,6 +30,14 @@ hessian_approx <- function(gradient,method)
       gradient.vec <- matrix(gradient ,prod(dim.grad) ,1)
       hessian.out <- -tcrossprod(gradient)
     }
+  else if (tolower(method) =="identity")
+    {
+        hessian.out = diag(1, nrow = length(gradient))
+    }
+  else
+    {
+        stop("No such Hessian approximation method.")
+    }
   ## if hessian is bad, then use accurate approximate
   ## if(any(eigen(hessian.out)$values>0))
   ##   {
