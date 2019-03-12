@@ -9,6 +9,7 @@
 ##' @references NA
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Sun Mar 04 14:45:22 CET 2012; Current: Wed Sep 30 12:34:04 CST 2015.
+##' @export
 parMeanFun <- function(X, beta, linkArgs)
 {
     ## Input each observation x'b  -> l(phi) = x'b -> phi
@@ -106,6 +107,7 @@ parMeanFun <- function(X, beta, linkArgs)
 
 
 ## Slightly modify the par to avoid under/over flow in parLinkFun()
+##' @export
 parRestricFun <- function(par, linkArgs)
 {
     tol <- 1e-6

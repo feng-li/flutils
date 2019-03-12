@@ -1,3 +1,4 @@
+##' @export
 dmixture <- function(x, type, par.list, log = FALSE)
 {
     if(tolower(type) == "splitt")

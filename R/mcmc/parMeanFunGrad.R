@@ -8,6 +8,7 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Thu Nov 24 11:46:32 CET 2011;
 ##'       Current: Thu Nov 24 11:46:39 CET 2011.
+##' @export
 parMeanFunGrad <- function(par, linkArgs)
 {
     ## Input x'b  -> l(phi) = x'b -> phi

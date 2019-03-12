@@ -8,6 +8,7 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: Wed Dec 29 16:25:04 CET 2010;
 ##'       Current:       Wed Dec 29 16:25:10 CET 2010.
+##' @export
 tr <- function(X)
   {
     nrow0 <- nrow(X)

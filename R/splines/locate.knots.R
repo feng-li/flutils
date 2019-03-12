@@ -10,17 +10,18 @@
 ##'         The radius for the Mahalanobis e-ball.
 ##' @param RadiusShrink "numeric".
 ##'         The radius shrinkage factor for the Mahalanobis e-ball
-##'         
+##'
 ##' @return "list"
 ##' \item   {n.knots}
 ##'         {"numeric". The no. of knots returned}
 ##' \item   {location}
 ##'         {"matrix". The knots location}
-##'         
+##'
 ##' @references  Appendix C. in Villani et al (2009)
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version:  Wed Mar 10 14:03:31  CET 2010;
 ##'       Current:        Sat Sep 18 18:57:24 CEST 2010.
+##' @export
 locate.knots <- function(x, e, RadiusShrink)
 {
   dim.x <- dim(x)
@@ -30,7 +31,7 @@ locate.knots <- function(x, e, RadiusShrink)
 
   ## setup a tank for saving the knots.
   location.tmp <- matrix(0, n, m)
-  
+
   ## initial values
   j <- 0 # no. of knots
   x.new <-x  # the remaining points
@@ -44,7 +45,7 @@ locate.knots <- function(x, e, RadiusShrink)
       n.c.new <- sum(idx) # no. of obs. belongs to new e-ball
       x.new2 <- x.new[as.vector(idx), , drop = FALSE] # the obs. belongs to new e-ball
       if(n.c.new == 0 || n.c  == 0) # no knots have been selected in this ball due to a
-                                    # bad radius shrinkage,  jump out the loop 
+                                    # bad radius shrinkage,  jump out the loop
         {
           j <- n # set no. of knots to an auxiliary number. that is sufficient.
           break # jump out
@@ -53,7 +54,7 @@ locate.knots <- function(x, e, RadiusShrink)
                                         # new e-ball to their mean.
       location.tmp[j, ] <- x.new2[which.min(dist2), , drop = FALSE]
       x.new <- x.new[!as.vector(idx), , drop = FALSE] # remove knots. update the data matrix.
-      
+
     }
   location <- location.tmp[1:j, , drop = FALSE]
   out <- list(n.knots = j, location = location)
@@ -68,4 +69,3 @@ optim.knots.no <- function(e, xx, RadiusShrink, KnotsNo)
   gap <- no.knots - KnotsNo
   return(gap)
 }
-

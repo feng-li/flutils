@@ -47,6 +47,7 @@
 ##'       license:  GPL(>=2)
 ##'
 ##'       TODO: allow parallel souring.
+##' @export
 sourceDir <- function(...,
                       byte.compile = FALSE,
                       recursive = FALSE,

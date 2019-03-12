@@ -14,6 +14,7 @@
 ##'       Current: Tue Jan 15 18:56:48 CET 2013.
 ##'
 ##' TODO: Allow p be a vector of same length of x
+##' @export
 mvgamma <- function(p, x, log = TRUE)
 {
 

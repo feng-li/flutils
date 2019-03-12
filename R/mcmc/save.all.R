@@ -7,6 +7,7 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: Sun Sep 02 16:10:36 CEST 2012;
 ##'       Current: Sun Sep 02 16:10:42 CEST 2012.
+##' @export
 save.all <- function(save.output, ModelDescription)
 {
   if (save.output != FALSE) ## Save has been requested.

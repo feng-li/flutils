@@ -20,6 +20,7 @@
 ##' @references Li Villani 2012
 ##'
 ##' @author Feng Li, Central University of Finance and Economics.
+##' @export
 MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
                      StdDataMethod, save2diskPath, ...)
 {

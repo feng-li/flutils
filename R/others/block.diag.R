@@ -8,6 +8,7 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Thu Feb 03 19:16:21 CET 2011;
 ##'       Current: Sun Mar 04 17:14:51 CET 2012.
+##' @export
 block.diag <- function(x)
   {
     if(!is.list(x))
@@ -17,9 +18,9 @@ block.diag <- function(x)
 
     n <- length(x)
     if(n==0) return(NULL)
-    
+
     x <- lapply(x, function(y) if(length(y)) as.matrix(y) else
-                stop("Zero-length component in x")) 
+                stop("Zero-length component in x"))
     d <- array(unlist(lapply(x, dim)), c(2, n))
     rr <- d[1,]
     cc <- d[2,]
@@ -37,9 +38,9 @@ block.diag <- function(x)
     iuse <- apply(ind, 2, function(y, imat) imat[(y[1]+1):y[2],
                                                      (y[3]+1):y[4]], imat=imat)
     iuse <- as.vector(unlist(iuse))
-    out[iuse] <- unlist(x) 
-    
-    
+    out[iuse] <- unlist(x)
+
+
     return(out)
   }
 
@@ -47,4 +48,4 @@ block.diag <- function(x)
 ## TESTS: PASSED
 ##------------------------------------------------------------------------------
 ## mats <- list(matrix(1:20, 5, 4), matrix(1:12, 4, 3), matrix(1:25, 5,5))
-## block.diag(mats) 
+## block.diag(mats)

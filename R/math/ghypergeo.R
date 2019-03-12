@@ -17,6 +17,7 @@
 ##' @author Feng Li, Central University of Finance and Economics.
 ##' @note Created: Tue Jan 15 12:36:41 CET 2013;
 ##'       Current: Sat May 30 15:07:07 CST 2015.
+##' @export
 ghypergeo <- function(a, b, z, k = 10)
   {
     if(!is.matrix(a)|| !is.matrix(b) ||
@@ -53,6 +54,7 @@ ghypergeo <- function(a, b, z, k = 10)
     return(out)
   }
 
+##' @export
 regghypergeo <- function(a, b, z, k = 10)
 {
   ## the regularized hypergeometric function pFq(a, b, z)/Prod[Gamma(b)]

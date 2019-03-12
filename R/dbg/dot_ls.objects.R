@@ -1,10 +1,11 @@
-## List the object size
+##' List the object size
 
-## Modified from Dirk Eddelbuettel's version
-## http://stackoverflow.com/questions/1358003/tricks-to-manage-the-available-memory-in-an-r-session
+##' Modified from Dirk Eddelbuettel's version
+##' http://stackoverflow.com/questions/1358003/tricks-to-manage-the-available-memory-in-an-r-session
 
-## improved list of objects
-## TODO: Better default sorting
+##' improved list of objects
+##' TODO: Better default sorting
+##' @export
 .ls.objects <- function (pos = 1, pattern, order.by,
                         decreasing=FALSE, head=FALSE, n=5)
 {
@@ -23,7 +24,7 @@
   obj.dim[vec, 1] <- napply(names, length)[vec]
   ## out <- data.frame(obj.type, obj.size, obj.prettysize, obj.dim)
   out <- data.frame(obj.type, obj.prettysize, obj.dim)
-  
+
   names(out) <- c("Type", "Size", "Rows", "Columns")
   if (!missing(order.by))
     out <- out[order(out[[order.by]], decreasing=decreasing), ]

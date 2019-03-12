@@ -9,6 +9,7 @@
 ##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note First version: ; Current: .
+##' @export
 progressbar <- function(iIter, nIter)
 {
     cat("\n")

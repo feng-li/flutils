@@ -1,5 +1,6 @@
+##' @export
 I.Kron <- function(n,X)
-{ 
+{
    X.dim <- dim(X)
    m0 <- X.dim[1]
    n0 <- X.dim[2]

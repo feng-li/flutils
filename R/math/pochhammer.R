@@ -18,6 +18,7 @@
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Tue Jan 15 11:20:51 CET 2013;
 ##'       Current: Tue Jan 15 11:21:00 CET 2013.
+##' @export
 pochhammer <- function(a, n, log)
   {
     a.len <- length(a)
