@@ -44,8 +44,9 @@ save.all <- function(save.output, ModelDescription)
          file = outfile,
          envir = .GlobalEnv)
 
-
     ## Done message
     cat(rep("-", getOption("width")), "\n", sep = "")
+    invisible(outfile)
+
   }
 }
