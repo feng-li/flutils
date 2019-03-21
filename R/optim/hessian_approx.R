@@ -22,17 +22,19 @@
 ##' @note First version:  Tue Mar 30 16:33:23 CEST 2010.
 ##'       Current:        Wed Sep 15 09:45:16 CEST 2010.
 ##' @export
-hessian_approx <- function(gradient,method)
+hessian_approx <- function(gradient, method)
 {
-  if (tolower(method) =="outer") # outer product of gradient
+  if (tolower(method) =="outer") # diagonal outer product of gradient
     {
       dim.grad <- dim(gradient)
       gradient.vec <- matrix(gradient ,prod(dim.grad) ,1)
-      hessian.out <- -tcrossprod(gradient)
+      ## hessian.out <- -tcrossprod(gradient.vec)
+      hessian.out <- -diag(as.vector(gradient^2), nrow=length(gradient))
+
     }
   else if (tolower(method) =="identity")
     {
-        hessian.out = diag(1, nrow = length(gradient))
+        hessian.out = -diag(1, nrow = length(gradient))
     }
   else
     {
