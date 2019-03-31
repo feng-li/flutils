@@ -36,6 +36,10 @@ hessian_approx <- function(gradient, method)
     {
         hessian.out = -diag(1, nrow = length(gradient))
     }
+  else if (tolower(method) =="skip")
+    {
+        hessian.out = NA
+    }
   else
     {
         stop("No such Hessian approximation method.")
