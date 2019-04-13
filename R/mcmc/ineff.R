@@ -17,7 +17,7 @@ ineff <- function(par)
     }
     else
     {
-        autocorr <- acf(par, plot = FALSE, type = "correlation")$acf
+        autocorr <- acf(as.numeric(par), plot = FALSE, type = "correlation")$acf
 
         ## The inefficiency factor
         ## ineff  = 1 + 2*sum(autocorrelations(lag1 to lag oo))
