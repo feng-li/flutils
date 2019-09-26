@@ -180,8 +180,7 @@ mixture.var <- function(type, par.list)
                         lmd = mixture.lmd[, comp]))
 
         mixture.vars <- apply(matrix(1:nComp), 1, function(comp)
-            splitt.var(mu = mixture.mu[, comp],
-                       df = mixture.df[, comp],
+            splitt.var(df = mixture.df[, comp],
                        phi = mixture.phi[, comp],
                        lmd = mixture.lmd[, comp]))
 

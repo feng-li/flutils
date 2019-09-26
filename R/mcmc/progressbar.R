@@ -2,13 +2,10 @@
 ##'
 ##' Call this function within for loop. Not work with while loop
 ##' Have not test with windows Gui
-##' @title
-##' @param iIter
-##' @param nIter
-##' @return
-##' @references
+##' @param iIter Current iteration
+##' @param nIter Total iteration
+##' @return NULL
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version: ; Current: .
 ##' @export
 progressbar <- function(iIter, nIter)
 {

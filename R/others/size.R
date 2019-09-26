@@ -1,14 +1,10 @@
 ##' Print object.size
 ##'
-##' <details>
-##' @title
-##' @param x
-##' @param unit
-##' @return
-##' @references
+##' Object size in a human-readable way.
+##' @param x object name
+##' @param unit the unit to use. Auto default.
+##' @return size
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version: Mon Jan 17 20:05:44 CET 2011;
-##'       Current:       Mon Jan 17 20:05:51 CET 2011.
 ##' TODO: allow multiple inputs
 ##' @export
 size <- function(x, unit = "auto")

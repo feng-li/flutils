@@ -1,17 +1,14 @@
 ##' Add grids on plot
 ##'
-##' Better than grid() function
-##' @title
-##' @param x.at
-##' @param y.at
-##' @param col
-##' @param lty
-##' @param lwd
-##' @param ...
-##' @return
-##' @references
+##' Better than grid() function with abline() implementation
+##' @param x.at  position on x-axis
+##' @param y.at position on y-axis
+##' @param col color
+##' @param lty line type
+##' @param lwd line width
+##' @param ... other arguments passed to abline()
+##' @return NA
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version: ; Current: .
 ##' @export
 grid2 <- function(x.at = NA, y.at = NA, col = "black", lty="dotted", lwd = 0.5, ...)
   {

@@ -1,15 +1,11 @@
 ##' Convert from the vech vector to the full matrix.
 ##'
 ##'
-##' @title Vech to matrix
-##' @param vech
-##' @param diag
-##' @return
-##' @references
+##' Vech to matrix
+##' @param vech Vech vector
+##' @param diag TRUE or FALSE
+##' @return Full matrix
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note
-##'     Created: Wed Oct 12 20:23:17 CEST 2011;
-##'     Current: Sun Mar 18 17:07:11 CET 2012.
 ##' @export
 vech2m <- function(vech, diag = TRUE)
 {

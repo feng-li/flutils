@@ -3,10 +3,7 @@
 ##' A simple way to check if the display is available.
 ##' @title is.displayopen
 ##' @return TRUE/FALSE
-##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note Created: Tue Jul 31 17:35:51 CEST 2012;
-##'       Current: Tue Jul 31 17:35:57 CEST 2012.
 ##' @export
 is.displayopen <- function()
   {

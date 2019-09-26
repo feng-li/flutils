@@ -162,11 +162,13 @@ rmixnorm.ts <- function(n, means.ar.par.list, sigmas.list, weights, yinit = 0)
 }
 
 
-##' @title The conditional density for AR-type mixture of normals
+##' The conditional density for AR-type mixture of normals
+##'
+##' For more information see dmixnorm()
 ##' @param y An `n`-length vector. The time series.
-##' @param means.ar.par.list An `k`-length list. Each element in the list consists the
+##' @param means.ar.par.list A `k`-length list. Each element in the list consists the
 ##'     coefficients in the AR process.
-##' @param sigmas.list
+##' @param sigmas.list A `k`-length lilst.
 ##' @param weights A `k`-length vector. The weight in each component.
 ##' @param log Logical; If TRUE, the log density is returned.
 ##' @examples

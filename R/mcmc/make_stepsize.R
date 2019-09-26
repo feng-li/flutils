@@ -2,11 +2,10 @@
 ##'
 ##' Step size is also known as the learning rate in stochastic gradient descent
 ##' algorithms.
-##' @param steprange
-##' @param n
-##' @param args
-##' @return NA
-##' @references NA
+##' @param steprange Range for steps.
+##' @param n Total steps.
+##' @param args Other arguments
+##' @return Steps
 ##' @author Feng Li, Central University of Finance and Economics.
 ##' @export
 make_stepsize = function(steprange, n, args)

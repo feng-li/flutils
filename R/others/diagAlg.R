@@ -1,14 +1,10 @@
 ##' Fast matrix algebra with diagonal matrices.
 ##'
+##' This implementation does not involve sparse matrix structure.
 ##' @param d "vector" Diagonal elements form a diagonal matrix.
 ##' @param M "matrix" Dense matrix that is conformable to matrix diag(d).
-##' @return
-##' @references
+##' @return New conformable matrix.
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version: Tue Nov 09 11:12:05 CET 2010;
-##'       Current:       Sat Oct 04 17:38:57 CST 2014.
-##' Thanks for Bertil's naming
-## diag(d) %*% M .
 ##' @export
 "%d*%" <- dM <- function(d, M)
 {

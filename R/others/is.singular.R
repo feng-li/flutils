@@ -1,10 +1,7 @@
 ##' Check if a square matrix is computational singular
 ##'
-##' <details>
-##' @title
-##' @param X
-##' @return
-##' @references
+##' @param X squared matrix
+##' @return TRUE/FALSE
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 ##' @note Created: Mon Jan 02 17:58:12 CET 2012;
 ##'       Current: Mon Jan 02 17:58:37 CET 2012.

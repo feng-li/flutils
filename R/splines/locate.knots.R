@@ -2,8 +2,6 @@
 ##'
 ##' This is the algorithm for determining the knots locations for a give global radius e>0
 ##' and a local radius skrinkage factor. The details can be foudn in Villani (2009)
-##' @name locate.knots
-##' @title Locate knots in a m-space using Villani(2009)'s algorithm.
 ##' @param x "matrix".
 ##'         The data matrix without intercept.
 ##' @param e "numeric".
@@ -11,11 +9,8 @@
 ##' @param RadiusShrink "numeric".
 ##'         The radius shrinkage factor for the Mahalanobis e-ball
 ##'
-##' @return "list"
-##' \item   {n.knots}
-##'         {"numeric". The no. of knots returned}
-##' \item   {location}
-##'         {"matrix". The knots location}
+##' @return "list" `n.knots` ("numeric") gives the no. of knots returned. `location`
+##'     ("matrix") gives the knots location.
 ##'
 ##' @references  Appendix C. in Villani et al (2009)
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.

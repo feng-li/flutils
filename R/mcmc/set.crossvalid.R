@@ -1,12 +1,10 @@
 ##' Setup cross-validation
 ##'
-##'
-##' @param n.obs
-##' @param crossvalidArgs
+##' Tools to setup cross-validations
+##' @param n.obs Number of observations.
+##' @param crossvalidArgs Cross-validation arguments.
 ##' @return list
-##' @references
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First: Thu May 03 14:36:26 CEST 2012; Current: Thu Aug 27 19:19:43 CST 2015
 ##' @export
 set.crossvalid <- function(nObs, crossValidArgs)
 {

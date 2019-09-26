@@ -1,14 +1,10 @@
-##' Description
+##' Make a vech vector from a full matrix
 ##'
-##' Details.
-##' @name
-##' @title
-##' @param X
-##' @param diag
-##' @return
-##' @references
+##' This function create a vech vector
+##' @param X Full matrix
+##' @param diag TRUE or FALSE
+##' @return vector
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version: ; Current: .
 ##' @export
 vech <- function(X, diag = TRUE)
 {

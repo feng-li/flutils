@@ -1,15 +1,11 @@
 ##' Fold a matrix
 ##'
-##' <details>
-##' @title
-##' @param Mat
-##' @param nfolds
-##' @param byrow
-##' @return
-##' @references
+##' This function fold a matrix into different shape
+##' @param Mat matrix
+##' @param nfolds number of folds
+##' @param byrow fold by row or by column.
+##' @return new matrix
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version: Thu Jan 27 20:09:56 CET 2011;
-##'       Current:       Thu Jan 27 20:09:59 CET 2011.
 ##' @export
 foldMat <- function(Mat, nfolds, byrow = TRUE)
   {

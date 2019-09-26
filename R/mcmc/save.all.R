@@ -1,12 +1,10 @@
 ##' Save all the objects to a folder.
 ##'
-##' @param save.output
-##' @param ModelDescription
-##' @param Starting.time
+##' @param save.output If the output should save.
+##' @param ModelDescription String
+##' @param Starting.time Computing initialized time
 ##' @return NULL
 ##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version: Sun Sep 02 16:10:36 CEST 2012;
-##'       Current: Sun Sep 02 16:10:42 CEST 2012.
 ##' @export
 save.all <- function(save.output, ModelDescription)
 {
