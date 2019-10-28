@@ -35,6 +35,7 @@
 ##' @note Created: Sat Jan 05 22:49:34 CET 2013;
 ##'
 ##'       Current: Sat Jan 05 22:49:39 CET 2013.
+##' @export
 dsplitt <- function(x, mu, df, phi, lmd, log)
 {
     I0 <- (x <= mu) # Logical values. 1, if y <= mu; 0, if y >mu.
@@ -56,6 +57,7 @@ dsplitt <- function(x, mu, df, phi, lmd, log)
     return(out)
 }
 
+##' @export
 psplitt <- function(q, mu, df, phi, lmd)
 {
     ## CDF for q < = mu part.
@@ -71,6 +73,7 @@ psplitt <- function(q, mu, df, phi, lmd)
     return(out)
 }
 
+##' @export
 qsplitt <- function(p, mu, df, phi, lmd)
 {
     n <- length(p)
@@ -125,6 +128,7 @@ qsplitt <- function(p, mu, df, phi, lmd)
     return(out)
 }
 
+##' @export
 rsplitt <- function(n, mu, df, phi, lmd)
 {
     ## Inverse method
@@ -134,6 +138,7 @@ rsplitt <- function(n, mu, df, phi, lmd)
 }
 
 
+##' @export
 splitt.mean <- function(mu, df, phi, lmd)
 {
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
@@ -141,6 +146,7 @@ splitt.mean <- function(mu, df, phi, lmd)
     return(mean)
 }
 
+##' @export
 splitt.var <- function(df, phi, lmd)
 {
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
@@ -148,6 +154,7 @@ splitt.var <- function(df, phi, lmd)
     return(var)
 }
 
+##' @export
 splitt.skewness <- function(df, phi, lmd)
 {
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
@@ -160,6 +167,7 @@ splitt.skewness <- function(df, phi, lmd)
     return(skewness)
 }
 
+##' @export
 splitt.kurtosis <- function(df, phi, lmd)
 {
     h <- 2*sqrt(df)*phi*(lmd-1)/((df-1)*beta(df/2, 1/2))
