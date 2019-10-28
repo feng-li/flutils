@@ -39,7 +39,7 @@ package.flatten <- function(project = NULL)
     dir.create(pkg.tmpdirProjectR, recursive = TRUE)
 
     RtmpFiles = list.files(pkg.tmpdirProjectRtmp, pattern = "\\.[Rr]$", recursive = TRUE)
-    RFilesNameNew = gsub(x = RtmpFiles, pattern = "/", replacement="_")
+    RFilesNameNew = gsub(x = RtmpFiles, pattern = "/", replacement="__")
 
     for(i in 1:length(RtmpFiles))
     {
