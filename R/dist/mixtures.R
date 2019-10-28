@@ -35,6 +35,7 @@ dmixture <- function(x, type, par.list, log = FALSE)
     return(out)
 }
 
+##' @export
 pmixture <- function(q, type, par.list,  log = FALSE)
 {
     if(tolower(type) == "splitt")
@@ -70,6 +71,7 @@ pmixture <- function(q, type, par.list,  log = FALSE)
     return(out)
 }
 
+##' @export
 rmixture <- function(n, type, par.list)
 {
     if(tolower(type) == "splitt")
@@ -105,6 +107,7 @@ rmixture <- function(n, type, par.list)
 
 
 
+##' @export
 qmixture <- function(p, type, par.list, args = list(nSim = 1000))
 {
     if(tolower(type) == "splitt")
@@ -135,6 +138,7 @@ qmixture <- function(p, type, par.list, args = list(nSim = 1000))
     return(out.q)
 }
 
+##' @export
 mixture.mean <- function(type, par.list)
 {
     if(tolower(type) == "splitt")
@@ -159,6 +163,7 @@ mixture.mean <- function(type, par.list)
     return(out)
 }
 
+##' @export
 mixture.var <- function(type, par.list)
 {
     ## Sylvia Frühwirth-Schnatter, Finite Mixture and Markov Switching Models
