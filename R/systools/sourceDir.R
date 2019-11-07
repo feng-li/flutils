@@ -1,53 +1,53 @@
-##' sourceDir
-##'
-##' Sourcing a bunch of files located in different folders/subfolders. Also provide
-##' byte-code compiling before sourcing.
-##'
-##' @param ... "characters"
-##'
-##'        The inputs can be path to the R code or mixture of paths and files.
-##'
-##' @param byte.compile "integer".
-##'
-##'        If byte.compile = 0, the program will only load the R source code.
-##'
-##'        If byte.compile = 1, the program will first load the byte-compiled file if the
-##' byte-compiled file exists and is newer than the R source code, otherwise the program
-##' will first byte-compile it and then load the byte-compiled file.
-##'
-##'        If byte.compile = 2, the program will byte-compile the R source code regardless
-##' of the existence of byte-compiled files.
-##'
-##' @param recursive "logical".
-##'
-##'        If TRUE, files will be sourced recursively for all sub folders.
-##'
-##' @param envir "environment".
-##'
-##'        What is the destiny of the files to be sourced. The default environment is the
-##' global environment.
-##'
-##' @param pattern "string".
-##'
-##'        What kind of file pattern is sourced.
-##'
-##' @param ignore.error "logical".
-##'
-##'        If TRUE, try to continue even errors occur.
-##'
-##' @return "data.frame".
-##'
-##'         A summary is returned invisibly if input is not empty, otherwise quit with an
-##' error.
-##'
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##'
-##' @note Initial: Wed Apr 15 20:00:43 CET 2009; Current: Tue Jan 08 23:15:57 CET 2013.
-##'
-##'       license:  GPL(>=2)
-##'
-##'       TODO: allow parallel souring.
-##' @export
+#' sourceDir
+#'
+#' Sourcing a bunch of files located in different folders/subfolders. Also provide
+#' byte-code compiling before sourcing.
+#'
+#' @param ... "characters"
+#'
+#'        The inputs can be path to the R code or mixture of paths and files.
+#'
+#' @param byte.compile "integer".
+#'
+#'        If byte.compile = 0, the program will only load the R source code.
+#'
+#'        If byte.compile = 1, the program will first load the byte-compiled file if the
+#' byte-compiled file exists and is newer than the R source code, otherwise the program
+#' will first byte-compile it and then load the byte-compiled file.
+#'
+#'        If byte.compile = 2, the program will byte-compile the R source code regardless
+#' of the existence of byte-compiled files.
+#'
+#' @param recursive "logical".
+#'
+#'        If TRUE, files will be sourced recursively for all sub folders.
+#'
+#' @param envir "environment".
+#'
+#'        What is the destiny of the files to be sourced. The default environment is the
+#' global environment.
+#'
+#' @param pattern "string".
+#'
+#'        What kind of file pattern is sourced.
+#'
+#' @param ignore.error "logical".
+#'
+#'        If TRUE, try to continue even errors occur.
+#'
+#' @return "data.frame".
+#'
+#'         A summary is returned invisibly if input is not empty, otherwise quit with an
+#' error.
+#'
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#'
+#' @note Initial: Wed Apr 15 20:00:43 CET 2009; Current: Tue Jan 08 23:15:57 CET 2013.
+#'
+#'       license:  GPL(>=2)
+#'
+#'       TODO: allow parallel souring.
+#' @export
 sourceDir <- function(...,
                       byte.compile = FALSE,
                       recursive = FALSE,

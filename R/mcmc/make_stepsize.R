@@ -1,13 +1,13 @@
-##' Make step size for SGLD
-##'
-##' Step size is also known as the learning rate in stochastic gradient descent
-##' algorithms.
-##' @param steprange Range for steps.
-##' @param n Total steps.
-##' @param args Other arguments
-##' @return Steps
-##' @author Feng Li, Central University of Finance and Economics.
-##' @export
+#' Make step size for SGLD
+#'
+#' Step size is also known as the learning rate in stochastic gradient descent
+#' algorithms.
+#' @param steprange Range for steps.
+#' @param n Total steps.
+#' @param args Other arguments
+#' @return Steps
+#' @author Feng Li, Central University of Finance and Economics.
+#' @export
 make_stepsize = function(steprange, n, args)
 {
     method = args[["method"]]

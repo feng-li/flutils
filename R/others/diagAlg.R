@@ -1,11 +1,11 @@
-##' Fast matrix algebra with diagonal matrices.
-##'
-##' This implementation does not involve sparse matrix structure.
-##' @param d "vector" Diagonal elements form a diagonal matrix.
-##' @param M "matrix" Dense matrix that is conformable to matrix diag(d).
-##' @return New conformable matrix.
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @export
+#' Fast matrix algebra with diagonal matrices.
+#'
+#' This implementation does not involve sparse matrix structure.
+#' @param d "vector" Diagonal elements form a diagonal matrix.
+#' @param M "matrix" Dense matrix that is conformable to matrix diag(d).
+#' @return New conformable matrix.
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @export
 "%d*%" <- dM <- function(d, M)
 {
   p <- length(d)
@@ -16,7 +16,7 @@
 }
 
 ## X %*% diag(d).
-##' @export
+#' @export
 "%*d%" <- Md <- function(M, d)
 {
   p <- length(d)
@@ -27,7 +27,7 @@
 }
 
 ## diag(d) %*% M %*% diag(d) and M is a squared matrix.
-##' @export
+#' @export
 "%d*d%" <- dMd <- function(d, M)
 {
   p <- length(d)
@@ -39,7 +39,7 @@
 }
 
 ## t(M) %*% diag(d) %*% N
-##' @export
+#' @export
 tMdN <- function(M, d, N = M)
 {
   p <- length(d)
@@ -50,7 +50,7 @@ tMdN <- function(M, d, N = M)
 }
 
 ## Built diag(n) in a much faster way.
-##' @export
+#' @export
 diag1 <- function(n)
   {
     out <- matrix(0, n, n)

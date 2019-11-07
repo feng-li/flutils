@@ -26,7 +26,7 @@
 ##   First:       Tue Mar  9 16:00:06 CET 2010
 ##   Current:     Wed Mar 14 19:02:51 CET 2012
 
-##' @export
+#' @export
 K <- function(m,n)
 {
   x <- matrix(0,m*n,m*n)

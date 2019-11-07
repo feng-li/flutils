@@ -1,18 +1,18 @@
-##' The reparameterized beta distribution. This is a wrapper of the usual beta functions.
-##'
-##' See the help for general information of beta distribution. Note that the
-##' mean and standard deviation should be in (0, 1) and (0, mean(1-mean)),
-##' respectively.
-##' @title The reparameterized beta distribution
-##' @param mean "numeric" The mean value of beta distribution.
-##' @param sd  "numeric" The standard deviation of beta distribution.
-##' @param cond.warning "logical" If warning should be printed if NA produced.
-##' @return See the return of beta distribution.
-##' @references Li,  2012
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note Created: Tue Apr 10 19:15:06 CEST 2012;
-##'       Current: Tue Apr 10 19:15:11 CEST 2012.
-##' @export
+#' The reparameterized beta distribution. This is a wrapper of the usual beta functions.
+#'
+#' See the help for general information of beta distribution. Note that the
+#' mean and standard deviation should be in (0, 1) and (0, mean(1-mean)),
+#' respectively.
+#' @title The reparameterized beta distribution
+#' @param mean "numeric" The mean value of beta distribution.
+#' @param sd  "numeric" The standard deviation of beta distribution.
+#' @param cond.warning "logical" If warning should be printed if NA produced.
+#' @return See the return of beta distribution.
+#' @references Li,  2012
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @note Created: Tue Apr 10 19:15:06 CEST 2012;
+#'       Current: Tue Apr 10 19:15:11 CEST 2012.
+#' @export
 rbeta2 <- function(n, mean, sd, ncp = 0, cond.warning = TRUE)
   {
     mu <- mean

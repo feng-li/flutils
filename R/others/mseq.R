@@ -1,13 +1,13 @@
-##' A simple sequence generator
-##'
-##' mainly used in the gradient part
-##' @param init.seq "vecter" the initial sequence without zero
-##' @param init.length "vecter" initial circle length,  including zeros
-##' @param length.out "integer" how many circles to be generated
-##' @return "vecter"
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version: ; Current: .
-##' @export
+#' A simple sequence generator
+#'
+#' mainly used in the gradient part
+#' @param init.seq "vecter" the initial sequence without zero
+#' @param init.length "vecter" initial circle length,  including zeros
+#' @param length.out "integer" how many circles to be generated
+#' @return "vecter"
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @note First version: ; Current: .
+#' @export
 mseq <- function(init.seq, init.length, length.out)
 {
 

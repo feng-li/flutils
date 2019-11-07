@@ -1,19 +1,19 @@
-##' Find the raw indices for given indices in array form.
-##'
-##' This is exactly the inverse function of `arrayInd()'.
-##' @title Raw indices finder for array.
-##' @param arr.ind "matrix or vector"
-##'        When it is a matrix, the length of columns should be the as the
-##' length of the "dims". When it is a vector, the argument length should be
-##' the same as the length of "dims".
-##' @param dims "vector"
-##'        The dimension of the array. Note that the last dimension is not
-##' needed in the calculations,  so if you may just write "NA" there.
-##' @return "vector" The raw indices.
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note Created: Wed Mar 14 18:03:01 CET 2012;
-##'       Current: Wed Mar 14 18:03:09 CET 2012.
-##' @export
+#' Find the raw indices for given indices in array form.
+#'
+#' This is exactly the inverse function of `arrayInd()'.
+#' @title Raw indices finder for array.
+#' @param arr.ind "matrix or vector"
+#'        When it is a matrix, the length of columns should be the as the
+#' length of the "dims". When it is a vector, the argument length should be
+#' the same as the length of "dims".
+#' @param dims "vector"
+#'        The dimension of the array. Note that the last dimension is not
+#' needed in the calculations,  so if you may just write "NA" there.
+#' @return "vector" The raw indices.
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @note Created: Wed Mar 14 18:03:01 CET 2012;
+#'       Current: Wed Mar 14 18:03:09 CET 2012.
+#' @export
 whichInd <- function(arr.ind, dims)
   {
     arr.indMat <- matrix(arr.ind, ncol = length(dims))

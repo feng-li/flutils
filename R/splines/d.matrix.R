@@ -1,41 +1,41 @@
-##' Make a design matrix for multivariate thin plate splines and others.
-##'
-##' The number of knots should be smaller than the number of observations.
-##'
-##' @name d.matrix
-##' @title Design matrix for splines
-##'
-##' @param x "matrix".
-##'         the data to be used in the splines. You should *NOT* include a
-##'         constant column. The intercept will be added automatically if required in
-##'         "args".
-##' @param knots "list".
-##'         knots locations for different spline components:
-##'         knots$thinplate.a: "matrix" Knots for the additive part.
-##'         knots$thinplate.s: "matrix" Knots for the surface part.
-##' @param splineArgs "list".
-##'         Arguments list pass to the function, see bellow.
-##'         splineArgs$comp: "character". The combination of splines, which can be
-##'         "intercept": If included, will return design matrix with intercept.
-##'         "covariates": If included, covariates should be included
-##'         "thinplate.s": If included, the thinplate surface will be in;
-##'         "thinplate.a": If include, the additive thinplate will be in.
-##'         e.g. c("intercept", "covariates", "thinplate.s", "thinplate.a") means all the
-##'         four components will be in the design matrix.
-##'         splineArgs$thinplate.a.locate: "numeric", c(2, 3, 0) means 2 knots
-##'         for first regressor, 3 knots for the second regressor and no knots for third
-##'         regressor.
-##'
-##' @return "matrix".
-##'         The dimension depends on the arguments, and the first column is 1 as an intercept
-##'         if required in "splineArgs".
-##'
-##' @references Denison et al (2002)
-##' @author Feng Li, Dept. of Statistics, Stockholm University, Sweden.
-##' @note First version: Sun Mar  7 13:41:32  CET 2010.
-##'       Current:       Tue Dec 28 13:34:39 CET 2010.
-##'
-##' @export
+#' Make a design matrix for multivariate thin plate splines and others.
+#'
+#' The number of knots should be smaller than the number of observations.
+#'
+#' @name d.matrix
+#' @title Design matrix for splines
+#'
+#' @param x "matrix".
+#'         the data to be used in the splines. You should *NOT* include a
+#'         constant column. The intercept will be added automatically if required in
+#'         "args".
+#' @param knots "list".
+#'         knots locations for different spline components:
+#'         knots$thinplate.a: "matrix" Knots for the additive part.
+#'         knots$thinplate.s: "matrix" Knots for the surface part.
+#' @param splineArgs "list".
+#'         Arguments list pass to the function, see bellow.
+#'         splineArgs$comp: "character". The combination of splines, which can be
+#'         "intercept": If included, will return design matrix with intercept.
+#'         "covariates": If included, covariates should be included
+#'         "thinplate.s": If included, the thinplate surface will be in;
+#'         "thinplate.a": If include, the additive thinplate will be in.
+#'         e.g. c("intercept", "covariates", "thinplate.s", "thinplate.a") means all the
+#'         four components will be in the design matrix.
+#'         splineArgs$thinplate.a.locate: "numeric", c(2, 3, 0) means 2 knots
+#'         for first regressor, 3 knots for the second regressor and no knots for third
+#'         regressor.
+#'
+#' @return "matrix".
+#'         The dimension depends on the arguments, and the first column is 1 as an intercept
+#'         if required in "splineArgs".
+#'
+#' @references Denison et al (2002)
+#' @author Feng Li, Dept. of Statistics, Stockholm University, Sweden.
+#' @note First version: Sun Mar  7 13:41:32  CET 2010.
+#'       Current:       Tue Dec 28 13:34:39 CET 2010.
+#'
+#' @export
 d.matrix <- function(x,knots,splineArgs)
 {
 

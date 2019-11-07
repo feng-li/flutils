@@ -1,11 +1,11 @@
-##' Setup cross-validation
-##'
-##' Tools to setup cross-validations
-##' @param n.obs Number of observations.
-##' @param crossvalidArgs Cross-validation arguments.
-##' @return list
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @export
+#' Setup cross-validation
+#'
+#' Tools to setup cross-validations
+#' @param n.obs Number of observations.
+#' @param crossvalidArgs Cross-validation arguments.
+#' @return list
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @export
 set.crossvalid <- function(nObs, crossValidArgs)
 {
     N.subsets <- crossValidArgs[["N.subsets"]]

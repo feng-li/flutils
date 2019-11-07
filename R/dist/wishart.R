@@ -1,10 +1,10 @@
-##' Random draws from Wishart (nu,V) and IW
-##'
-##' Came from package "bayesm", by Peter Rossi
-##' @param nu parameter of Wishart distribution.
-##' @param V  parameter of Wishart distribution.
-##' @return NA
-##' @export
+#' Random draws from Wishart (nu,V) and IW
+#'
+#' Came from package "bayesm", by Peter Rossi
+#' @param nu parameter of Wishart distribution.
+#' @param V  parameter of Wishart distribution.
+#' @return NA
+#' @export
 rwishart <- function(nu,V)
 {
 ## W ~ W(nu,V)
@@ -31,29 +31,29 @@ rwishart <- function(nu,V)
     ##  W is Wishart draw, IW is W^-1
 }
 
-##' Random draws from Wishart (nu,V) and IW
-##'
-##' Details.
-##' @param df degrees of freedom
-##' @param V Parameters.
-##' @return NA
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @export
+#' Random draws from Wishart (nu,V) and IW
+#'
+#' Details.
+#' @param df degrees of freedom
+#' @param V Parameters.
+#' @return NA
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @export
 riwishart <- function(df, V)
   {
     rwishart(nu = df, V = solve(V))$IW
   }
 
 
-##' Density for the inverse wishart distribution
-##'
-##' Details.
-##' @param X NA
-##' @param df NA
-##' @param V Location matrix
-##' @param log TRUE or FALSE
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @export
+#' Density for the inverse wishart distribution
+#'
+#' Details.
+#' @param X NA
+#' @param df NA
+#' @param V Location matrix
+#' @param log TRUE or FALSE
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @export
 diwishart <- function(X, df, V, log = TRUE)
 {
 

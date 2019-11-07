@@ -1,10 +1,10 @@
-##' Is display open or not.
-##'
-##' A simple way to check if the display is available.
-##' @title is.displayopen
-##' @return TRUE/FALSE
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @export
+#' Is display open or not.
+#'
+#' A simple way to check if the display is available.
+#' @title is.displayopen
+#' @return TRUE/FALSE
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @export
 is.displayopen <- function()
   {
     out <- NA

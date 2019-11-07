@@ -1,11 +1,11 @@
-##' Calculate the distance between all rows of X and Y.
-##' @title Euclidean distance matrix between two matrices
-##' @name  rdist
-##' @param X an `m-by-p` numeric matrix.
-##' @param Y an `n-by-p` numeric matrix.
-##' @param log logical; If TRUE, the log distance matrix is returned.
-##' @return an `m-by-n` numeric matrix.
-##' @export
+#' Calculate the distance between all rows of X and Y.
+#' @title Euclidean distance matrix between two matrices
+#' @name  rdist
+#' @param X an `m-by-p` numeric matrix.
+#' @param Y an `n-by-p` numeric matrix.
+#' @param log logical; If TRUE, the log distance matrix is returned.
+#' @return an `m-by-n` numeric matrix.
+#' @export
 rdist <- function(X, Y, log = TRUE)
 {
     dim.X <- dim(X)

@@ -1,23 +1,23 @@
-##' The generalized hypergeometric function pFq.
-##'
-##' The results are evaluated via the series expansion of Pochhammer symbols.
-##' @param a "n-by-p matrix"
-##' @param b "n-by-q matrix"
-##' @param z "positive vector of length one or n"
-##' @param k "positive integer"
-##'
-##'        Indicates how long of the series should be used. The default value
-##'        is 10.
-##'
-##' @return "n-by-1 matrix"
-##'
-##'       The matrix of length n.
-##'
-##' @references HypergeometricPFQ in Mathematica 10
-##' @author Feng Li, Central University of Finance and Economics.
-##' @note Created: Tue Jan 15 12:36:41 CET 2013;
-##'       Current: Sat May 30 15:07:07 CST 2015.
-##' @export
+#' The generalized hypergeometric function pFq.
+#'
+#' The results are evaluated via the series expansion of Pochhammer symbols.
+#' @param a "n-by-p matrix"
+#' @param b "n-by-q matrix"
+#' @param z "positive vector of length one or n"
+#' @param k "positive integer"
+#'
+#'        Indicates how long of the series should be used. The default value
+#'        is 10.
+#'
+#' @return "n-by-1 matrix"
+#'
+#'       The matrix of length n.
+#'
+#' @references HypergeometricPFQ in Mathematica 10
+#' @author Feng Li, Central University of Finance and Economics.
+#' @note Created: Tue Jan 15 12:36:41 CET 2013;
+#'       Current: Sat May 30 15:07:07 CST 2015.
+#' @export
 ghypergeo <- function(a, b, z, k = 10)
   {
     if(!is.matrix(a)|| !is.matrix(b) ||
@@ -54,7 +54,7 @@ ghypergeo <- function(a, b, z, k = 10)
     return(out)
   }
 
-##' @export
+#' @export
 regghypergeo <- function(a, b, z, k = 10)
 {
   ## the regularized hypergeometric function pFq(a, b, z)/Prod[Gamma(b)]

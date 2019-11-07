@@ -1,26 +1,26 @@
-##' Multivariate Variables for Stocks
-##'
-##' Download and build multivariate responses and covariates from Yahoo Finance.
-##' @param from integer format as YYYYMMDD
-##'
-##' @param to integer format as YYYYMMDD
-##'
-##' @param stocks a vector of characters. The aberrations are same as stocks used in
-##' Yahoo! Finance.
-##'
-##' @param StdDataMethod character. Whether the data should be standardized.
-##'
-##' @param save2diskPath Is not missing, the result will be saved to the path provided
-##' here.
-##'
-##' @param ... Other arguments passed to stock2covarites
-##'
-##' @return list or save to disk.
-##'
-##' @references Li Villani 2012
-##'
-##' @author Feng Li, Central University of Finance and Economics.
-##' @export
+#' Multivariate Variables for Stocks
+#'
+#' Download and build multivariate responses and covariates from Yahoo Finance.
+#' @param from integer format as YYYYMMDD
+#'
+#' @param to integer format as YYYYMMDD
+#'
+#' @param stocks a vector of characters. The aberrations are same as stocks used in
+#' Yahoo! Finance.
+#'
+#' @param StdDataMethod character. Whether the data should be standardized.
+#'
+#' @param save2diskPath Is not missing, the result will be saved to the path provided
+#' here.
+#'
+#' @param ... Other arguments passed to stock2covarites
+#'
+#' @return list or save to disk.
+#'
+#' @references Li Villani 2012
+#'
+#' @author Feng Li, Central University of Finance and Economics.
+#' @export
 MVStocks <- function(from, to, stocks = c("^SML", "^OEX"),
                      StdDataMethod, save2diskPath, ...)
 {

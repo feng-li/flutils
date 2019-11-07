@@ -1,27 +1,27 @@
-##' Construct sensible covariates for stock market data.
-##'
-##' The historical finance data can be obtained from "Yahoo! Finance".
-##'
-##' @title Construct time series covariates.
-##'
-##' @param file "character".  The location of the CSV format file from Yahoo!  Finance
-##' which can be the http address.
-##'
-##' @param g "vector".  Parameters for geometrically averaging.
-##'
-##' @param kappa "scaler".
-##'
-##' @param ma "vector" with integer entries.  Moving average indicator for the returns .
-##'
-##' @return "data.frame".  The returned data frame only contains the non-NA data due to
-##' the moving average procedure.
-##'
-##' @references Geweke, and Keane (2007) p.274
-##'
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##'
-##' @note Created: Thu Jan 05 13:23:35 CET 2012; Current: Mon Sep 28 22:01:20 CST 2015.
-##' @export
+#' Construct sensible covariates for stock market data.
+#'
+#' The historical finance data can be obtained from "Yahoo! Finance".
+#'
+#' @title Construct time series covariates.
+#'
+#' @param file "character".  The location of the CSV format file from Yahoo!  Finance
+#' which can be the http address.
+#'
+#' @param g "vector".  Parameters for geometrically averaging.
+#'
+#' @param kappa "scaler".
+#'
+#' @param ma "vector" with integer entries.  Moving average indicator for the returns .
+#'
+#' @return "data.frame".  The returned data frame only contains the non-NA data due to
+#' the moving average procedure.
+#'
+#' @references Geweke, and Keane (2007) p.274
+#'
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#'
+#' @note Created: Thu Jan 05 13:23:35 CET 2012; Current: Mon Sep 28 22:01:20 CST 2015.
+#' @export
 stock2covariates <- function(file, g = c(0.95, 0.80),
                              kappa = 1, ma = c(1, 5, 20))
 {

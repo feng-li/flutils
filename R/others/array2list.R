@@ -1,11 +1,11 @@
-##' Convert an array (or a matrix) to a list
-##'
-##' Also works with matrices.
-##' @param X "array"
-##' @param MARGIN "integer"
-##' @return "list"
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @export
+#' Convert an array (or a matrix) to a list
+#'
+#' Also works with matrices.
+#' @param X "array"
+#' @param MARGIN "integer"
+#' @return "list"
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @export
 array2list <- function(X, MARGIN)
   {
     dim4X <- dim(X)

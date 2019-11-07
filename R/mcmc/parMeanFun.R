@@ -1,13 +1,13 @@
-##' Transform the mean function in the GLM framework.
-##'
-##' GLM mean function
-##' @param X "matrix"
-##' @param beta "one-col-matrix"
-##' @param linkArgs linkage arguments
-##' @param link "character" Type of link function
-##' @return "one-col-matrix" of the same dimension as the linear predictor
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @export
+#' Transform the mean function in the GLM framework.
+#'
+#' GLM mean function
+#' @param X "matrix"
+#' @param beta "one-col-matrix"
+#' @param linkArgs linkage arguments
+#' @param link "character" Type of link function
+#' @return "one-col-matrix" of the same dimension as the linear predictor
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @export
 parMeanFun <- function(X, beta, linkArgs)
 {
     ## Input each observation x'b  -> l(phi) = x'b -> phi
@@ -105,7 +105,7 @@ parMeanFun <- function(X, beta, linkArgs)
 
 
 ## Slightly modify the par to avoid under/over flow in parLinkFun()
-##' @export
+#' @export
 parRestricFun <- function(par, linkArgs)
 {
     tol <- 1e-6

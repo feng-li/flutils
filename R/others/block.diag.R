@@ -1,14 +1,14 @@
-##' Create a block diagonal matrix.
-##'
-##' For very large matrix. Consider using .bdiag() function in package "Matrix".
-##' @title Block diagonal matrix.
-##' @param x "list" contains the block matrices
-##' @return "matrix" The block diagonal matrix.
-##' @references Modified from R-help list.
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note Created: Thu Feb 03 19:16:21 CET 2011;
-##'       Current: Sun Mar 04 17:14:51 CET 2012.
-##' @export
+#' Create a block diagonal matrix.
+#'
+#' For very large matrix. Consider using .bdiag() function in package "Matrix".
+#' @title Block diagonal matrix.
+#' @param x "list" contains the block matrices
+#' @return "matrix" The block diagonal matrix.
+#' @references Modified from R-help list.
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @note Created: Thu Feb 03 19:16:21 CET 2011;
+#'       Current: Sun Mar 04 17:14:51 CET 2012.
+#' @export
 block.diag <- function(x)
   {
     if(!is.list(x))

@@ -1,22 +1,22 @@
-##' Locate knots in a m-space using Villani(2009)'s algorithm.
-##'
-##' This is the algorithm for determining the knots locations for a give global radius e>0
-##' and a local radius skrinkage factor. The details can be foudn in Villani (2009)
-##' @param x "matrix".
-##'         The data matrix without intercept.
-##' @param e "numeric".
-##'         The radius for the Mahalanobis e-ball.
-##' @param RadiusShrink "numeric".
-##'         The radius shrinkage factor for the Mahalanobis e-ball
-##'
-##' @return "list" `n.knots` ("numeric") gives the no. of knots returned. `location`
-##'     ("matrix") gives the knots location.
-##'
-##' @references  Appendix C. in Villani et al (2009)
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version:  Wed Mar 10 14:03:31  CET 2010;
-##'       Current:        Sat Sep 18 18:57:24 CEST 2010.
-##' @export
+#' Locate knots in a m-space using Villani(2009)'s algorithm.
+#'
+#' This is the algorithm for determining the knots locations for a give global radius e>0
+#' and a local radius skrinkage factor. The details can be foudn in Villani (2009)
+#' @param x "matrix".
+#'         The data matrix without intercept.
+#' @param e "numeric".
+#'         The radius for the Mahalanobis e-ball.
+#' @param RadiusShrink "numeric".
+#'         The radius shrinkage factor for the Mahalanobis e-ball
+#'
+#' @return "list" `n.knots` ("numeric") gives the no. of knots returned. `location`
+#'     ("matrix") gives the knots location.
+#'
+#' @references  Appendix C. in Villani et al (2009)
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @note First version:  Wed Mar 10 14:03:31  CET 2010;
+#'       Current:        Sat Sep 18 18:57:24 CEST 2010.
+#' @export
 locate.knots <- function(x, e, RadiusShrink)
 {
   dim.x <- dim(x)

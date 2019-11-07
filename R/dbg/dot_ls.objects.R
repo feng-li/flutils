@@ -1,11 +1,11 @@
-##' List the object size
+#' List the object size
 
-##' Modified from Dirk Eddelbuettel's version
-##' http://stackoverflow.com/questions/1358003/tricks-to-manage-the-available-memory-in-an-r-session
+#' Modified from Dirk Eddelbuettel's version
+#' http://stackoverflow.com/questions/1358003/tricks-to-manage-the-available-memory-in-an-r-session
 
-##' improved list of objects
-##' TODO: Better default sorting
-##' @export
+#' improved list of objects
+#' TODO: Better default sorting
+#' @export
 .ls.objects <- function (pos = 1, pattern, order.by,
                         decreasing=FALSE, head=FALSE, n=5)
 {

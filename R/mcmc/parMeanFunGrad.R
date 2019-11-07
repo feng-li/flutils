@@ -1,14 +1,14 @@
-##' The gradient for the mean function in the GLM framework.
-##'
-##' <details>
-##' @param par "vector"
-##' @param linkArgs "list"
-##' @return "matrix" of the same dimension as the linear predictor
-##' @references Li 2012
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note Created: Thu Nov 24 11:46:32 CET 2011;
-##'       Current: Thu Nov 24 11:46:39 CET 2011.
-##' @export
+#' The gradient for the mean function in the GLM framework.
+#'
+#' <details>
+#' @param par "vector"
+#' @param linkArgs "list"
+#' @return "matrix" of the same dimension as the linear predictor
+#' @references Li 2012
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @note Created: Thu Nov 24 11:46:32 CET 2011;
+#'       Current: Thu Nov 24 11:46:39 CET 2011.
+#' @export
 parMeanFunGrad <- function(par, linkArgs)
 {
     ## Input x'b  -> l(phi) = x'b -> phi

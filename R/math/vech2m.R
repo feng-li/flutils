@@ -1,12 +1,12 @@
-##' Convert from the vech vector to the full matrix.
-##'
-##'
-##' Vech to matrix
-##' @param vech Vech vector
-##' @param diag TRUE or FALSE
-##' @return Full matrix
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @export
+#' Convert from the vech vector to the full matrix.
+#'
+#'
+#' Vech to matrix
+#' @param vech Vech vector
+#' @param diag TRUE or FALSE
+#' @return Full matrix
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @export
 vech2m <- function(vech, diag = TRUE)
 {
   c <- length(vech)

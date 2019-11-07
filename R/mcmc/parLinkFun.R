@@ -1,11 +1,11 @@
-##' Transform the mean function in the GLM framework.
-##'
-##' This function create the linkage.
-##' @param mu mean
-##' @param linkArgs linking arguments
-##' @return "one-col-matrix" of the same dimension as the linear predictor
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @export
+#' Transform the mean function in the GLM framework.
+#'
+#' This function create the linkage.
+#' @param mu mean
+#' @param linkArgs linking arguments
+#' @return "one-col-matrix" of the same dimension as the linear predictor
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @export
 parLinkFun <- function(mu, linkArgs)
 {
     ## Input each observation x'b  -> l(phi) = x'b -> phi

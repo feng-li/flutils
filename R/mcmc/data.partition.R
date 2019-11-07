@@ -1,14 +1,14 @@
-##' Partition data index for cross validation.
-##'
-##'
-##' @param nObs "positive numeric"
-##' @param args list N: no. of subsets,  method: how to partition
-##' @return "list" The prediction subsets.
-##' @references Li Villani Kohn 2010
-##' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
-##' @note First version: Mon Sep 20 21:08:01 CEST 2010;
-##'       Current:       Mon Sep 20 21:08:11 CEST 2010.
-##' @export
+#' Partition data index for cross validation.
+#'
+#'
+#' @param nObs "positive numeric"
+#' @param args list N: no. of subsets,  method: how to partition
+#' @return "list" The prediction subsets.
+#' @references Li Villani Kohn 2010
+#' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
+#' @note First version: Mon Sep 20 21:08:01 CEST 2010;
+#'       Current:       Mon Sep 20 21:08:11 CEST 2010.
+#' @export
 data.partition <- function(nObs, args)
 {
     partiMethod <- args[["partiMethod"]]
