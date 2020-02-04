@@ -1,7 +1,6 @@
 #' @export
 package.flatten <- function(project = NULL)
 {
-    browser()
     {if((length(project) == 1L))
      {
          projectHome <- normalizePath(project)
