@@ -20,10 +20,12 @@ SEE ALSO:
     flutils/systools/sourceDir()
 
 ");q("no")}
-if("flutils" %in% installed.packages())
+if(("flutils" %in% installed.packages()))
 {
-    project.flatten <- flutils::package.flatten(project)
-} else {
+    project.flatten <- try(flutils::package.flatten(project), silent = TRUE)
+}
+if(is(project.flatten, "try-error"))
+{
     source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
     project.flatten <- package.flatten(project)
 }

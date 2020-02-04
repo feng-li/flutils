@@ -1,7 +1,7 @@
 #' @export
 package.flatten <- function(project = NULL)
 {
-
+    browser()
     {if((length(project) == 1L))
      {
          projectHome <- normalizePath(project)
@@ -16,7 +16,7 @@ package.flatten <- function(project = NULL)
         }}
 
     projectName <- basename(projectHome)
-    pkg.tmpdir <- tempdir()
+    pkg.tmpdir <- tempdir(check = TRUE)
     pkg.tmpdirProject <- file.path(pkg.tmpdir, projectName)
     pkg.tmpdirProjectR <- file.path(pkg.tmpdir, projectName, "R")
     pkg.tmpdirProjectRtmp <- file.path(pkg.tmpdir, projectName, "Rtmp")
@@ -39,7 +39,7 @@ package.flatten <- function(project = NULL)
     dir.create(pkg.tmpdirProjectR, recursive = TRUE)
 
     RtmpFiles = list.files(pkg.tmpdirProjectRtmp, pattern = "\\.[Rr]$", recursive = TRUE)
-    RFilesNameNew = gsub(x = RtmpFiles, pattern = .Platform$path.sep, replacement="__")
+    RFilesNameNew = gsub(x = RtmpFiles, pattern = .Platform$file.sep, replacement="__")
 
     for(i in 1:length(RtmpFiles))
     {
