@@ -48,6 +48,7 @@ pbeta2 <- function(q, mean, sd, ncp = 0, lower.tail=TRUE,
 
     return(out)
   }
+#' @export
 qbeta2 <- function(p, mean, sd, ncp = 0, lower.tail=TRUE,
                    log.p = FALSE, cond.warning = TRUE)
   {
@@ -67,6 +68,7 @@ qbeta2 <- function(p, mean, sd, ncp = 0, lower.tail=TRUE,
 
     return(out)
   }
+#' @export
 dbeta2 <- function(x, mean, sd, ncp = 0,
                    log = FALSE, cond.warning = TRUE)
   {
