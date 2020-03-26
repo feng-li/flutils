@@ -30,4 +30,4 @@ if(is(project.flatten, "try-error"))
     project.flatten <- package.flatten(project)
 }
 devtools::document(project.flatten)
-devtools::install_local(project.flatten, force = TRUE)
+devtools::install_local(project.flatten, force = TRUE, upgrade = "never")
