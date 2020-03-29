@@ -8,5 +8,5 @@ Maintainer: Feng Li <feng.li@cufe.edu.cn>
 Description: Utility function for various models.
 License: GPL (>=2.0)
 LazyLoad: yes
-RoxygenNote: 6.0.1
+RoxygenNote: 7.0.2
 Encoding: UTF-8
