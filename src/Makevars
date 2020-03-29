@@ -1,4 +1,4 @@
 .PHONY: all
 
 all:
-	$(R_HOME)/bin$(R_ARCH)/Rscript  -e 'sapply(list.files("../R", pattern = "\\.[Rr]$\", recursive=TRUE), file.symlink, "../R")'
+	$(R_HOME)/bin$(R_ARCH)/Rscript --no-restore --no-save  -e 'flatten=sapply(list.files("../R", pattern = "\\.[RrSs]$\", recursive = TRUE, full.names = TRUE), file.copy, "../R")'
