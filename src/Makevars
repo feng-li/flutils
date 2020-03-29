@@ -1,1 +1,4 @@
-FLATTEN="$(R_HOME)/bin$(R_ARCH)/Rscript --no-restore --no-save"  -e 'sapply(list.files("../R", pattern = "\\.[Rr]$", recursive=TRUE), file.symlink, "../R")'
+.PHONY: all
+
+all:
+	$(R_HOME)/bin$(R_ARCH)/Rscript  -e 'sapply(list.files("../R", pattern = "\\.[Rr]$\", recursive=TRUE), file.symlink, "../R")'
