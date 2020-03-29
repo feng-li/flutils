@@ -30,6 +30,7 @@ This function simulates random samples from a finite mixture of Gaussian distrib
 \examples{
 n = 1000
 means.ar.par.list = list(c(0, 0.8), c(0, 0.6, 0.3))
+require("mvtnorm")
 require("fGarch")
 sigmas.spec <- list(garchSpec(model = list(alpha = c(0.05, 0.06)), cond.dist = "norm"),
                     garchSpec(model = list(alpha = c(0.05, 0.05)), cond.dist = "norm"))

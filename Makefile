@@ -1,5 +1,3 @@
-PKG_NAME=$(shell grep -i ^package DESCRIPTION | cut -d : -d \  -f 2)
-
 all: flatten docs install
 
 flatten:

@@ -11,7 +11,9 @@
 #' @return An `n-by-q` matrix
 #' @references Villani et al 2009
 #' @author Feng Li, Central University of Finance and Economics.
+#' @import mvtnorm
 #' @examples
+#' require("mvtnorm")
 #' n <- 1000
 #' means <- matrix(c(-5, 0, 5), 1)
 #' sigmas <- array(c(1, 1, 1), c(1, 1, 3))
@@ -59,7 +61,9 @@ rmixnorm <- function(n, means, sigmas, weights)
 #' @return An `n-by-q` matrix
 #' @references Villani et al 2009
 #' @author Feng Li, Central University of Finance and Economics.
+#' @import mvtnorm
 #' @examples
+#' require("mvtnorm")
 #' n <- 1
 #' means <- matrix(c(-5, 0, 5), 1)
 #' sigmas <- array(c(1, 1, 1), c(1, 1, 3))
@@ -114,10 +118,12 @@ dmixnorm <- function(x, means, sigmas, weights, log = FALSE)
 #' @param yinit initial values
 #' @return vector of n follows a mixture distribution
 #' @references Li 2010 JSPI
+#' @import mvtnorm
 #' @author Feng Li, Central University of Finance and Economics.
 #' @examples
 #' n = 1000
 #' means.ar.par.list = list(c(0, 0.8), c(0, 0.6, 0.3))
+#' require("mvtnorm")
 #' require("fGarch")
 #' sigmas.spec <- list(garchSpec(model = list(alpha = c(0.05, 0.06)), cond.dist = "norm"),
 #'                     garchSpec(model = list(alpha = c(0.05, 0.05)), cond.dist = "norm"))
@@ -171,9 +177,11 @@ rmixnorm.ts <- function(n, means.ar.par.list, sigmas.list, weights, yinit = 0)
 #' @param sigmas.list A `k`-length lilst.
 #' @param weights A `k`-length vector. The weight in each component.
 #' @param log Logical; If TRUE, the log density is returned.
+#' @import mvtnorm
 #' @examples
 #' n = 1000
 #' means.ar.par.list = list(c(0, 0.8), c(0, 0.6, 0.3))
+#' require("mvtnorm")
 #' require("fGarch")
 #' sigmas.spec <- list(garchSpec(model = list(alpha = c(0.05, 0.06)), cond.dist = "norm"),
 #'                     garchSpec(model = list(alpha = c(0.05, 0.05)), cond.dist = "norm"))

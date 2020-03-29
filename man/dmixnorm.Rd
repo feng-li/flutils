@@ -27,6 +27,7 @@ Density for univariate and multivariate mixture normal distribution
 Density from mixture of normals.
 }
 \examples{
+require("mvtnorm")
 n <- 1
 means <- matrix(c(-5, 0, 5), 1)
 sigmas <- array(c(1, 1, 1), c(1, 1, 3))

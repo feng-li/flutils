@@ -27,6 +27,7 @@ Generate random variables from univariate and multivariate mixture normal distri
 Random variables from mixture of normals.
 }
 \examples{
+require("mvtnorm")
 n <- 1000
 means <- matrix(c(-5, 0, 5), 1)
 sigmas <- array(c(1, 1, 1), c(1, 1, 3))

@@ -5,8 +5,12 @@ Version: 0.2
 Date: 2017-01-01
 Author: Feng Li
 Maintainer: Feng Li <feng.li@cufe.edu.cn>
+Depends:
+         R (>= 3.5.1)
+Imports:
+         mvtnorm
 Description: Utility function for various models.
-License: GPL (>=2.0)
+License: GPL (>= 2.0)
 LazyLoad: yes
 RoxygenNote: 7.0.2
 Encoding: UTF-8
