@@ -30,32 +30,31 @@ file is used to do the the trick.
 - **Standard Installation** Install with
   [`devtools`](https://cran.r-project.org/web/packages/devtools/)
 
-        ```R
+        ```r
         devtools::install_github("feng-li/flutils")
         ```
-
-
-
 
 - **Alternative Installation**
 
     - Clone the package from GitHub
 
-            $ git clone git@github.com:feng-li/flutils.git
-
+          ```sh
+          $ git clone git@github.com:feng-li/flutils.git
+          ```
     - Now within R
 
-            ```R
-            source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
-            project.flatten <- package.flatten("/path/to/flutils/")
-            devtools::document(project.flatten)
-            devtools::install_local(project.flatten, force = TRUE)
-            ```
+          ```r
+          source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
+          project.flatten <- package.flatten("/path/to/flutils/")
+          devtools::document(project.flatten)
+          devtools::install_local(project.flatten, force = TRUE)
+          ```
 
     - Or under Linux system, you can install them to your system with this script.
 
-        $ ./flutils/inst/bin/install.HS  flutils
-
+          ```sh
+          $ ./flutils/inst/bin/install.HS  flutils
+          ```
 
 Copyrights
 ----------
