@@ -12,5 +12,6 @@ Imports:
 Description: Utility function for various models.
 License: GPL (>= 2.0)
 LazyLoad: yes
+NeedsCompilation: no
 RoxygenNote: 7.0.2
 Encoding: UTF-8
