@@ -27,21 +27,20 @@ The package has a hierarchical code structure that R does not support (see [this
 discussion](https://bugs.r-project.org/bugzilla/show_bug.cgi?id=17258)). A `src/Makevars`
 file is used to do the the trick.
 
-- **Standard Installation** Install with
+- **Standard Installation (Linux/Mac)** Install with
   [`devtools`](https://cran.r-project.org/web/packages/devtools/)
-
  
         devtools::install_github("feng-li/flutils")
  
 
-- **Alternative Installation**
+- **Alternative Installation (Windows)**
 
     - Clone the package from GitHub
  
           $ git clone git@github.com:feng-li/flutils.git
+          $ rm -rf src
  
-    - Now within R
-
+    - Now eith within R
  
           source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
           project.flatten <- package.flatten("/path/to/flutils/")
@@ -49,7 +48,6 @@ file is used to do the the trick.
           devtools::install_local(project.flatten, force = TRUE)
  
     - Or under Linux system, you can install them to your system with this script.
-
   
           $ ./flutils/inst/bin/install.HS  flutils
  
