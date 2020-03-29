@@ -24,28 +24,38 @@ Installation
 ------------
 
 The package has a hierarchical code structure that R does not support (see [this
-discussion](https://bugs.r-project.org/bugzilla/show_bug.cgi?id=17258)). You have to
-follow the steps to install it manually.
+discussion](https://bugs.r-project.org/bugzilla/show_bug.cgi?id=17258)). A `src/Makevars`
+file is used to do the the trick.
 
-- Clone the package from GitHub
+- **Standard Installation** Install with
+  [`devtools`](https://cran.r-project.org/web/packages/devtools/)
 
-        $ git clone git@github.com:feng-li/flutils.git
+        ```R
+        devtools::install_github("feng-li/flutils")
+        ```
 
-- Now within R
 
-        source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
-        project.flatten <- package.flatten("/path/to/flutils/")
-        devtools::document(project.flatten)
-        devtools::install_local(project.flatten, force = TRUE)
 
-    Or under Linux system, you can install them to your system with this script.
+
+- **Alternative Installation**
+
+    - Clone the package from GitHub
+
+            $ git clone git@github.com:feng-li/flutils.git
+
+    - Now within R
+
+            ```R
+            source("https://raw.githubusercontent.com/feng-li/flutils/master/R/systools/package.flatten.R")
+            project.flatten <- package.flatten("/path/to/flutils/")
+            devtools::document(project.flatten)
+            devtools::install_local(project.flatten, force = TRUE)
+            ```
+
+    - Or under Linux system, you can install them to your system with this script.
 
         $ ./flutils/inst/bin/install.HS  flutils
 
-TODO
-----
-
-Documentations are not well presented.
 
 Copyrights
 ----------
