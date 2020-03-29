@@ -1,6 +1,6 @@
 #' Close all graphics devices.
 #' @export
-close.all <- function()
+close_all <- function()
 {
     graphics.off()
     ## try(rgl.quit(), silent = TRUE)
