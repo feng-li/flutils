@@ -6,16 +6,13 @@
 #'
 #' @param x "matrix".
 #'         n-by-m. Covariates matrix *without* intercept.
-#' @param n.knots "integer".
-#'         Number of knots used.
 #' @param method "character".
 #'         Method to be use in the knots locating method. Currently value are "k-means",
 #'         "mahalanobis-eball" which came from Villani et al (2009) and "es" for equal
 #'         spaced sample quantile with single covariate and "random".
-#' @param args "list".
-#'         Other arguments need to pass to the function w.r.t different "method". When
-#'         method is "mahalanobis-eball", you need to provide:
-#'         args$RadiusShrink: "numeric", the radus shrinkage for the ball.
+#' @param splineArgs "list".
+#'         Spline settings. The function uses entries such as `comp`,
+#'         `thinplate.s.dim`, and `thinplate.a.locate`.
 #'
 #' @return "list".
 #'         A list with knots locations for given numbers of knots.

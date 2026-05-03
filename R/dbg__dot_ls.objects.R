@@ -4,7 +4,13 @@
 #' http://stackoverflow.com/questions/1358003/tricks-to-manage-the-available-memory-in-an-r-session
 
 #' improved list of objects
-#' TODO: Better default sorting
+#' @param pos Environment position passed to `ls()` and `get()`.
+#' @param pattern Optional object name pattern passed to `ls()`.
+#' @param order.by Optional output column name used for sorting.
+#' @param decreasing Logical; if `TRUE`, sort decreasing.
+#' @param head Logical; if `TRUE`, return only the first `n` rows.
+#' @param n Number of rows returned when `head = TRUE`.
+#' @return A data frame with object type, size, rows, and columns.
 #' @export
 .ls.objects <- function (pos = 1, pattern, order.by,
                         decreasing=FALSE, head=FALSE, n=5)

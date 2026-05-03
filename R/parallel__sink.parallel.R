@@ -1,3 +1,9 @@
+#' Redirect output on parallel workers
+#'
+#' @param cl A cluster object.
+#' @param file Optional sink target. If missing, each worker writes to a file
+#'   named from its host and process id; if supplied, worker sinks are reset.
+#' @return The result of calling `parallel::clusterCall()` invisibly.
 #' @export
 sink.parallel <- function(cl, file)
 {
@@ -16,8 +22,7 @@ sink.parallel <- function(cl, file)
     }
 
 
-    require("parallel")
-    clusterCall(cl = cl, fun = function(file.gen)
+    parallel::clusterCall(cl = cl, fun = function(file.gen)
     {
         if(file.gen ==  "create")
         {

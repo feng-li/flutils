@@ -52,13 +52,14 @@ rmixnorm <- function(n, means, sigmas, weights)
 #'
 #' Density from mixture of normals.
 #' @title Density for normal mixtures
-#' @param n An positive integer. Numbers of samples to be generated.
+#' @param x A numeric vector or matrix of observations.
 #' @param means A `q-by-k` matrix. Mean value vector within each component in total k
 #'     components.
 #' @param sigmas A `q-by-q-by-k` array.  Variance covariance matrix with in each
 #'     component.
 #' @param weights A `k`-length vector.  The weight in each component.
-#' @return An `n-by-q` matrix
+#' @param log Logical; if TRUE, return the log density.
+#' @return A numeric density value.
 #' @references Villani et al 2009
 #' @author Feng Li, Central University of Finance and Economics.
 #' @import mvtnorm
@@ -123,16 +124,24 @@ dmixnorm <- function(x, means, sigmas, weights, log = FALSE)
 #' @examples
 #' n = 1000
 #' means.ar.par.list = list(c(0, 0.8), c(0, 0.6, 0.3))
-#' require("mvtnorm")
-#' require("fGarch")
-#' sigmas.spec <- list(garchSpec(model = list(alpha = c(0.05, 0.06)), cond.dist = "norm"),
-#'                     garchSpec(model = list(alpha = c(0.05, 0.05)), cond.dist = "norm"))
-#' sigmas.list <- lapply(lapply(sigmas.spec, garchSim, extended = TRUE, n = n),
-#'                       function(x) x$sigma)
-#' weights <- c(0.8, 0.2)
-#' y = rmixnorm.ts(n = n, means.ar.par.list = means.ar.par.list, sigmas.list = sigmas.list,
-#'                 weights = weights)
-#' plot(y, type = "l")
+#' if (requireNamespace("fGarch", quietly = TRUE)) {
+#'   sigmas.spec <- list(
+#'     fGarch::garchSpec(model = list(alpha = c(0.05, 0.06)), cond.dist = "norm"),
+#'     fGarch::garchSpec(model = list(alpha = c(0.05, 0.05)), cond.dist = "norm")
+#'   )
+#'   sigmas.list <- lapply(
+#'     lapply(sigmas.spec, fGarch::garchSim, extended = TRUE, n = n),
+#'     function(x) x$sigma
+#'   )
+#'   weights <- c(0.8, 0.2)
+#'   y <- rmixnorm.ts(
+#'     n = n,
+#'     means.ar.par.list = means.ar.par.list,
+#'     sigmas.list = sigmas.list,
+#'     weights = weights
+#'   )
+#'   plot(y, type = "l")
+#' }
 #'
 #' @export
 rmixnorm.ts <- function(n, means.ar.par.list, sigmas.list, weights, yinit = 0)
@@ -181,17 +190,30 @@ rmixnorm.ts <- function(n, means.ar.par.list, sigmas.list, weights, yinit = 0)
 #' @examples
 #' n = 1000
 #' means.ar.par.list = list(c(0, 0.8), c(0, 0.6, 0.3))
-#' require("mvtnorm")
-#' require("fGarch")
-#' sigmas.spec <- list(garchSpec(model = list(alpha = c(0.05, 0.06)), cond.dist = "norm"),
-#'                     garchSpec(model = list(alpha = c(0.05, 0.05)), cond.dist = "norm"))
-#' sigmas.list <- lapply(lapply(sigmas.spec, garchSim, extended = TRUE, n = n),
-#'                       function(x) x$sigma)
-#' weights <- c(0.8, 0.2)
-#' y = rmixnorm.ts(n = n, means.ar.par.list = means.ar.par.list, sigmas.list = sigmas.list,
-#'                 weights = weights)
-#' out = dmixnorm.ts(y = y, means.ar.par.list = means.ar.par.list,
-#'                   sigmas.list = sigmas.list, weights = weights, log = TRUE)
+#' if (requireNamespace("fGarch", quietly = TRUE)) {
+#'   sigmas.spec <- list(
+#'     fGarch::garchSpec(model = list(alpha = c(0.05, 0.06)), cond.dist = "norm"),
+#'     fGarch::garchSpec(model = list(alpha = c(0.05, 0.05)), cond.dist = "norm")
+#'   )
+#'   sigmas.list <- lapply(
+#'     lapply(sigmas.spec, fGarch::garchSim, extended = TRUE, n = n),
+#'     function(x) x$sigma
+#'   )
+#'   weights <- c(0.8, 0.2)
+#'   y <- rmixnorm.ts(
+#'     n = n,
+#'     means.ar.par.list = means.ar.par.list,
+#'     sigmas.list = sigmas.list,
+#'     weights = weights
+#'   )
+#'   out <- dmixnorm.ts(
+#'     y = y,
+#'     means.ar.par.list = means.ar.par.list,
+#'     sigmas.list = sigmas.list,
+#'     weights = weights,
+#'     log = TRUE
+#'   )
+#' }
 #' @export
 dmixnorm.ts <- function(y, means.ar.par.list, sigmas.list, weights, log = FALSE)
 {
@@ -230,7 +252,7 @@ dmixnorm.ts <- function(y, means.ar.par.list, sigmas.list, weights, log = FALSE)
     }
     else
     {
-        out <- exp(log)
+        out <- exp(out.log)
     }
     return(out)
 }

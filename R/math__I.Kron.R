@@ -1,3 +1,10 @@
+#' Block diagonal Kronecker product with an identity matrix
+#'
+#' Construct `kronecker(diag(n), X)`.
+#'
+#' @param n A positive integer.
+#' @param X A matrix.
+#' @return A block diagonal matrix with `n` copies of `X`.
 #' @export
 I.Kron <- function(n,X)
 {

@@ -1,6 +1,8 @@
 #' Check if a square matrix is computational singular
 #'
-#' @param X squared matrix
+#' @param X A square matrix or Matrix object.
+#' @param tol Numeric tolerance below which the reciprocal condition number is
+#'   treated as singular.
 #' @return TRUE/FALSE
 #' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 #' @note Created: Mon Jan 02 17:58:12 CET 2012;

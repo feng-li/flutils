@@ -11,9 +11,6 @@
 #'         Method to be used in the approximation. Possible value may be "outer"
 #'         for outer product of gradient.
 #'
-#' @param matrix "Logical" Should the Hessian matrix be returned or just the
-#'         diagonal vector.
-#'
 #' @references
 #'         Villani et al (2009);
 #'         Li et al(2010a, b);

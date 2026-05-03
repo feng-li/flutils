@@ -15,7 +15,7 @@
   return(out)
 }
 
-## X %*% diag(d).
+#' @rdname grapes-d-times-grapes
 #' @export
 "%*d%" <- Md <- function(M, d)
 {
@@ -26,7 +26,7 @@
   return(out)
 }
 
-## diag(d) %*% M %*% diag(d) and M is a squared matrix.
+#' @rdname grapes-d-times-grapes
 #' @export
 "%d*d%" <- dMd <- function(d, M)
 {
@@ -38,7 +38,8 @@
   return(out)
 }
 
-## t(M) %*% diag(d) %*% N
+#' @rdname grapes-d-times-grapes
+#' @param N A dense matrix used by `tMdN()`.
 #' @export
 tMdN <- function(M, d, N = M)
 {
@@ -49,7 +50,10 @@ tMdN <- function(M, d, N = M)
   return(out)
 }
 
-## Built diag(n) in a much faster way.
+#' Fast identity matrix
+#'
+#' @param n A positive integer giving the matrix dimension.
+#' @return An `n` by `n` identity matrix.
 #' @export
 diag1 <- function(n)
   {

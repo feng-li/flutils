@@ -54,6 +54,7 @@ ghypergeo <- function(a, b, z, k = 10)
     return(out)
   }
 
+#' @rdname ghypergeo
 #' @export
 regghypergeo <- function(a, b, z, k = 10)
 {

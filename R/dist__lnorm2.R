@@ -2,6 +2,7 @@
 #'
 #' See help("rlnorm") for the details for the log-normal distribution.
 #' @title Log-normal distribution with alternative parametrization.
+#' @param n Number of random draws.
 #' @param mean "vector" the mean value of the log-normal distribution.
 #' @param sd "vector" the variance of the log-normal distribution.
 #' @return See the corresponding help for the usual log-normal functions.

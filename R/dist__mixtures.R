@@ -1,3 +1,17 @@
+#' Mixture distributions
+#'
+#' Density, distribution, random generation, quantiles, and moments for finite
+#' mixtures. Currently the implemented `type` is `"splitt"`.
+#'
+#' @param x,q,p Numeric vector of evaluation points or probabilities.
+#' @param n Number of random draws.
+#' @param type Character distribution type.
+#' @param par.list List of component parameters. For `type = "splitt"`, this
+#'   contains `mu`, `df`, `phi`, `lmd`, and `weights` matrices.
+#' @param log Logical; if `TRUE`, return log density or log probability.
+#' @param args Optional list of algorithm settings.
+#' @return A numeric vector.
+#' @name mixture
 #' @export
 dmixture <- function(x, type, par.list, log = FALSE)
 {
@@ -35,6 +49,7 @@ dmixture <- function(x, type, par.list, log = FALSE)
     return(out)
 }
 
+#' @rdname mixture
 #' @export
 pmixture <- function(q, type, par.list,  log = FALSE)
 {
@@ -71,6 +86,7 @@ pmixture <- function(q, type, par.list,  log = FALSE)
     return(out)
 }
 
+#' @rdname mixture
 #' @export
 rmixture <- function(n, type, par.list)
 {
@@ -107,6 +123,7 @@ rmixture <- function(n, type, par.list)
 
 
 
+#' @rdname mixture
 #' @export
 qmixture <- function(p, type, par.list, args = list(nSim = 1000))
 {
@@ -138,6 +155,7 @@ qmixture <- function(p, type, par.list, args = list(nSim = 1000))
     return(out.q)
 }
 
+#' @rdname mixture
 #' @export
 mixture.mean <- function(type, par.list)
 {
@@ -163,6 +181,7 @@ mixture.mean <- function(type, par.list)
     return(out)
 }
 
+#' @rdname mixture
 #' @export
 mixture.var <- function(type, par.list)
 {

@@ -1,3 +1,11 @@
+#' Flatten hierarchical package R sources
+#'
+#' Copy a package project to a temporary directory and flatten nested `R/`
+#' source paths into top-level `R/*.R` files using `__` as the separator.
+#'
+#' @param project Optional path to the package project. Defaults to the current
+#'   working directory.
+#' @return Invisibly, the path to the flattened temporary package directory.
 #' @export
 package.flatten <- function(project = NULL)
 {

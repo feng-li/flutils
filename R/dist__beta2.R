@@ -4,14 +4,20 @@
 #' mean and standard deviation should be in (0, 1) and (0, mean(1-mean)),
 #' respectively.
 #' @title The reparameterized beta distribution
+#' @param n Number of random draws.
+#' @param x,p Quantiles or probabilities.
 #' @param mean "numeric" The mean value of beta distribution.
 #' @param sd  "numeric" The standard deviation of beta distribution.
+#' @param ncp Non-centrality parameter passed to beta distribution functions.
+#' @param lower.tail,log.p Logical flags passed to beta distribution functions.
+#' @param log Logical; if `TRUE`, return log density.
 #' @param cond.warning "logical" If warning should be printed if NA produced.
 #' @return See the return of beta distribution.
 #' @references Li,  2012
 #' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 #' @note Created: Tue Apr 10 19:15:06 CEST 2012;
 #'       Current: Tue Apr 10 19:15:11 CEST 2012.
+#' @name beta2
 #' @export
 rbeta2 <- function(n, mean, sd, ncp = 0, cond.warning = TRUE)
   {
@@ -48,6 +54,7 @@ pbeta2 <- function(q, mean, sd, ncp = 0, lower.tail=TRUE,
 
     return(out)
   }
+#' @rdname beta2
 #' @export
 qbeta2 <- function(p, mean, sd, ncp = 0, lower.tail=TRUE,
                    log.p = FALSE, cond.warning = TRUE)
@@ -68,6 +75,7 @@ qbeta2 <- function(p, mean, sd, ncp = 0, lower.tail=TRUE,
 
     return(out)
   }
+#' @rdname beta2
 #' @export
 dbeta2 <- function(x, mean, sd, ncp = 0,
                    log = FALSE, cond.warning = TRUE)

@@ -1,4 +1,4 @@
-inhull <- function(testpts, calpts, hull=convhulln(calpts),
+inhull <- function(testpts, calpts, hull = NULL,
                    tol=mean(mean(abs(calpts)))*sqrt(.Machine$double.eps))
 {
   ## #++++++++++++++++++++
@@ -49,11 +49,14 @@ inhull <- function(testpts, calpts, hull=convhulln(calpts),
 
   ## ensure arguments are matrices (not data frames) and get sizes
 
-  require("geometry", quietly=TRUE) # for convhulln
-  require("MASS", quietly=TRUE) # for Null
-
   calpts <- as.matrix(calpts)
   testpts <- as.matrix(testpts)
+  if (is.null(hull)) {
+    if (!requireNamespace("geometry", quietly = TRUE)) {
+      stop("Package 'geometry' is required to compute the convex hull.")
+    }
+    hull <- getExportedValue("geometry", "convhulln")(calpts)
+  }
   p <- dim(calpts)[2] # columns in calpts
   cx <- dim(testpts)[1] # rows in testpts
   nt <- dim(hull)[1] # number of simplexes in hull
@@ -64,7 +67,7 @@ inhull <- function(testpts, calpts, hull=convhulln(calpts),
   degenflag <- matrix(TRUE, nt, 1)
   for (i in 1:nt)
     {
-      nullsp <- t(Null(t(calpts[hull[i,-1],] - matrix(calpts[hull[i,1],],p-1,p,
+      nullsp <- t(MASS::Null(t(calpts[hull[i,-1],] - matrix(calpts[hull[i,1],],p-1,p,
                                                       byrow=TRUE))))
 
       if (dim(nullsp)[1] == 1)

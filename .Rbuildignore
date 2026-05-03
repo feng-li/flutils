@@ -1,0 +1,4 @@
+^.*[.]Rcheck$
+^.*[.]tar[.]gz$
+^[.]agents$
+^[.]codex$

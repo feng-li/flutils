@@ -1,31 +1,9 @@
-## K:
-##   Make a commutation matrix
-
-## Description:
-##   A fast way to make a commutation matrix.
-
-## Usage:
-##   K(m, n)
-
-## Arguments:
-##   m:       "Integer".
-##   n:       "Integer".
-
-## Details:
-##   Both 'm' and 'n' shoud be positive integers
-
-## Value:
-##   A matrix with dimension of "mn--by--mn".
-
-## Author:
-##   Feng Li <feng.li@cufe.edu.cn>, Dept. of Statistics, Stockholm University, Sweden.
-
-## License: GPL(>=2)
-
-## Version:
-##   First:       Tue Mar  9 16:00:06 CET 2010
-##   Current:     Wed Mar 14 19:02:51 CET 2012
-
+#' Commutation matrix
+#'
+#' Construct the `mn` by `mn` commutation matrix.
+#'
+#' @param m,n Positive integer matrix dimensions.
+#' @return A commutation matrix with dimension `m * n` by `m * n`.
 #' @export
 K <- function(m,n)
 {

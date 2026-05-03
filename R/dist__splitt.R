@@ -1,7 +1,7 @@
 #' Split student-t distribution
 #'
 #' The split-t distribution.
-#' @param x "numeric".
+#' @param x,q,p Numeric vector of quantiles or probabilities.
 #'
 #' @param mu "numeric".
 #'
@@ -20,6 +20,7 @@
 #'        Skewness parameter. If is 1, reduced to symmetric student t
 #'        distribution.
 #'
+#' @param n Number of random draws.
 #' @param log "logical".
 #'
 #'        If the vale is TRUE, return the logarithm from.
@@ -35,6 +36,7 @@
 #' @note Created: Sat Jan 05 22:49:34 CET 2013;
 #'
 #'       Current: Sat Jan 05 22:49:39 CET 2013.
+#' @name splitt
 #' @export
 dsplitt <- function(x, mu, df, phi, lmd, log)
 {
@@ -57,6 +59,7 @@ dsplitt <- function(x, mu, df, phi, lmd, log)
     return(out)
 }
 
+#' @rdname splitt
 #' @export
 psplitt <- function(q, mu, df, phi, lmd)
 {
@@ -73,6 +76,7 @@ psplitt <- function(q, mu, df, phi, lmd)
     return(out)
 }
 
+#' @rdname splitt
 #' @export
 qsplitt <- function(p, mu, df, phi, lmd)
 {
@@ -128,6 +132,7 @@ qsplitt <- function(p, mu, df, phi, lmd)
     return(out)
 }
 
+#' @rdname splitt
 #' @export
 rsplitt <- function(n, mu, df, phi, lmd)
 {
@@ -138,6 +143,7 @@ rsplitt <- function(n, mu, df, phi, lmd)
 }
 
 
+#' @rdname splitt
 #' @export
 splitt.mean <- function(mu, df, phi, lmd)
 {
@@ -146,6 +152,7 @@ splitt.mean <- function(mu, df, phi, lmd)
     return(mean)
 }
 
+#' @rdname splitt
 #' @export
 splitt.var <- function(df, phi, lmd)
 {
@@ -154,6 +161,7 @@ splitt.var <- function(df, phi, lmd)
     return(var)
 }
 
+#' @rdname splitt
 #' @export
 splitt.skewness <- function(df, phi, lmd)
 {
@@ -167,6 +175,7 @@ splitt.skewness <- function(df, phi, lmd)
     return(skewness)
 }
 
+#' @rdname splitt
 #' @export
 splitt.kurtosis <- function(df, phi, lmd)
 {

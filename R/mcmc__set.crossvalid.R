@@ -1,8 +1,8 @@
 #' Setup cross-validation
 #'
 #' Tools to setup cross-validations
-#' @param n.obs Number of observations.
-#' @param crossvalidArgs Cross-validation arguments.
+#' @param nObs Number of observations.
+#' @param crossValidArgs Cross-validation arguments.
 #' @return list
 #' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 #' @export

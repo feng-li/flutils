@@ -11,7 +11,7 @@
 #'     the Mathematica definition.
 #'
 #' @return a numeric vector.
-#' @references \url{http://mathworld.wolfram.com/IncompleteBetaFunction.html}
+#' @references \url{https://mathworld.wolfram.com/IncompleteBetaFunction.html}
 #'
 #' TODO: let -1 < b < oO.
 #' @export
@@ -23,7 +23,7 @@ ibeta <- function(x, a, b, log = FALSE, reg = FALSE)
       stop("Incomplete beta function requires a > 0 and b > 0.")
     }
 
-  ibeta.log <- pbeta(x, a, b,  log = TRUE) + lbeta(a, b)
+  ibeta.log <- pbeta(x, a, b, log.p = TRUE) + lbeta(a, b)
 
   if(reg == TRUE)
     {

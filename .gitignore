@@ -1,6 +1,6 @@
 *~
 .dropbox
 *.Rc
-R/*.R
+!.Rbuildignore
 .Rhistory
 \#*\#

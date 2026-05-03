@@ -2,7 +2,6 @@
 #'
 #' @param save.output If the output should save.
 #' @param ModelDescription String
-#' @param Starting.time Computing initialized time
 #' @return NULL
 #' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 #' @export

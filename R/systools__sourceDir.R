@@ -105,7 +105,7 @@ sourceDir <- function(...,
     if(byte.compile == 1L || byte.compile == 2L)
         {
             ## require the compiler library
-            compLoad.try <- try(require("compiler", quietly = TRUE), silent = TRUE)
+            compLoad.try <- try(requireNamespace("compiler", quietly = TRUE), silent = TRUE)
             if(methods::is(compLoad.try, "try-error"))
                 {
                     byte.compile == 0L

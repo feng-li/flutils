@@ -21,11 +21,11 @@ Installation
 ------------
 
 The package has a hierarchical code structure that R does not support (see [this
-discussion](https://bugs.r-project.org/bugzilla/show_bug.cgi?id=17258)). A `src/Makevars`
+discussion of R package source layouts). A `src/Makevars`
 file is used to do the the trick.
 
 - **Standard Installation** to install the `master` branch with
-  [`devtools`](https://cran.r-project.org/web/packages/devtools/)
+  [`devtools`](https://CRAN.R-project.org/package=devtools)
 
     ``` r
     devtools::install_github("feng-li/flutils")
@@ -60,7 +60,7 @@ Copyrights
 More information
 ----------------
 
-* [Author's homepage](http://feng.li/).
+* [Author's homepage](https://feng.li/).
 
 
 

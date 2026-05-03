@@ -4,7 +4,6 @@
 #' @param X "matrix"
 #' @param beta "one-col-matrix"
 #' @param linkArgs linkage arguments
-#' @param link "character" Type of link function
 #' @return "one-col-matrix" of the same dimension as the linear predictor
 #' @author Feng Li, Department of Statistics, Stockholm University, Sweden.
 #' @export
@@ -104,7 +103,14 @@ parMeanFun <- function(X, beta, linkArgs)
 }
 
 
-## Slightly modify the par to avoid under/over flow in parLinkFun()
+#' Restrict parameters to link-function bounds
+#'
+#' Slightly modifies parameters that fall outside finite bounds supplied in
+#' `linkArgs`.
+#'
+#' @param par Numeric parameter vector or matrix.
+#' @param linkArgs Link settings containing optional `a` and `b` bounds.
+#' @return Parameter values adjusted to stay within finite bounds.
 #' @export
 parRestricFun <- function(par, linkArgs)
 {

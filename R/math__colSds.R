@@ -1,3 +1,11 @@
+#' Row and column summaries
+#'
+#' Convenience wrappers around `apply()` for row and column standard deviations
+#' and variances.
+#'
+#' @param x A numeric matrix.
+#' @return A numeric vector.
+#' @name matrix-summaries
 #' @export
 colSds <- function(x)
   {
@@ -5,6 +13,7 @@ colSds <- function(x)
     return(out)
   }
 
+#' @rdname matrix-summaries
 #' @export
 rowSds <- function(x)
   {
@@ -12,6 +21,7 @@ rowSds <- function(x)
     return(out)
   }
 
+#' @rdname matrix-summaries
 #' @export
 colVars <- function(x)
   {
@@ -19,6 +29,7 @@ colVars <- function(x)
     return(out)
   }
 
+#' @rdname matrix-summaries
 #' @export
 rowVars <- function(x)
   {
