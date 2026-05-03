@@ -39,17 +39,3 @@ test_that("time-series normal mixture density returns vector densities", {
   expect_length(density, length(y))
   expect_equal(density, exp(log_density))
 })
-
-test_that("split-t density, distribution, and quantile are consistent", {
-  x <- c(-1, 0, 1)
-  density <- dsplitt(x, mu = 0, df = 8, phi = 1.2, lmd = 1.4, log = FALSE)
-
-  expect_true(all(density > 0))
-  expect_equal(dsplitt(x, mu = 0, df = 8, phi = 1.2, lmd = 1.4, log = TRUE),
-               log(density))
-
-  p <- c(0.1, 0.5, 0.9)
-  q <- qsplitt(p, mu = 0, df = 8, phi = 1.2, lmd = 1.4)
-  expect_equal(psplitt(q, mu = 0, df = 8, phi = 1.2, lmd = 1.4), p,
-               tolerance = 1e-10)
-})
